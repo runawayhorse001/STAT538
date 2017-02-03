@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Ming Chen &amp; Wenqiang Feng" />
+
+
+<title>Homework #2</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 537: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="hw1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="project2.html">HW #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #2</h1>
+<h4 class="author"><em>Ming Chen &amp; Wenqiang Feng</em></h4>
+<h4 class="date"><em>2/2/2017</em></h4>
+
+</div>
+
+
+<div id="chapter-6-problems-5abcd" class="section level2">
+<h2><strong>1. Chapter 6 Problems 5abcd</strong></h2>
+<div id="load-data" class="section level4">
+<h4>Load data</h4>
+<pre class="r"><code>data65 &lt;- read.table(&quot;./data/CH06PR05.txt&quot;, col.names = c(&quot;y&quot;, &quot;x1&quot;,&quot;x2&quot;))</code></pre>
+<ul>
+<li>Problem 6.5 (a)</li>
+</ul>
+</div>
+<div id="scatter-plot-matrix-and-correlation-matrix" class="section level4">
+<h4>Scatter plot matrix and correlation matrix</h4>
+<ul>
+<li>Scatter plot matrix</li>
+</ul>
+<pre class="r"><code>library(ggplot2)
+pairs(data65, col=&quot;gray20&quot;)</code></pre>
+<p><img src="hw3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ul>
+<li>Correlation matrix</li>
+</ul>
+<pre class="r"><code>cor(data65)</code></pre>
+<pre><code>##            y        x1        x2
+## y  1.0000000 0.8923929 0.3945807
+## x1 0.8923929 1.0000000 0.0000000
+## x2 0.3945807 0.0000000 1.0000000</code></pre>
+<ul>
+<li><p><strong>Information from these diagnostic aids</strong>: From the correlation matrix, we can conclude that Y (branding linking) is positively correlated to <span class="math inline">\(X_1\)</span> (mosture content) and <span class="math inline">\(X_2\)</span> (sweetness). Moreover, The correlation is stronger between Y and <span class="math inline">\(X_1\)</span> (0.89) than between Y and <span class="math inline">\(X_2\)</span> (0.39) and no correlation between <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>.</p></li>
+<li><p>Problem 6.5 (b)</p></li>
+</ul>
+</div>
+<div id="fit-regression-model" class="section level4">
+<h4>Fit regression model</h4>
+<pre class="r"><code>lm.fit = lm(y~x1+x2, data=data65)
+summary(lm.fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2, data = data65)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -4.400 -1.762  0.025  1.587  4.200 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  37.6500     2.9961  12.566 1.20e-08 ***
+## x1            4.4250     0.3011  14.695 1.78e-09 ***
+## x2            4.3750     0.6733   6.498 2.01e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.693 on 13 degrees of freedom
+## Multiple R-squared:  0.9521, Adjusted R-squared:  0.9447 
+## F-statistic: 129.1 on 2 and 13 DF,  p-value: 2.658e-09</code></pre>
+<ul>
+<li><strong>Coefficients</strong></li>
+</ul>
+<pre class="r"><code>beta=coef(lm.fit)
+names(beta) = c(&quot;b0&quot;, &quot;b1&quot;, &quot;b2&quot;)
+beta</code></pre>
+<pre><code>##     b0     b1     b2 
+## 37.650  4.425  4.375</code></pre>
+<ul>
+<li><strong>Regression function</strong></li>
+</ul>
+<pre class="r"><code>#Y_hat = beta[1] + beta[2]*X1 + beta[3]*X2</code></pre>
+<p><span class="math display">\[
+\hat{Y} = 37.65 + 4.425*X_1 + 4.375*X_2
+\]</span></p>
+<ul>
+<li><strong>Interpretation of b1</strong></li>
+</ul>
+<p>The coefficient <span class="math inline">\(b_1\)</span> represents that when <span class="math inline">\(X_1\)</span> (mosture content) increasing or descreasing by 1 unit, the Y (branding linking) will increase or descrease by 4.425 unit (under the assumption that the other variables are fixed).</p>
+<ul>
+<li><p>Problem 6.5 (c)</p></li>
+<li><p><strong>Residuals and boxplot of residuals</strong></p></li>
+</ul>
+<pre class="r"><code>residuals = lm.fit$residuals
+residuals</code></pre>
+<pre><code>##     1     2     3     4     5     6     7     8     9    10    11    12 
+## -0.10  0.15 -3.10  3.15 -0.95 -1.70 -1.95  1.30  1.20 -1.55  4.20  2.45 
+##    13    14    15    16 
+## -2.65 -4.40  3.35  0.60</code></pre>
+<pre class="r"><code>boxplot(residuals)</code></pre>
+<p><img src="hw3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>Y_hat = predict(lm.fit)
+Y_hat</code></pre>
+<pre><code>##     1     2     3     4     5     6     7     8     9    10    11    12 
+## 64.10 72.85 64.10 72.85 72.95 81.70 72.95 81.70 81.80 90.55 81.80 90.55 
+##    13    14    15    16 
+## 90.65 99.40 90.65 99.40</code></pre>
+<ul>
+<li><strong>Information provided by box plot</strong></li>
+</ul>
+<p>The above boxplot indicates that the number of positive and negative residuals are about to be equal and no outliers in this data. Moreover, the residuals are evenly distributed and centered around 0. Hence, we can conclude that the regression model fits the data well.</p>
+</div>
+<div id="problem-6.5-d" class="section level3">
+<h3>problem 6.5 (d)</h3>
+<ul>
+<li><strong>Residual plots against <span class="math inline">\(\hat{Y}, X_1, X_2\)</span> and <span class="math inline">\(X_1X_2\)</span> on separate graphs</strong></li>
+</ul>
+<pre class="r"><code>layout(matrix(c(1,2,1,2,3,4,3,4), 4,2, byrow=TRUE))
+X1 = data65$x1
+X2 = data65$x2
+X1X2 = X1*X2
+plot(residuals~Y_hat, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+plot(residuals~X1, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+plot(residuals~X2, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+plot(residuals~X1X2, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)</code></pre>
+<p><img src="hw3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<ul>
+<li><strong>Interpertation of residual plots</strong></li>
+</ul>
+<p>The upper left plot indicates that the variance of error terms does not vary with the level of Y hat. But there is a systematic pattern in the plot. The same pattern is found in the bottom right plot, which indicats that there is interaction effect.</p>
+</div>
+</div>
+<div id="chapter-6-problems-6" class="section level2">
+<h2><strong>2. Chapter 6 Problems 6</strong></h2>
+<div id="problem-6.6-a" class="section level3">
+<h3>problem 6.6 (a)</h3>
+<div id="f-test-for-regression-relation" class="section level4">
+<h4>F test for regression relation</h4>
+<ul>
+<li>Hypothesis
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1\)</span> = <span class="math inline">\(\beta_2\)</span> = 0, <span class="math inline">\(H_{\alpha}\)</span>: not all <span class="math inline">\(\beta_i\)</span> = 0 (i=1,2)</li>
+<li>test statistic (<span class="math inline">\(\alpha =0.01, n=16, p=3\)</span>): <span class="math display">\[F^* = \frac{MSR}{MSE}.\]</span>
+<ul>
+<li>If <span class="math inline">\(F^* &lt; F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)\)</span>, conclude <span class="math inline">\(H_0\)</span>,</li>
+<li>If <span class="math inline">\(F^* &lt; F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)\)</span> conclude <span class="math inline">\(H_a\)</span>.</li>
+</ul></li>
+</ul></li>
+<li>Calcuate of MSR and MSE
+<span class="math display">\[\begin{eqnarray}
+SSE &amp;=&amp; e&#39;e = (Y-Xb)&#39;(Y-Xb) =Y&#39;Y-b&#39;X&#39;Y&#39;= Y&#39;(I-H)Y\\
+SSR &amp;=&amp; b&#39;X&#39;Y -\frac{1}{n}Y&#39;JY = Y&#39;\left[H-\frac{1}{n}J\right]Y
+\end{eqnarray}\]</span></li>
+</ul>
+<pre class="r"><code>mystats &lt;- function (X,Y){
+# reference : book page 225
+XPrime &lt;- t(X) #transposing X
+YPrime &lt;- t(Y) #transposing Y
+n &lt;- length(Y)  #here we assign our n 
+I &lt;- matrix(0, nrow = n, ncol = n)  #we define an n by n 
+                          #matrix here that has an entries of 0.
+I[row(I) == col(I)] &lt;- 1  #here we assign a value 1 if the ith 
+                          #rows is equal to the jth columns.
+J &lt;- matrix(1, nrow = n, ncol = n)
+ 
+#We are almost ready for computation, but before that we need 
+#to define first our H. To do that lets define the inverse 
+#first.
+
+XXPrime &lt;- XPrime%*%X       #here we define X’X
+Inverse &lt;- solve(XXPrime)   #here we have (X’X)^(-1)
+H &lt;- X%*%Inverse%*%XPrime
+
+# SSR
+SSRCen &lt;- H - J/n  #here we define (H – J/n)
+SSR &lt;- YPrime%*%SSRCen%*%Y
+
+# SSE
+SSECen &lt;- I - H  #here we define (I – H)
+SSE &lt;- YPrime%*%SSECen%*%Y
+
+# MSR
+MSR = SSR/(p-1)
+# MSE
+MSE = SSE/(n-p)
+return(list(SSR=SSR,SSE=SSE,MSR=MSR, MSE=MSE))
+}</code></pre>
+<pre class="r"><code>p = 3
+X &lt;- as.matrix(cbind(1,data65[,2:3]))
+Y &lt;- as.matrix(data65[,1])
+
+stats=mystats(X,Y)
+stats$MSR</code></pre>
+<pre><code>##        [,1]
+## [1,] 936.35</code></pre>
+<pre class="r"><code>stats$MSE</code></pre>
+<pre><code>##          [,1]
+## [1,] 7.253846</code></pre>
+<pre class="r"><code>F_star = stats$MSR/stats$MSE
+F_star</code></pre>
+<pre><code>##          [,1]
+## [1,] 129.0832</code></pre>
+<ul>
+<li>calculating <span class="math inline">\(F^* = \frac{MSR}{MSE} = \frac{936.35}{7.2538462}= {129.083245}\)</span></li>
+</ul>
+</div>
+<div id="remark-we-can-directly-get-the-f-value-from-summary-of-model-fitting" class="section level4">
+<h4>Remark: We can directly get the <span class="math inline">\(F^*\)</span> value from summary of model fitting :</h4>
+<pre class="r"><code>F_star = summary(lm.fit)$fstatistic[1]
+F_star</code></pre>
+<pre><code>##    value 
+## 129.0832</code></pre>
+<ul>
+<li>calculating F(0.99; 5,8)</li>
+</ul>
+<pre class="r"><code>qf(0.99, 2,13)</code></pre>
+<pre><code>## [1] 6.700965</code></pre>
+<ul>
+<li>test results <span class="math inline">\(F^*\)</span>= 129.083245 &lt; F(0.99, 2, 13)= 6.7009645, Hence, we conclude <span class="math inline">\(H_{\alpha}\)</span>. That is to say the test results indicate that at least one of <span class="math inline">\(\beta_i\)</span> (i=1,2) is not 0.</li>
+</ul>
+</div>
+</div>
+<div id="problem-6.6-b" class="section level3">
+<h3>Problem 6.6 (b)</h3>
+<ul>
+<li><strong>P-value</strong></li>
+</ul>
+<pre class="r"><code>p_value = 1 - pf(F_star,2,13)
+p_value</code></pre>
+<pre><code>##        value 
+## 2.658261e-09</code></pre>
+</div>
+<div id="problem-6.6-c" class="section level3">
+<h3>Problem 6.6 (c)</h3>
+<ul>
+<li>calculate s{b1}:s_b1 and s{b2}:s_b2</li>
+</ul>
+<pre class="r"><code>lm.fit = lm(y~., data=data65)
+X = as.matrix(cbind(1, data65[,2:3]))
+MSE = sum(lm.fit$residuals^2)/(nrow(data65)-3)
+s_squared_b = MSE * solve(t(X)%*%X)
+s_b1 = s_squared_b[2,2]^.5
+s_b2 = s_squared_b[3,3]^.5</code></pre>
+<ul>
+<li>beta1 and beta2</li>
+</ul>
+<pre class="r"><code>beta1=coef(lm.fit)[2]
+beta1</code></pre>
+<pre><code>##    x1 
+## 4.425</code></pre>
+<pre class="r"><code>beta2=coef(lm.fit)[3]
+beta2</code></pre>
+<pre><code>##    x2 
+## 4.375</code></pre>
+<ul>
+<li>Since <span class="math inline">\(\alpha =0.01\)</span>, then t_star=t(0.9975, 13)</li>
+</ul>
+<pre class="r"><code>t_star=qt(0.9975, 13)
+t_star</code></pre>
+<pre><code>## [1] 3.372468</code></pre>
+<ul>
+<li>Calculate 99% interval</li>
+</ul>
+<pre class="r"><code>beta1_lower = beta1-t_star*s_b1
+beta1_upper = beta1+t_star*s_b1
+beta1_interval=c(beta1_lower, &quot;upper limit&quot;=beta1_upper)
+names(beta1_interval) = c(&quot;lower limit&quot;, &quot;upper limit&quot;)</code></pre>
+<ul>
+<li>99% CI for <span class="math inline">\(\beta_1\)</span></li>
+</ul>
+<p><span class="math display">\[ 4.425 \pm 3.3724679 \cdot 0.3011197 \]</span></p>
+<pre class="r"><code>beta2_lower = beta2-t_star*s_b2
+beta2_upper = beta2+t_star*s_b2
+beta2_interval=c(beta2_lower, &quot;upper limit&quot;=beta2_upper)
+names(beta2_interval) = c(&quot;lower limit&quot;, &quot;upper limit&quot;)
+
+beta1_interval</code></pre>
+<pre><code>## lower limit upper limit 
+##    3.409483    5.440517</code></pre>
+<pre class="r"><code>beta2_interval</code></pre>
+<pre><code>## lower limit upper limit 
+##    2.104236    6.645764</code></pre>
+<ul>
+<li>99% CI for <span class="math inline">\(\beta_2\)</span></li>
+</ul>
+<p><span class="math display">\[4.375 \pm 3.3724679 \cdot 0.6733241 \]</span></p>
+<ul>
+<li>Interpretation:
+<ul>
+<li>there is 99% confidence that the true <span class="math inline">\(\beta_1\)</span> will be between 3.4094834 and 5.4405166</li>
+<li>there is 99% confidence that the true <span class="math inline">\(\beta_2\)</span> will be between 2.104236 and 6.645764.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="chapter-6-problems-7" class="section level2">
+<h2><strong>3. Chapter 6 Problems 7</strong></h2>
+<div id="problem-6.7-a" class="section level3">
+<h3>Problem 6.7 (a)</h3>
+<ul>
+<li>multiple determination <span class="math inline">\(R^2\)</span> The model explains 95.2059% of the response variable variation.</li>
+</ul>
+<pre class="r"><code>R_squared = summary(lm.fit)$r.squared
+R_adj_squared = summary(lm.fit)$adj.r.squared
+R_squared</code></pre>
+<pre><code>## [1] 0.952059</code></pre>
+<pre class="r"><code>R_adj_squared</code></pre>
+<pre><code>## [1] 0.9446834</code></pre>
+</div>
+<div id="problem-6.7-b" class="section level3">
+<h3>Problem 6.7 (b)</h3>
+<pre class="r"><code>lm2.fit = lm(data65$y~Y_hat)
+simple.dtm = c(summary(lm2.fit)$r.squared, summary(lm(data65$y~Y_hat))$adj.r.squared)
+multiple.dtm = c(R_squared, R_adj_squared)
+determination = cbind(simple_determination=simple.dtm, multiple_determination=multiple.dtm)
+rownames(determination) = c(&quot;R squared&quot;, &quot;adj R squared&quot;)
+determination</code></pre>
+<pre><code>##               simple_determination multiple_determination
+## R squared                0.9520590              0.9520590
+## adj R squared            0.9486346              0.9446834</code></pre>
+<ul>
+<li>simple determination <span class="math inline">\(R^2\)</span> between Y and <span class="math inline">\(\hat{Y}\)</span> is 0.952059.
+<ul>
+<li>Yes. The simple determination <span class="math inline">\(R^2\)</span> equals the coefficient of multiple determination in part (a).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="chapter-6-problems-8" class="section level2">
+<h2><strong>4. Chapter 6 Problems 8</strong></h2>
+<div id="problem-6.8a" class="section level3">
+<h3>Problem 6.8(a)</h3>
+<pre class="r"><code>Y_interval_est_1 = predict(lm.fit, data.frame(x1=5, x2=4), 
+                           interval=&quot;confidence&quot;, level=0.99)
+Y_interval_est_1</code></pre>
+<pre><code>##      fit      lwr      upr
+## 1 77.275 73.88111 80.66889</code></pre>
+<ul>
+<li>The interval estimate of <span class="math inline">\(E[Y_h]\)</span> is <span class="math inline">\(73.8811087 \leq E[Y_h] \leq 80.6688913\)</span></li>
+<li>Interpretation: there is 99% confidence that the true response value is between 73.8811087 and 80.6688913</li>
+</ul>
+</div>
+<div id="problem-6.8b" class="section level3">
+<h3>Problem 6.8(b)</h3>
+<pre class="r"><code>Y_interval_est_2 = predict(lm.fit, data.frame(x1=5, x2=4), 
+                           interval=&quot;prediction&quot;, level=0.99)
+Y_interval_est_2</code></pre>
+<pre><code>##      fit      lwr      upr
+## 1 77.275 68.48077 86.06923</code></pre>
+<ul>
+<li>The interval estimate of <span class="math inline">\(E[Y_{h(new)}]\)</span> is <span class="math inline">\(68.4807696 \leq E[Y_{h(new)}] \leq 86.0692304\)</span></li>
+<li>Interpretation: there is 99% confidence that the true response value is between 68.4807696 and 86.0692304</li>
+</ul>
+</div>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

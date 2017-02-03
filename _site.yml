@@ -28,11 +28,11 @@ navbar:
         - text: "HW #1"
           href:  hw1.html
         - text: "HW #2"
-          href: hw2.html
+          href:  hw2.html
         - text: "---------"
         - text: "Chapter 2"
         - text: "HW #3"
-          href:  hw1.html
+          href:  hw3.html
         - text: "HW #4"
           href: project2.html  
     - text: "Project"

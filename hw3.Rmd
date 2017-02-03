@@ -1,0 +1,307 @@
+---
+title: "Homework #2"
+author: "Ming Chen & Wenqiang Feng"
+date: "2/2/2017"
+output: html_document
+---
+
+## **1. Chapter 6 Problems 5abcd**
+
+#### Load data
+```{r}
+data65 <- read.table("./data/CH06PR05.txt", col.names = c("y", "x1","x2"))
+```
+
+* Problem 6.5 (a)
+
+#### Scatter plot matrix and correlation matrix
+
+* Scatter plot matrix
+
+```{r}
+library(ggplot2)
+pairs(data65, col="gray20")
+```
+
+* Correlation matrix
+
+```{r}
+cor(data65)
+```
+
+* **Information from these diagnostic aids**: From the correlation matrix, we can conclude that Y (branding linking) is positively correlated to $X_1$ (mosture content) and $X_2$ (sweetness). Moreover, The correlation is stronger between Y and $X_1$ (0.89) than between Y and $X_2$ (0.39) and no correlation between $X_1$ and $X_2$.
+
+
+* Problem 6.5 (b)
+
+#### Fit regression model
+
+```{r}
+lm.fit = lm(y~x1+x2, data=data65)
+summary(lm.fit)
+```
+* __Coefficients__
+
+```{r}
+beta=coef(lm.fit)
+names(beta) = c("b0", "b1", "b2")
+beta
+```
+
+* __Regression function__
+
+```{r eval=FALSE}
+#Y_hat = beta[1] + beta[2]*X1 + beta[3]*X2
+```
+$$
+\hat{Y} = `r beta[1]` + `r beta[2]`*X_1 + `r beta[3]`*X_2
+$$
+
+* __Interpretation of b1__
+
+The coefficient $b_1$ represents that  when $X_1$ (mosture content)  increasing or descreasing by 1 unit, the Y (branding linking) will increase or descrease  by `r beta[2]` unit (under the assumption that the other variables are fixed).
+
+* Problem 6.5 (c)
+
+
+* __Residuals and boxplot of residuals__
+
+```{r}
+residuals = lm.fit$residuals
+residuals
+boxplot(residuals)
+Y_hat = predict(lm.fit)
+Y_hat
+```
+
+* __Information provided by box plot__
+
+The above boxplot indicates that the number of positive and negative residuals are about to be equal and no outliers in this data. Moreover, the residuals are evenly distributed and centered around 0. Hence, we can conclude that the regression model fits the data well. 
+
+### problem 6.5 (d)
+
+* __Residual plots against $\hat{Y}, X_1, X_2$ and $X_1X_2$ on separate graphs__
+
+```{r}
+layout(matrix(c(1,2,1,2,3,4,3,4), 4,2, byrow=TRUE))
+X1 = data65$x1
+X2 = data65$x2
+X1X2 = X1*X2
+plot(residuals~Y_hat, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+plot(residuals~X1, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+plot(residuals~X2, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+plot(residuals~X1X2, ylim=c(-8,8), pch=20)
+abline(h=0, lty=3, col=2)
+```
+
+
+
+* __Interpertation of residual plots__
+
+The upper left plot indicates that the variance of error terms does not vary with the level of Y hat. But there is a systematic pattern in the plot. The same pattern is found in the bottom right plot, which indicats that there is interaction effect. 
+
+
+
+## **2. Chapter 6 Problems 6**
+
+### problem 6.6 (a)
+#### F test for regression relation 
+
+* Hypothesis
+    - $H_0$: $\beta_1$ = $\beta_2$ = 0, $H_{\alpha}$: not all $\beta_i$ = 0 (i=1,2)
+    - test statistic ($\alpha =0.01, n=16, p=3$):
+      $$F^* = \frac{MSR}{MSE}.$$ 
+         - If $F^* < F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)$, conclude $H_0$, 
+         - If $F^* < F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)$  conclude $H_a$.
+
+* Calcuate of MSR and MSE
+\begin{eqnarray}
+SSE &=& e'e = (Y-Xb)'(Y-Xb) =Y'Y-b'X'Y'= Y'(I-H)Y\\
+SSR &=& b'X'Y -\frac{1}{n}Y'JY = Y'\left[H-\frac{1}{n}J\right]Y
+\end{eqnarray}
+
+```{r}
+mystats <- function (X,Y){
+# reference : book page 225
+XPrime <- t(X) #transposing X
+YPrime <- t(Y) #transposing Y
+n <- length(Y)  #here we assign our n 
+I <- matrix(0, nrow = n, ncol = n)  #we define an n by n 
+                          #matrix here that has an entries of 0.
+I[row(I) == col(I)] <- 1  #here we assign a value 1 if the ith 
+                          #rows is equal to the jth columns.
+J <- matrix(1, nrow = n, ncol = n)
+ 
+#We are almost ready for computation, but before that we need 
+#to define first our H. To do that lets define the inverse 
+#first.
+
+XXPrime <- XPrime%*%X       #here we define X’X
+Inverse <- solve(XXPrime)   #here we have (X’X)^(-1)
+H <- X%*%Inverse%*%XPrime
+
+# SSR
+SSRCen <- H - J/n  #here we define (H – J/n)
+SSR <- YPrime%*%SSRCen%*%Y
+
+# SSE
+SSECen <- I - H  #here we define (I – H)
+SSE <- YPrime%*%SSECen%*%Y
+
+# MSR
+MSR = SSR/(p-1)
+# MSE
+MSE = SSE/(n-p)
+return(list(SSR=SSR,SSE=SSE,MSR=MSR, MSE=MSE))
+}
+```
+  
+```{r}
+p = 3
+X <- as.matrix(cbind(1,data65[,2:3]))
+Y <- as.matrix(data65[,1])
+
+stats=mystats(X,Y)
+stats$MSR
+stats$MSE
+F_star = stats$MSR/stats$MSE
+F_star
+```
+
++ calculating $F^* = \frac{MSR}{MSE} = \frac{`r stats$MSR`}{`r stats$MSE`}= {`r F_star`}$
+
+#### Remark: We can directly get the $F^*$ value from summary of model fitting :
+```{r}
+F_star = summary(lm.fit)$fstatistic[1]
+F_star
+```
+
++ calculating F(0.99; 5,8)
+
+```{r}
+qf(0.99, 2,13)
+```
+
++ test results
+  $F^*$= `r F_star` < F(0.99, 2, 13)= `r qf(0.99, 2,13)`, Hence, we conclude $H_{\alpha}$. That is to say the test results indicate that at least one of $\beta_i$ (i=1,2) is not 0.
+  
+### Problem 6.6 (b)
+
+* __P-value__
+
+```{r}
+p_value = 1 - pf(F_star,2,13)
+p_value
+```
+
+### Problem 6.6 (c)
+
+* calculate s{b1}:s_b1 and s{b2}:s_b2
+```{r}
+lm.fit = lm(y~., data=data65)
+X = as.matrix(cbind(1, data65[,2:3]))
+MSE = sum(lm.fit$residuals^2)/(nrow(data65)-3)
+s_squared_b = MSE * solve(t(X)%*%X)
+s_b1 = s_squared_b[2,2]^.5
+s_b2 = s_squared_b[3,3]^.5
+```
+
+* beta1 and beta2
+```{r}
+beta1=coef(lm.fit)[2]
+beta1
+beta2=coef(lm.fit)[3]
+beta2
+```
+
+* Since $\alpha =0.01$, then t_star=t(0.9975, 13)
+```{r}
+t_star=qt(0.9975, 13)
+t_star
+```
+* Calculate 99% interval
+```{r}
+beta1_lower = beta1-t_star*s_b1
+beta1_upper = beta1+t_star*s_b1
+beta1_interval=c(beta1_lower, "upper limit"=beta1_upper)
+names(beta1_interval) = c("lower limit", "upper limit")
+```
+* 99% CI for $\beta_1$ 
+
+$$ `r beta1` \pm `r t_star` \cdot `r s_b1` $$
+
+```{r}
+beta2_lower = beta2-t_star*s_b2
+beta2_upper = beta2+t_star*s_b2
+beta2_interval=c(beta2_lower, "upper limit"=beta2_upper)
+names(beta2_interval) = c("lower limit", "upper limit")
+
+beta1_interval
+beta2_interval
+```
+
+* 99% CI for $\beta_2$ 
+
+$$`r beta2` \pm `r t_star` \cdot `r s_b2` $$
+
+* Interpretation:
+    + there is 99% confidence that the true $\beta_1$ will
+      be between `r beta1_interval[1]` and `r beta1_interval[2]`
+    + there is 99% confidence that the true $\beta_2$ will be 
+    between `r beta2_interval[1]` and `r beta2_interval[2]`.
+
+
+## **3. Chapter 6 Problems 7**
+
+### Problem 6.7 (a)
+
+* multiple determination $R^2$
+  The model explains 95.2059% of the response variable variation.
+  
+```{r}
+R_squared = summary(lm.fit)$r.squared
+R_adj_squared = summary(lm.fit)$adj.r.squared
+R_squared
+R_adj_squared
+```
+
+### Problem 6.7 (b)
+  
+```{r}
+lm2.fit = lm(data65$y~Y_hat)
+simple.dtm = c(summary(lm2.fit)$r.squared, summary(lm(data65$y~Y_hat))$adj.r.squared)
+multiple.dtm = c(R_squared, R_adj_squared)
+determination = cbind(simple_determination=simple.dtm, multiple_determination=multiple.dtm)
+rownames(determination) = c("R squared", "adj R squared")
+determination
+```
+
+* simple determination $R^2$ between Y and $\hat{Y}$ is `r determination[1,1]`.
+    - Yes. The simple determination $R^2$ equals the coefficient of multiple determination in part (a).
+
+
+## **4. Chapter 6 Problems 8**
+
+### Problem 6.8(a)
+
+```{r}
+Y_interval_est_1 = predict(lm.fit, data.frame(x1=5, x2=4), 
+                           interval="confidence", level=0.99)
+Y_interval_est_1
+```
+* The interval estimate of $E[Y_h]$ is $`r Y_interval_est_1[2]` \leq E[Y_h] \leq `r Y_interval_est_1[3]`$
+* Interpretation: there is 99% confidence that the true response value is between `r Y_interval_est_1[2]` and `r Y_interval_est_1[3]`
+
+### Problem 6.8(b)
+
+```{r}
+Y_interval_est_2 = predict(lm.fit, data.frame(x1=5, x2=4), 
+                           interval="prediction", level=0.99)
+Y_interval_est_2
+```
+
+* The interval estimate of $E[Y_{h(new)}]$ is $`r Y_interval_est_2[2]` \leq E[Y_{h(new)}] \leq `r Y_interval_est_2[3]`$
+* Interpretation: there is 99% confidence that the true response value is between `r Y_interval_est_2[2]` and `r Y_interval_est_2[3]`

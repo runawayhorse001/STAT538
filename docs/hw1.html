@@ -287,24 +287,199 @@ $(document).ready(function () {
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<div id="problem-1.22" class="section level1">
+<h1><strong>1. Problem 1.22</strong></h1>
+<div id="load-data" class="section level3">
+<h3>Load data</h3>
+<pre class="r"><code>data122 &lt;- read.table(&quot;./data/CH01PR22.txt&quot;, col.names = c(&quot;y&quot;, &quot;x&quot;))</code></pre>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="hw1_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="a.-obtain-the-estimated-regression-function" class="section level3">
+<h3>a. Obtain the estimated regression function</h3>
+<pre class="r"><code>fit &lt;- lm(y~x, data=data122)
+summary(fit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = data122)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.1500 -2.2188  0.1625  2.6875  5.5750 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 168.60000    2.65702   63.45  &lt; 2e-16 ***
+## x             2.03438    0.09039   22.51 2.16e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.234 on 14 degrees of freedom
+## Multiple R-squared:  0.9731, Adjusted R-squared:  0.9712 
+## F-statistic: 506.5 on 1 and 14 DF,  p-value: 2.159e-12</code></pre>
+</div>
+<div id="regression-function" class="section level3">
+<h3>Regression function</h3>
+<pre class="r"><code>(C &lt;-coef(fit))</code></pre>
+<pre><code>## (Intercept)           x 
+##  168.600000    2.034375</code></pre>
+<pre class="r"><code>beta0 &lt;- C[1];  beta1 &lt;- C[2] 
+substitute(y&lt;-beta0+beta1*x, list(beta0=beta0, beta1=beta1))</code></pre>
+<pre><code>## y &lt;- 168.6 + 2.034375 * x</code></pre>
+<p>Hence the regression function is: <span class="math display">\[ y= 168.6 + 2.034375X .\]</span></p>
+</div>
+<div id="plot-the-regression-function-and-the-data" class="section level3">
+<h3>Plot the regression function and the data</h3>
+<pre class="r"><code>plot(y~x, data = data122)
+abline(coefficients(fit), col=&quot;blue&quot;)
+text_label = substitute(y&lt;-beta0+beta1*x, list(beta0=beta0, beta1=beta1))
+text(33, 210, &quot;Y = 168.6 + 2.03438*X \nAdjusted R-squared:  0.9712&quot;)</code></pre>
+<p><img src="hw1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Based on the fitted results, we may conclude that the linear regression gives a good fit.</p>
+</div>
+<div id="b.-obtain-a-point-estimate-of-the-mean-hardness-when-x-40-hours" class="section level3">
+<h3>b. Obtain a point estimate of the mean hardness when X = 40 hours</h3>
+<pre class="r"><code>X40 &lt;- predict.lm(fit, data.frame(x=40))
+X40</code></pre>
+<pre><code>##       1 
+## 249.975</code></pre>
+<p>The estimated value at <span class="math inline">\(x=40\)</span> is <span class="math inline">\(249.975\)</span>.</p>
+</div>
+<div id="c.-obtain-a-point-estimate-of-the-change-in-mean-hardness-when-x-increases-by-1-hour." class="section level3">
+<h3>c. Obtain a point estimate of the change in mean hardness when X increases by 1 hour.</h3>
+<pre class="r"><code>beta1 &lt;- coefficients(fit)[2]
+beta1</code></pre>
+<pre><code>##        x 
+## 2.034375</code></pre>
+<p>The a point estimate of the change in mean hardness when X increases by 1 hour is the coefficient of <span class="math inline">\(x\)</span>, i.e. <span class="math inline">\(\beta_1\)</span>. Hence, the value is <span class="math inline">\(2.034375\)</span>.</p>
+</div>
+</div>
+<div id="problem-1.42abc" class="section level1">
+<h1><strong>2. Problem 1.42abc</strong></h1>
+<div id="a.-likelihood-function" class="section level3">
+<h3>a. Likelihood function</h3>
+<p>The formula of the likelihood function is as follows: <span class="math display">\[
+ L(\beta_0, \beta_1, \sigma^2) =\displaystyle\Pi_{i=1}^n \frac{1}{(2\pi\sigma^2)^\frac{1}{2}}\exp\left[-\frac{1}{2\sigma^2}(Y_i-\beta_0-\beta_1X_i)^2\right].
+\]</span></p>
+</div>
+<div id="likelihood-function" class="section level3">
+<h3>Likelihood function</h3>
+<p>Since <span class="math inline">\(\beta_0=0\)</span> and <span class="math inline">\(\sigma^2 =16\)</span>, the likelihood function is as follows: <span class="math display">\[
+ L(\beta_1) =\displaystyle\Pi_{i=1}^6 \frac{1}{(32\pi)^\frac{1}{2}}\exp\left[-\frac{1}{32}(Y_i-\beta_1X_i)^2\right].
+\]</span></p>
+</div>
+<div id="b.-likelihood-function" class="section level3">
+<h3>b. Likelihood function</h3>
+</div>
+<div id="load-data-1" class="section level3">
+<h3>Load data</h3>
+<pre class="r"><code>data142 &lt;- read.table(&quot;./data/CH01PR42.txt&quot;, col.names = c(&quot;y&quot;, &quot;x&quot;))
+attach(data142)
+#head(data142)</code></pre>
+<pre class="r"><code>L &lt;- function(beta1,y,x,sigma2){
+  diff = y-beta1*x
+  temp = 1/((2*pi*sigma2)^(1/2))*exp(-1/(2*sigma2)*diff^2)
+  result = prod(temp,1)
+  return(result)
+}
+L(17,y,x,16)</code></pre>
+<pre><code>## [1] 9.45133e-30</code></pre>
+<pre class="r"><code>L(18,y,x,16)</code></pre>
+<pre><code>## [1] 2.649043e-07</code></pre>
+<pre class="r"><code>L(19,y,x,16)</code></pre>
+<pre><code>## [1] 3.047285e-37</code></pre>
+</div>
+<div id="the-values-of-the-likelihood-function" class="section level3">
+<h3>The values of the likelihood function</h3>
+<p>Hence, the value of the likelihood function for <span class="math inline">\(\beta_1 =17\)</span> is <span class="math inline">\(9.4513295\times 10^{-30}\)</span>, the value of the likelihood function for <span class="math inline">\(\beta_1 =18\)</span> is <span class="math inline">\(2.6490426\times 10^{-7}\)</span> and the value of the likelihood function for <span class="math inline">\(\beta_1 =19\)</span> is <span class="math inline">\(3.0472851\times 10^{-37}\)</span>. Compared those values, when <span class="math inline">\(\beta =18\)</span>, the likelihood function has the largest value.</p>
+</div>
+<div id="c.-the-value-of-the-estimator" class="section level2">
+<h2>c. the value of the estimator</h2>
+<pre class="r"><code>estimator &lt;- function(y,x){
+  result = sum(x*y)/sum(x^2)
+  return(result)
+}
+b1= estimator(y,x)
+b1</code></pre>
+<pre><code>## [1] 17.9285</code></pre>
+<p>According, we get that the value of the estimator <span class="math inline">\(b_1 = 17.9284974 \approx 18\)</span>. Yes, the results in part (b) is consitent with this result, since when <span class="math inline">\(\beta =18\)</span>, the likelihood function has the largest value.</p>
+</div>
+<div id="problem-2.42abc" class="section level2">
+<h2><strong>3. Problem 2.42abc</strong></h2>
+<div id="a.-scatter-plot" class="section level4">
+<h4>a. Scatter plot</h4>
+<ul>
+<li>Load data</li>
+</ul>
+<pre class="r"><code>library(car)
+data242 &lt;- read.table(&quot;./data/CH02PR42.txt&quot;, col.names = c(&quot;y1&quot;, &quot;y2&quot;))
+attach(data242)
+#head(data242)
+plot(y2~y1, data=data242,main=&quot;Scatterplot&quot;, xlab = &quot;Assessed value&quot;, ylab = &quot;Sales price&quot;)</code></pre>
+<p><img src="hw1_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>scatterplot(y1,y2, main=&quot;Scatterplot&quot;, xlab = &quot;Assessed value&quot;, ylab = &quot;Sales price&quot;)</code></pre>
+<p><img src="hw1_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<ul>
+<li>Test bivariate normal distribution</li>
+</ul>
+<pre class="r"><code>library(&quot;MVN&quot;)</code></pre>
+<pre><code>## sROC 0.1-2 loaded</code></pre>
+<pre class="r"><code>roystonTest(data242)</code></pre>
+<pre><code>##   Royston&#39;s Multivariate Normality Test 
+## --------------------------------------------- 
+##   data : data242 
+## 
+##   H       : 0.2719501 
+##   p-value : 0.7044176 
+## 
+##   Result  : Data are multivariate normal. 
+## ---------------------------------------------</code></pre>
+<p>From the above test results, we can conclude that the bicariate normal model appear to be appropriate here. Since <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are bivariate normal.</p>
+</div>
+<div id="b.-calculate-r_12" class="section level3">
+<h3>b. Calculate <span class="math inline">\(r_{12}\)</span></h3>
+<pre class="r"><code>r12 &lt;- function(x,y){
+  tmp1 = x-mean(x)
+  tmp2 = y-mean(y)
+  result = sum(tmp1*tmp2)/(sum(tmp1^2*sum(tmp2^2)))^0.5
+  return(result)
+}
+r12 = r12(y1,y2)
+r12</code></pre>
+<pre><code>## [1] 0.9528469</code></pre>
+<p>Hence the maximum likelihood estimator <span class="math inline">\(r_{12} = 0.9528469\)</span>. And <span class="math inline">\(r_{12}\)</span> represents the <em>point estimator of <span class="math inline">\(\rho_{12}\)</span></em>.</p>
+</div>
+<div id="c.-test-the-statistically-independent-in-the-population" class="section level3">
+<h3>c. Test the statistically independent in the population</h3>
+<p>When the population is bivariate normal, it is frequently desired to test where the coefficient of correlation is zero:</p>
+<ul>
+<li><p>Hypothesis</p>
+<ul>
+<li><span class="math display">\[ H_0 : \rho_{12} =0 ~\text{(there is no association between $y_1$ and $y_2)$}\]</span></li>
+<li><span class="math display">\[ H_\alpha : \rho_{12} \neq 0 ~\text{(there is an association between $y_1$ and $y_2$)}\]</span></li>
+</ul></li>
+<li><p>The value of <span class="math inline">\(t^*\)</span></p></li>
+</ul>
+<pre class="r"><code>tstar &lt;- function(r12, n){
+  result = r12*sqrt(n-2)/sqrt(1-r12^2)
+  return(result)
+}
+n =length(data242[,1])
+tstarValue =tstar(r12,n)
+tstarValue</code></pre>
+<pre><code>## [1] 11.32154</code></pre>
+<p><span class="math display">\[ t^* =\frac{r_{12}\sqrt{n-2}}{\sqrt{1-r_{12}^2}} = 11.3215426\]</span></p>
+<pre class="r"><code>t_c &lt;- qt((1-0.01/2), 15-2)
+t_c</code></pre>
+<pre><code>## [1] 3.012276</code></pre>
+<ul>
+<li><p>The appropriate decision rule to control the Type I error at <span class="math inline">\(\alpha\)</span> level:</p>
+<ul>
+<li>If <span class="math inline">\(|t^*|\leq t(1-\alpha/2;n-2) = 3.0122758\)</span> conclude <span class="math inline">\(H_0\)</span></li>
+<li>If <span class="math inline">\(|t^*|&gt; t(1-\alpha/2;n-2) = 3.0122758\)</span> conclude <span class="math inline">\(H_\alpha\)</span></li>
+</ul></li>
+</ul>
+<p>Since <span class="math inline">\(t^* = 11.3215426&gt; 3.0122758\)</span>, we conclude that <span class="math inline">\(H_\alpha\)</span>, i.e. <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> are not independent and there is an association between <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+</div>
+</div>
 </div>
 
 <center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>

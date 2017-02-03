@@ -287,24 +287,340 @@ $(document).ready(function () {
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<div id="chapter-5-problems-2" class="section level2">
+<h2><strong>1. Chapter 5 Problems 2</strong></h2>
+<div id="set-matrix-a-b-and-c" class="section level4">
+<h4>Set matrix A, B, and C</h4>
+<pre class="r"><code>A &lt;- matrix(c(2,1,3,5,5,7,4,8), ncol=2, byrow = TRUE)
+A</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    2    1
+## [2,]    3    5
+## [3,]    5    7
+## [4,]    4    8</code></pre>
+<pre class="r"><code>B &lt;- matrix(c(6,9,3,1), ncol=1, byrow = TRUE)
+B</code></pre>
+<pre><code>##      [,1]
+## [1,]    6
+## [2,]    9
+## [3,]    3
+## [4,]    1</code></pre>
+<pre class="r"><code>C &lt;- matrix(c(3,8,8,6,5,1,2,4), ncol=2, byrow = TRUE)
+C</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    3    8
+## [2,]    8    6
+## [3,]    5    1
+## [4,]    2    4</code></pre>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="hw2_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="a-c" class="section level4">
+<h4>(1) <em><span class="math inline">\(A + C\)</span></em></h4>
+<pre class="r"><code>A + C</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    5    9
+## [2,]   11   11
+## [3,]   10    8
+## [4,]    6   12</code></pre>
+</div>
+<div id="a---c" class="section level4">
+<h4>(2) <em><span class="math inline">\(A - C\)</span></em></h4>
+<pre class="r"><code>A - C</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]   -1   -7
+## [2,]   -5   -1
+## [3,]    0    6
+## [4,]    2    4</code></pre>
+</div>
+<div id="ba" class="section level4">
+<h4>(3) <em><span class="math inline">\(B&#39;A\)</span></em></h4>
+<pre class="r"><code>t(B) %*% A</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]   58   80</code></pre>
+</div>
+<div id="ac" class="section level4">
+<h4>(4) <em><span class="math inline">\(AC&#39;\)</span></em></h4>
+<pre class="r"><code>A %*% t(C)</code></pre>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]   14   22   11    8
+## [2,]   49   54   20   26
+## [3,]   71   82   32   38
+## [4,]   76   80   28   40</code></pre>
+</div>
+<div id="ca" class="section level4">
+<h4>(5) <em><span class="math inline">\(C&#39;A\)</span></em></h4>
+<pre class="r"><code>t(C) %*% A</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]   63   94
+## [2,]   55   77</code></pre>
+</div>
+</div>
+<div id="chapter-5-problems-5" class="section level2">
+<h2><strong>2. Chapter 5 Problems 5</strong></h2>
+<div id="set-data" class="section level3">
+<h3>set data</h3>
+<pre class="r"><code>X = matrix(c(4,1,2,3,3,4), ncol=1,byrow = TRUE)
+aX = cbind(1, X)
+X</code></pre>
+<pre><code>##      [,1]
+## [1,]    4
+## [2,]    1
+## [3,]    2
+## [4,]    3
+## [5,]    3
+## [6,]    4</code></pre>
+<pre class="r"><code>aX</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    1    1
+## [3,]    1    2
+## [4,]    1    3
+## [5,]    1    3
+## [6,]    1    4</code></pre>
+<pre class="r"><code>Y = matrix(c(16,5,10,15,13,22), ncol=1, byrow = TRUE)
+Y</code></pre>
+<pre><code>##      [,1]
+## [1,]   16
+## [2,]    5
+## [3,]   10
+## [4,]   15
+## [5,]   13
+## [6,]   22</code></pre>
+<div id="yy" class="section level4">
+<h4>(1) <em><span class="math inline">\(Y&#39;Y\)</span></em></h4>
+<pre class="r"><code>t(Y) %*% Y</code></pre>
+<pre><code>##      [,1]
+## [1,] 1259</code></pre>
+</div>
+<div id="xx" class="section level4">
+<h4>(2) <em><span class="math inline">\(X&#39;X\)</span></em></h4>
+<pre class="r"><code>t(aX) %*% aX</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    6   17
+## [2,]   17   55</code></pre>
+</div>
+<div id="xy" class="section level4">
+<h4>(3) <em><span class="math inline">\(X&#39;Y\)</span></em></h4>
+<pre class="r"><code>t(aX) %*% Y</code></pre>
+<pre><code>##      [,1]
+## [1,]   81
+## [2,]  261</code></pre>
+</div>
+</div>
+</div>
+<div id="chapter-5-problems-10" class="section level2">
+<h2><strong>3. Chapter 5 Problems 10</strong></h2>
+<div id="set-data-1" class="section level4">
+<h4>set data</h4>
+<pre class="r"><code>A = matrix(c(2,4,3,1), ncol=2, byrow = TRUE)
+A</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    2    4
+## [2,]    3    1</code></pre>
+<pre class="r"><code>B = matrix(c(4,3,2,6,5,10,10,1,6), ncol=3, byrow = TRUE)
+B</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    4    3    2
+## [2,]    6    5   10
+## [3,]   10    1    6</code></pre>
+</div>
+<div id="inverse-of-matrices" class="section level4">
+<h4>(1) <em>Inverse of matrices</em></h4>
+<ul>
+<li><em>Inverse of matrix A: <span class="math inline">\(A^{-1}\)</span></em></li>
+</ul>
+<pre class="r"><code>A_inv = solve(A)
+A_inv</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,] -0.1  0.4
+## [2,]  0.3 -0.2</code></pre>
+<ul>
+<li><em>Inverse of matrix B: <span class="math inline">\(B^{-1}\)</span> </em></li>
+</ul>
+<pre class="r"><code>B_inv = solve(B)
+B_inv</code></pre>
+<pre><code>##            [,1]        [,2]        [,3]
+## [1,]  0.1086957 -0.08695652  0.10869565
+## [2,]  0.3478261  0.02173913 -0.15217391
+## [3,] -0.2391304  0.14130435  0.01086957</code></pre>
+</div>
+<div id="checking" class="section level4">
+<h4>(2) <em>Checking </em></h4>
+<ul>
+<li>checking for A</li>
+</ul>
+<pre class="r"><code>A %*% A_inv</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    0
+## [2,]    0    1</code></pre>
+<ul>
+<li>checking for B</li>
+</ul>
+<pre class="r"><code>B %*% B_inv</code></pre>
+<pre><code>##      [,1] [,2]          [,3]
+## [1,]    1    0  5.204170e-17
+## [2,]    0    1 -1.387779e-17
+## [3,]    0    0  1.000000e+00</code></pre>
+<pre class="r"><code>round(B %*% B_inv,digits=15)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1</code></pre>
+</div>
+</div>
+<div id="chapter-5-problems-11" class="section level2">
+<h2><strong>4. Chapter 5 Problems 11</strong></h2>
+<div id="set-data-2" class="section level4">
+<h4>set data</h4>
+<pre class="r"><code>A = matrix(c(5,4,1,1,0,9,3,5,6), ncol=3)
+A</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    1    3
+## [2,]    4    0    5
+## [3,]    1    9    6</code></pre>
+</div>
+<div id="inverse-of-a" class="section level4">
+<h4>(1) Inverse of A</h4>
+<pre class="r"><code>A_inv = solve(A)
+A_inv</code></pre>
+<pre><code>##            [,1]       [,2]        [,3]
+## [1,]  0.3308824 -0.1544118 -0.03676471
+## [2,]  0.1397059 -0.1985294  0.09558824
+## [3,] -0.2647059  0.3235294  0.02941176</code></pre>
+</div>
+<div id="checking-1" class="section level4">
+<h4>(2) checking</h4>
+<pre class="r"><code>A %*% A_inv</code></pre>
+<pre><code>##              [,1] [,2]          [,3]
+## [1,] 1.000000e+00    0 -1.387779e-17
+## [2,] 2.220446e-16    1  0.000000e+00
+## [3,] 0.000000e+00    0  1.000000e+00</code></pre>
+<pre class="r"><code>round(A %*% A_inv,digits=15)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    0    0
+## [2,]    0    1    0
+## [3,]    0    0    1</code></pre>
+</div>
+<div id="chapter-5-problems-24" class="section level3">
+<h3><strong>4. Chapter 5 Problems 24</strong></h3>
+</div>
+<div id="set-data-3" class="section level3">
+<h3>set data</h3>
+<pre class="r"><code>X = matrix(c(4,1,2,3,3,4), ncol=1,byrow = TRUE)
+aX = cbind(1, X)
+Y = matrix(c(16,5,10,15,13,22), ncol=1, byrow = TRUE)</code></pre>
+<div id="a-1" class="section level4">
+<h4>a (1)</h4>
+<pre class="r"><code>betahat = solve(t(aX)%*%aX)%*%t(aX)%*%Y
+betahat</code></pre>
+<pre><code>##           [,1]
+## [1,] 0.4390244
+## [2,] 4.6097561</code></pre>
+</div>
+<div id="a-2" class="section level4">
+<h4>a (2)</h4>
+<pre class="r"><code>Yhat = aX%*%betahat
+residuals = Y - Yhat
+residuals</code></pre>
+<pre><code>##             [,1]
+## [1,] -2.87804878
+## [2,] -0.04878049
+## [3,]  0.34146341
+## [4,]  0.73170732
+## [5,] -1.26829268
+## [6,]  3.12195122</code></pre>
+</div>
+<div id="a-3-ssr-sum-haty---bary2" class="section level4">
+<h4>a (3) <span class="math inline">\(SSR = \sum (\hat{Y} - \bar{Y})^2\)</span></h4>
+<pre class="r"><code>SSR = sum((Yhat - mean(Y))^2)
+SSR</code></pre>
+<pre><code>## [1] 145.2073</code></pre>
+</div>
+<div id="a-4-sse-sum-y---haty2" class="section level4">
+<h4>a (4) <span class="math inline">\(SSE = \sum (Y - \hat{Y})^2\)</span></h4>
+<pre class="r"><code>SSE = sum((Y-Yhat)^2)
+SSE</code></pre>
+<pre><code>## [1] 20.29268</code></pre>
+</div>
+<div id="a-5-estimated-variance-coveraiance-matrix-of-b" class="section level4">
+<h4>a (5) <em>estimated variance-coveraiance matrix of b</em></h4>
+<pre class="r"><code>sigma_squared = SSE/(length(X)- 1 - 1)
+sigma_squared</code></pre>
+<pre><code>## [1] 5.073171</code></pre>
+<pre class="r"><code>sigma_squared * solve(t(aX)%*%aX)</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,]  6.805473 -2.1035098
+## [2,] -2.103510  0.7424152</code></pre>
+</div>
+<div id="a-6" class="section level4">
+<h4>a (6)</h4>
+<pre class="r"><code>betahat</code></pre>
+<pre><code>##           [,1]
+## [1,] 0.4390244
+## [2,] 4.6097561</code></pre>
+<pre class="r"><code>Y = 0.439 + 4.610 * X</code></pre>
+<pre class="r"><code>X4 = 4
+Yhat4 = 0.439 + 4.610 * X4
+Yhat4</code></pre>
+<pre><code>## [1] 18.879</code></pre>
+</div>
+<div id="a-7-s2-pred-when-xh-4" class="section level4">
+<h4>a (7) <em><span class="math inline">\(s^2\)</span> {pred} when Xh = 4</em></h4>
+<pre class="r"><code>MSE = SSE/(length(X)-2)
+Xh = c(1, 4)
+MSE * (1 + t(Xh)%*%solve(t(aX)%*%aX)%*%Xh)</code></pre>
+<pre><code>##          [,1]
+## [1,] 6.929209</code></pre>
+</div>
+</div>
+<div id="b-calculation" class="section level3">
+<h3>b <em>calculation</em></h3>
+<pre class="r"><code>MSE = SSE/(length(X) - 2)
+s_squared_b = MSE * solve(t(aX)%*%aX)
+s_squared_b</code></pre>
+<pre><code>##           [,1]       [,2]
+## [1,]  6.805473 -2.1035098
+## [2,] -2.103510  0.7424152</code></pre>
+<div id="b-1-sb_0b_1" class="section level4">
+<h4>b (1) <em><span class="math inline">\(s\{b_0,b_1\}\)</span></em></h4>
+<pre class="r"><code>s_squared_b[1,2]</code></pre>
+<pre><code>## [1] -2.10351</code></pre>
+</div>
+<div id="b.2-s2b_0" class="section level4">
+<h4>b.(2) <em><span class="math inline">\(s^2\{b_0\}\)</span></em></h4>
+<pre class="r"><code>s_squared_b[1,1]</code></pre>
+<pre><code>## [1] 6.805473</code></pre>
+</div>
+<div id="b.3-sb_1" class="section level4">
+<h4>b.(3) <em><span class="math inline">\(s\{b_1\}\)</span></em></h4>
+<pre class="r"><code>(s_squared_b[2,2])^0.5</code></pre>
+<pre><code>## [1] 0.8616352</code></pre>
+</div>
+<div id="c.-matrix-h" class="section level4">
+<h4>c. <em>matrix H</em></h4>
+<pre class="r"><code>H = aX%*%solve(t(aX)%*%aX)%*%t(aX)
+H</code></pre>
+<pre><code>##             [,1]       [,2]       [,3]      [,4]      [,5]        [,6]
+## [1,]  0.36585366 -0.1463415 0.02439024 0.1951220 0.1951220  0.36585366
+## [2,] -0.14634146  0.6585366 0.39024390 0.1219512 0.1219512 -0.14634146
+## [3,]  0.02439024  0.3902439 0.26829268 0.1463415 0.1463415  0.02439024
+## [4,]  0.19512195  0.1219512 0.14634146 0.1707317 0.1707317  0.19512195
+## [5,]  0.19512195  0.1219512 0.14634146 0.1707317 0.1707317  0.19512195
+## [6,]  0.36585366 -0.1463415 0.02439024 0.1951220 0.1951220  0.36585366</code></pre>
+</div>
+<div id="d.-s2e" class="section level4">
+<h4>d. <em><span class="math inline">\(s^2\{e\}\)</span></em></h4>
+<pre class="r"><code>I = diag(1, length(X))
+MSE = SSE/(length(X)- 1 - 1)
+MSE * (I-H)</code></pre>
+<pre><code>##            [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
+## [1,]  3.2171327  0.7424152 -0.1237359 -0.9898870 -0.9898870 -1.8560381
+## [2,]  0.7424152  1.7323022 -1.9797739 -0.6186794 -0.6186794  0.7424152
+## [3,] -0.1237359 -1.9797739  3.7120761 -0.7424152 -0.7424152 -0.1237359
+## [4,] -0.9898870 -0.6186794 -0.7424152  4.2070196 -0.8661511 -0.9898870
+## [5,] -0.9898870 -0.6186794 -0.7424152 -0.8661511  4.2070196 -0.9898870
+## [6,] -1.8560381  0.7424152 -0.1237359 -0.9898870 -0.9898870  3.2171327</code></pre>
+</div>
+</div>
 </div>
 
 <center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>

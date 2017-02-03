@@ -5,26 +5,167 @@ date: "2/2/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# **1. Problem 1.22**
+
+### Load data
+```{r}
+data122 <- read.table("./data/CH01PR22.txt", col.names = c("y", "x"))
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+### a. Obtain the estimated regression function
+```{r}
+fit <- lm(y~x, data=data122)
+summary(fit)
 ```
 
-## Including Plots
+### Regression function
+```{r}
+(C <-coef(fit))
+beta0 <- C[1];  beta1 <- C[2] 
+substitute(y<-beta0+beta1*x, list(beta0=beta0, beta1=beta1))
+```
+Hence the regression function is:
+$$ y= `r C[1]` + `r C[2]`X .$$
 
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+### Plot the regression function and the data
+```{r}
+plot(y~x, data = data122)
+abline(coefficients(fit), col="blue")
+text_label = substitute(y<-beta0+beta1*x, list(beta0=beta0, beta1=beta1))
+text(33, 210, "Y = 168.6 + 2.03438*X \nAdjusted R-squared:  0.9712")
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Based on the fitted results, we may conclude that the linear regression gives a good fit.
+
+
+### b. Obtain a point estimate of the mean hardness when X = 40 hours
+```{r}
+X40 <- predict.lm(fit, data.frame(x=40))
+X40
+```
+The estimated value at $x=40$ is $`r X40`$.
+
+### c. Obtain a point estimate of the change in mean hardness when X increases by 1 hour.
+```{r}
+beta1 <- coefficients(fit)[2]
+beta1
+```
+The a point estimate of the change in mean hardness when X increases by 1 hour is the coefficient of $x$, i.e. $\beta_1$. Hence, the value is $`r beta1`$.
+
+# **2. Problem 1.42abc**
+
+### a. Likelihood function
+ The formula of the likelihood function is as follows:
+$$
+ L(\beta_0, \beta_1, \sigma^2) =\displaystyle\Pi_{i=1}^n \frac{1}{(2\pi\sigma^2)^\frac{1}{2}}\exp\left[-\frac{1}{2\sigma^2}(Y_i-\beta_0-\beta_1X_i)^2\right].
+$$
+
+### Likelihood function
+
+Since $\beta_0=0$ and $\sigma^2 =16$, the likelihood function is as follows:
+$$
+ L(\beta_1) =\displaystyle\Pi_{i=1}^6 \frac{1}{(32\pi)^\frac{1}{2}}\exp\left[-\frac{1}{32}(Y_i-\beta_1X_i)^2\right].
+$$
+
+### b. Likelihood function
+### Load data
+```{r}
+data142 <- read.table("./data/CH01PR42.txt", col.names = c("y", "x"))
+attach(data142)
+#head(data142)
+```
+
+```{r}
+L <- function(beta1,y,x,sigma2){
+  diff = y-beta1*x
+  temp = 1/((2*pi*sigma2)^(1/2))*exp(-1/(2*sigma2)*diff^2)
+  result = prod(temp,1)
+  return(result)
+}
+L(17,y,x,16)
+L(18,y,x,16)
+L(19,y,x,16)
+```
+
+### The values of the likelihood function
+
+Hence, the value of the likelihood function for $\beta_1 =17$ is $`r L(17,y,x,16)`$, the value of the likelihood function for $\beta_1 =18$ is $`r L(18,y,x,16)`$ and the value of the likelihood function for $\beta_1 =19$ is $`r L(19,y,x,16)`$.  Compared those values, when $\beta =18$, the likelihood function has the largest value. 
+
+## c. the value of the estimator
+```{r}
+estimator <- function(y,x){
+  result = sum(x*y)/sum(x^2)
+  return(result)
+}
+b1= estimator(y,x)
+b1
+```
+
+According, we get that the value of the estimator $b_1 = `r b1` \approx 18$.  Yes, the results in part (b) is consitent with this result, since when $\beta =18$, the likelihood function has the largest value.
+
+## **3. Problem 2.42abc**
+
+#### a. Scatter plot 
+* Load data
+```{r}
+library(car)
+data242 <- read.table("./data/CH02PR42.txt", col.names = c("y1", "y2"))
+attach(data242)
+#head(data242)
+plot(y2~y1, data=data242,main="Scatterplot", xlab = "Assessed value", ylab = "Sales price")
+scatterplot(y1,y2, main="Scatterplot", xlab = "Assessed value", ylab = "Sales price")
+```
+
+* Test bivariate normal distribution  
+```{r}
+library("MVN")
+roystonTest(data242)
+```
+
+From the above test results, we can conclude that the bicariate normal model appear to be appropriate here. Since $y_1$ and $y_2$ are bivariate normal.
+
+### b.  Calculate $r_{12}$ 
+```{r}
+r12 <- function(x,y){
+  tmp1 = x-mean(x)
+  tmp2 = y-mean(y)
+  result = sum(tmp1*tmp2)/(sum(tmp1^2*sum(tmp2^2)))^0.5
+  return(result)
+}
+r12 = r12(y1,y2)
+r12
+```
+Hence the maximum likelihood estimator $r_{12} = `r r12`$. And $r_{12}$ represents the *point estimator of $\rho_{12}$*.
+
+### c. Test the statistically independent in the population  
+
+When the population is bivariate normal, it is frequently desired to test where the coefficient of correlation is zero:
+  
+  * Hypothesis
+    
+    + $$ H_0 : \rho_{12} =0 ~\text{(there is no association between $y_1$ and $y_2)$}$$
+    + $$ H_\alpha : \rho_{12} \neq 0 ~\text{(there is an association between $y_1$ and $y_2$)}$$
+  
+  * The value of $t^*$
+```{r}
+tstar <- function(r12, n){
+  result = r12*sqrt(n-2)/sqrt(1-r12^2)
+  return(result)
+}
+n =length(data242[,1])
+tstarValue =tstar(r12,n)
+tstarValue
+```
+ $$ t^* =\frac{r_{12}\sqrt{n-2}}{\sqrt{1-r_{12}^2}} = `r tstarValue`$$
+  
+```{r}
+t_c <- qt((1-0.01/2), 15-2)
+t_c
+```
+
+  * The appropriate decision rule to control the Type I error at $\alpha$ level:
+
+      + If $|t^*|\leq t(1-\alpha/2;n-2) = `r t_c`$  conclude $H_0$
+      + If $|t^*|> t(1-\alpha/2;n-2) = `r t_c`$  conclude $H_\alpha$
+      
+Since $t^* = `r tstarValue`> `r t_c`$,  we conclude that $H_\alpha$, i.e. $y_1$ and $y_2$ are not independent and there is an association between $y_1$ and $y_2$.      
