@@ -1,0 +1,13 @@
+---
+title: "About"
+author: "Ming Chen & Wenqiang Feng"
+date: "2/2/2017"
+output: html_document
+---
+
+This is the shared repository for STAT 538 class at The University of Tennessee, Knoxville. Wenqiang texted to Cheng and decided to creat this shared repository on
+Dec.2, 2017 at Minneapolis, Minnesota. 
+
+The main goal of this shared repository is to share how to use R, Rmarkdown and Github to do the statistics homework problems.
+
+Please be aware, however, this should go without saying, but I’ll include it within this point, absolutely do not plagiarize. 
