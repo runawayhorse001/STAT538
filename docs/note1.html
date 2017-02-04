@@ -12,7 +12,7 @@
 <meta name="author" content="Ming Chen &amp; Wenqiang Feng" />
 
 
-<title>Project #1</title>
+<title>Note 1: Summary of Test Concerning Regression Coefficients</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -286,31 +286,72 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Project #1</h1>
+<h1 class="title toc-ignore">Note 1: Summary of Test Concerning Regression Coefficients</h1>
 <h4 class="author"><em>Ming Chen &amp; Wenqiang Feng</em></h4>
 <h4 class="date"><em>2/2/2017</em></h4>
 
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<div id="extra-sums-of-squares" class="section level2">
+<h2><strong>Extra Sums of Squares</strong></h2>
+<ul>
+<li>The difference is called an <em>extra sum of squares</em> and will be denoted by <span class="math inline">\(SSR(X_2|X_1)\)</span>: <span class="math display">\[SSR(X_2|X_1) = SSE(X_1)-SSE(X_1,X_2).\]</span> The <em>extra sum of squares</em> <span class="math inline">\(SSR(X_2|X_1)\)</span> equivalently can be viewed as the marginal increase in the regression sum of sequence <span class="math display">\[
+  SSR(X_2|X_1) = SSR(X_1,X_2)-SSR(X_1).
+  \]</span> Similarly, <span class="math display">\[\begin{align}
+ SSR(X_3|X_1,X_2) &amp;= SSE(X_1)-SSE(X_1,X_2,X_3)\\
+                  &amp;= SSR(X_1,X_2,X_3)-SSR(X_1,X_2).
+ \end{align}\]</span></li>
+</ul>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="project1_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="test-whether-some-beta_k-0" class="section level2">
+<h2><strong>Test whether Some <span class="math inline">\(\beta_k =0\)</span> </strong></h2>
+<p>This is another partial <em>F</em> TEST. Here, the alternatives are:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_q=\beta_{q+1}=\cdots =0\)</span></p>
+<p><span class="math inline">\(H_{\alpha}\)</span>: not all of the <span class="math inline">\(\beta_k\)</span> in <span class="math inline">\(H_0\)</span> equal zero</p>
+<p><span class="math display">\[ F^* = \frac{SSR(X_q,\cdots,X_{p-1}|X_1,\cdots, X_{q-1})}{p-q}\div \frac{SSE(X_1,\cdots,X_{p-1})}{n-p}\]</span></p>
+<ul>
+<li>If <span class="math inline">\(F^* \leq F(1-\alpha; p-q, n-p)\)</span>, conclude <span class="math inline">\(H_0\)</span>,</li>
+<li>If <span class="math inline">\(F^* &gt; F(1-\alpha; p-q, n-p)\)</span> conclude <span class="math inline">\(H_a\)</span>.</li>
+</ul>
+</div>
+<div id="other-test" class="section level2">
+<h2><strong>Other test</strong></h2>
+<p>When test about regression coefficients are derired that do not involove testing whether one or several <span class="math inline">\(\beta_k\)</span> equal zero, extra sums of squares cannot be used and the general linear test approach requires separate fittings of the full and reduced model. For instance, for the full model containing three <span class="math inline">\(X\)</span> variables (full model):</p>
+<ol class="example" style="list-style-type: decimal">
+<li><span class="math display">\[ Y_i = \beta_0 + \beta_1X_{i1}+ \beta_2X_{i2} + \beta_3X_{i3} +\epsilon_i.\]</span> We may wish to test</li>
+</ol>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1=\beta_2\)</span></p></li>
+<li><p><span class="math inline">\(H_{\alpha}\)</span>: <span class="math inline">\(\beta_1\neq\beta_2\)</span></p></li>
+</ul>
+<p>The procedure would be to fit the full model (1), and then the reduced model :</p>
+<ol start="2" class="example" style="list-style-type: decimal">
+<li><span class="math display">\[ Y_i = \beta_0 + \beta_c(X_{i1}+ X_{i2})+ \beta_3X_{i3} +\epsilon_i.\]</span> where <span class="math inline">\(\beta_c\)</span> denotes the common coefficient for <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> ubder <span class="math inline">\(H_0\)</span> and <span class="math inline">\(X_{i1}+ X_{i2}\)</span> is the corresponding new X variable. We then use the general <span class="math inline">\(F^*\)</span> test with degree of freedom (n-4).</li>
+</ol>
+<p>Another example where extra sums of squares cannot be used is in the following test for regression (1):</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1=3, \beta_3=5\)</span></li>
+<li><span class="math inline">\(H_{\alpha}\)</span>: not both equalities in <span class="math inline">\(H_0\)</span> hold</li>
+</ul>
+<p>Here, the reduced model would be</p>
+<ol start="3" class="example" style="list-style-type: decimal">
+<li><span class="math display">\[Y_i - 3X_{i1} -5 X_{i3} = \beta_0 + \beta_2X_{i2} +\epsilon_i.\]</span></li>
+</ol>
+<p>Note that the new response variable <span class="math inline">\(Y - 3X_{1} -5 X_{3}\)</span> in the (3), since <span class="math inline">\(\beta_1X_1\)</span> and <span class="math inline">\(\beta_3X_3\)</span> are known constants under <span class="math inline">\(H_0\)</span>. We then use the general linear test statistic <span class="math inline">\(F^*\)</span> with 2 and degree of freedom (n-4).</p>
+<p>See more details on <a href="hw4.html">HW#4</a>.</p>
+</div>
+<div id="how-to-label-a-equation-in-markdown" class="section level2">
+<h2><strong>How to label a equation in Markdown</strong></h2>
+<ol start="4" class="example" style="list-style-type: decimal">
+<li><span class="math display">\[
+\begin{align}
+f(x)&amp;=\int_{-\infty}^x e^{-x^2/2}\,dx\\
+&amp;=A
+\end{align}
+\]</span></li>
+</ol>
+<p>Equation (4) is very important</p>
 </div>
 
 <center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>

@@ -1,0 +1,79 @@
+---
+title: "Note 1: Summary of Test Concerning Regression Coefficients"
+author: "Ming Chen & Wenqiang Feng"
+date: "2/2/2017"
+output: html_document
+---
+
+## **Extra Sums of Squares**
+
+* The difference is called an *extra sum of squares* and will be denoted
+by $SSR(X_2|X_1)$:
+$$SSR(X_2|X_1) = SSE(X_1)-SSE(X_1,X_2).$$
+  The *extra sum of squares* $SSR(X_2|X_1)$ equivalently can be viewed as the marginal increase in the regression sum of sequence
+  \[
+  SSR(X_2|X_1) = SSR(X_1,X_2)-SSR(X_1).
+  \]
+  Similarly, 
+    \[\begin{align}
+     SSR(X_3|X_1,X_2) &= SSE(X_1)-SSE(X_1,X_2,X_3)\\
+                      &= SSR(X_1,X_2,X_3)-SSR(X_1,X_2).
+     \end{align}\]
+  
+## **Test whether Some $\beta_k =0$ **
+ 
+This is another partial *F* TEST. Here, the alternatives are: 
+
+$H_0$: $\beta_q=\beta_{q+1}=\cdots =0$
+
+$H_{\alpha}$: not all of the $\beta_k$ in $H_0$ equal zero
+ 
+ \[ F^* = \frac{SSR(X_q,\cdots,X_{p-1}|X_1,\cdots, X_{q-1})}{p-q}\div \frac{SSE(X_1,\cdots,X_{p-1})}{n-p}\]
+ 
+* If $F^* \leq F(1-\alpha; p-q, n-p)$, conclude $H_0$, 
+* If $F^* > F(1-\alpha; p-q, n-p)$  conclude $H_a$.
+ 
+## **Other test**
+
+When test about regression coefficients are derired that do not involove testing whether one or several $\beta_k$ equal zero, extra sums of squares cannot be used and the general linear test approach requires separate fittings of the full and reduced model. For instance, for the full model containing three $X$ variables (full model):
+
+  (@fullmodel) 
+\[ Y_i = \beta_0 + \beta_1X_{i1}+ \beta_2X_{i2} + \beta_3X_{i3} +\epsilon_i.\]
+We may wish to test 
+
+  * $H_0$: $\beta_1=\beta_2$
+
+  * $H_{\alpha}$: $\beta_1\neq\beta_2$
+
+The procedure would be to fit the full model (@fullmodel), and then the reduced model :
+
+  (@reducedmodel1) 
+\[ Y_i = \beta_0 + \beta_c(X_{i1}+ X_{i2})+ \beta_3X_{i3} +\epsilon_i.\]
+where $\beta_c$ denotes the common coefficient for $\beta_1$ and $\beta_2$ ubder $H_0$ and $X_{i1}+ X_{i2}$   is the corresponding new X variable. We then use the general $F^*$ test with degree of freedom (n-4).
+
+Another example where extra sums of squares cannot be used is in the following test for regression (@fullmodel):
+
+  * $H_0$: $\beta_1=3, \beta_3=5$
+  * $H_{\alpha}$: not both equalities in $H_0$ hold
+
+Here, the reduced model would be
+
+  (@reducedmodel2) 
+\[Y_i - 3X_{i1} -5 X_{i3} = \beta_0 + \beta_2X_{i2} +\epsilon_i.\]
+
+Note that the new response variable $Y - 3X_{1} -5 X_{3}$ in the   (@reducedmodel2), since $\beta_1X_1$ and $\beta_3X_3$ are known constants under $H_0$. We then use the general linear test statistic $F^*$ with 2 and degree of freedom (n-4).
+
+See more details on [HW#4](hw4.html).
+
+## **How to label a equation in Markdown**
+  
+  (@myeqn1) 
+\[
+\begin{align}
+f(x)&=\int_{-\infty}^x e^{-x^2/2}\,dx\\
+&=A
+\end{align}
+\]
+
+
+Equation (@myeqn1) is very important

@@ -1,5 +1,5 @@
 ---
-title: "Homework #2"
+title: "Homework #3"
 author: "Ming Chen & Wenqiang Feng"
 date: "2/2/2017"
 output: html_document
@@ -114,8 +114,8 @@ The upper left plot indicates that the variance of error terms does not vary wit
     - $H_0$: $\beta_1$ = $\beta_2$ = 0, $H_{\alpha}$: not all $\beta_i$ = 0 (i=1,2)
     - test statistic ($\alpha =0.01, n=16, p=3$):
       $$F^* = \frac{MSR}{MSE}.$$ 
-         - If $F^* < F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)$, conclude $H_0$, 
-         - If $F^* < F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)$  conclude $H_a$.
+         - If $F^* \leq F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)$, conclude $H_0$, 
+         - If $F^* > F(1-\alpha; p-1, n-p) = F(0.99, 2, 13)$  conclude $H_a$.
 
 * Calcuate of MSR and MSE
 \begin{eqnarray}

@@ -1,4 +1,4 @@
-name: "my-website"
+name: "Statistics for Research II"
 output_dir: "docs"
 navbar:
   title: "STAT 537: Statistics for Research II"
@@ -12,7 +12,7 @@ navbar:
       menu:
         - text: "Chapter 1"
         - text: "Note #1"
-          href:  hw1.html
+          href:  note1.html
         - text: "Note #2"
           href: hw2.html
         - text: "---------"
@@ -24,17 +24,17 @@ navbar:
     - text: "Homework"
       icon: fa-gear
       menu:
-        - text: "Chapter 1"
+        - text: "Week 1"
         - text: "HW #1"
           href:  hw1.html
         - text: "HW #2"
           href:  hw2.html
         - text: "---------"
-        - text: "Chapter 2"
+        - text: "Week 2"
         - text: "HW #3"
           href:  hw3.html
         - text: "HW #4"
-          href: project2.html  
+          href:  hw4.html  
     - text: "Project"
       icon: fa-gear
       menu:
@@ -49,6 +49,8 @@ navbar:
       icon: fa-info
       href: about.html          
   right:
+    - icon: fa-github
+      href: https://github.com/runawayhorse001/STAT538  
     - icon: fa-question fa-lg
       href: http://web.utk.edu/~wfeng1
 output:

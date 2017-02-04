@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework #4</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 537: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #4</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>2/2/2017</em></h4>
+
+</div>
+
+
+<div id="chapter-7-problems-7" class="section level2">
+<h2><strong>1. Chapter 7 Problems 7</strong></h2>
+<div id="load-data" class="section level4">
+<h4>load data</h4>
+<pre class="r"><code>library(car)
+data618 &lt;- read.table(&quot;./data/CH06PR18.txt&quot;, col.names = c(&quot;Y&quot;, &quot;X1&quot;, &quot;X2&quot;, &quot;X3&quot;, &quot;X4&quot;))</code></pre>
+</div>
+<div id="problem-7.7a" class="section level4">
+<h4>Problem 7.7(a)</h4>
+<ul>
+<li><span class="math inline">\(SSR(X_4)\)</span>: only variable X4 in the model
+<ul>
+<li>Method 1</li>
+</ul></li>
+</ul>
+<pre class="r"><code>anova_x4 = Anova(lm(Y~ X4, data=data618))
+SSR_X4 = anova_x4[1][1,1]
+SSR_X4</code></pre>
+<pre><code>## [1] 67.7751</code></pre>
+<pre><code>  - Method 2</code></pre>
+<pre class="r"><code>SSR &lt;- anova(lm(Y~X4, data=data618),lm(Y~1, data=data618))
+SSR_X4 = SSR$RSS[2]-SSR$RSS[1]
+SSR_X4</code></pre>
+<pre><code>## [1] 67.7751</code></pre>
+<p>Hence, <span class="math inline">\(SSR(X_4) = 67.775098\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(SSR(X_1|X_4)= SSR(X_1,X_4)-SSR(X_4).\)</span> <span class="math inline">\(X_1\)</span> is added to the previous model</p>
+<ul>
+<li>Method 1</li>
+</ul></li>
+</ul>
+<pre class="r"><code>anova_x1_x4 = Anova(lm(Y~X4+X1, data=data618))
+SSR_X1_X4 = anova_x1_x4[1][2,1,drop=FALSE]
+SSR_X1_X4</code></pre>
+<pre><code>##    Sum Sq
+## X1 42.275</code></pre>
+<pre><code>  - Method 2</code></pre>
+<pre class="r"><code>RSS &lt;- anova(lm(Y~X1+X4, data=data618),lm(Y~X4, data=data618))
+SSR_X1_X4 = RSS$RSS[2]-RSS$RSS[1]
+SSR_X1_X4</code></pre>
+<pre><code>## [1] 42.27457</code></pre>
+<p>Hence, <span class="math inline">\(SSR(X_1|X_4)= SSR(X_1,X_4)-SSR(X_4) = 168.782402 -126.5078337= 42.2745683\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(SSR(X_2|X_1, X_4) =SSR(X_1, X_2, X_4)-SSR(X_1,X_4)\)</span></p>
+<ul>
+<li>Method 1</li>
+</ul></li>
+</ul>
+<pre class="r"><code>anova_x2_x1x4 = Anova(lm(Y~X4+X1+X2, data=data618))
+SSR_X2_X1X4 = anova_x2_x1x4[1][3,1,drop=FALSE]
+SSR_X2_X1X4</code></pre>
+<pre><code>##    Sum Sq
+## X2 27.858</code></pre>
+<pre><code>  - Method 2</code></pre>
+<pre class="r"><code>RSS = anova(lm(Y~X4+X1+X2, data=data618),lm(Y~X1+X4, data=data618))
+SSR_X2_X1X4 = RSS$RSS[2]-RSS$RSS[1]
+SSR_X2_X1X4</code></pre>
+<pre><code>## [1] 27.85749</code></pre>
+<p>Hence, <span class="math inline">\(SSR(X_2|X_1, X_4) =SSR(X_1, X_2, X_4)-SSR(X_1,X_4) = 126.5078337- 98.6503402= 27.8574935\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(SSR(X_3|X_1, X_2, X_4) = SSR(X_1,X_2,X_3,X_4)-SSR(X_1,X_2,X_4)\)</span></p>
+<ul>
+<li>Method 1</li>
+</ul></li>
+</ul>
+<pre class="r"><code>anova_x3_x1x4x2 = Anova(lm(Y~X4+X1+X2+X3, data=data618))
+SSR_X3_X1X2X4 = anova_x3_x1x4x2[1][4,1,drop=FALSE]
+SSR_X3_X1X2X4</code></pre>
+<pre><code>##     Sum Sq
+## X3 0.41975</code></pre>
+<pre><code>    - Method 2
+    </code></pre>
+<pre class="r"><code>RSS = anova(lm(Y~X1+X2+X3+X4, data=data618),lm(Y~X1+X2+X4, data=data618))
+SSR_X3_X1X2X4 = RSS$RSS[2]-RSS$RSS[1]
+SSR_X3_X1X2X4</code></pre>
+<pre><code>## [1] 0.4197463</code></pre>
+<p>Hence, <span class="math inline">\(SSR(X_3|X_1, X_2, X_4) = SSR(X_1,X_2,X_3,X_4)-SSR(X_1,X_2,X_4) = 98.6503402- 98.2305939= 0.4197463\)</span></p>
+</div>
+<div id="problem-7.7b" class="section level4">
+<h4>Problem 7.7(b)</h4>
+<ul>
+<li>Hypothesis
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_3\)</span> = 0, <span class="math inline">\(H_{\alpha}\)</span>: not all <span class="math inline">\(\beta_3\neq 0\)</span></li>
+<li>test statistic (<span class="math inline">\(\alpha =0.01, n=81, p=5\)</span>): <span class="math display">\[ F^* = \frac{SSR(X_q,\cdots,X_{p-1}|X_1,\cdots, X_{q-1})}{p-q}\div \frac{SSE(X_1,\cdots,X_{p-1})}{n-p}\]</span>
+<ul>
+<li>If <span class="math inline">\(F^* \leq F(1-\alpha; p-q, n-p) = F(0.99, 1, 76)\)</span>, conclude <span class="math inline">\(H_0\)</span>,</li>
+<li>If <span class="math inline">\(F^* &gt; F(1-\alpha; p-q, n-p) = F(0.99, 1, 76)\)</span> conclude <span class="math inline">\(H_a\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(F^*\)</span> and <span class="math inline">\(F\)</span><br />
+Since <span class="math display">\[ F^* = \frac{0.4197463}{5-4}\div \frac{98.2305939}{81-5}= 0.3247534.\]</span> And<br />
+<span class="math display">\[ F = F(1-\alpha, p-q, n-p) = F(0.99,1,76) = 6.9805778 \]</span></li>
+</ul>
+<p><span class="math inline">\(F^* &lt; F\)</span>, hence we conclude <span class="math inline">\(H_0\)</span>.</p>
+<ul>
+<li>p-value</li>
+</ul>
+<pre class="r"><code>pvalue = pf(q=0.3247534, df1=1, df2=76, lower.tail=FALSE)
+pvalue</code></pre>
+<pre><code>## [1] 0.5704457</code></pre>
+<p>Hence the p-value from the F test socre 0.3247534 is 0.5704457 .</p>
+</div>
+</div>
+<div id="chapter-7-problems-8" class="section level2">
+<h2><strong>2. Chapter 7 Problems 8</strong></h2>
+<ul>
+<li>Hypothesis
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_2=\beta_3\)</span> = 0, <span class="math inline">\(H_{\alpha}\)</span>: not both <span class="math inline">\(\beta_i\)</span> = 0 (i=2,3)</li>
+<li>test statistic (<span class="math inline">\(\alpha =0.01, n=81, p=5\)</span>): <span class="math display">\[ F^* = \frac{SSR(X_q,\cdots,X_{p-1}|X_1,\cdots, X_{q-1})}{p-q}\div \frac{SSE(X_1,\cdots,X_{p-1})}{n-p}\]</span>
+<ul>
+<li>If <span class="math inline">\(F^* \leq F(1-\alpha; p-q, n-p) = F(0.99, 2, 76)\)</span>, conclude <span class="math inline">\(H_0\)</span>,</li>
+<li>If <span class="math inline">\(F^* &gt; F(1-\alpha; p-q, n-p) = F(0.99, 2, 76)\)</span> conclude <span class="math inline">\(H_a\)</span>.</li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(F^*\)</span> and <span class="math inline">\(F\)</span></li>
+</ul>
+<p><span class="math inline">\(SSR(X_3|X_1, X_2, X_4)\)</span> =</p>
+<pre class="r"><code>SSR_X3_X1X2X4</code></pre>
+<pre><code>## [1] 0.4197463</code></pre>
+<p><span class="math inline">\(SSR(X_2|X_1, X_4)\)</span> =</p>
+<pre class="r"><code>SSR_X2_X1X4</code></pre>
+<pre><code>## [1] 27.85749</code></pre>
+<p><span class="math inline">\(SSR(X_2,X_3|X_1, X_4)= SSR(X2|X_1,X_4) +SSR(X_3|X_1,X_2,X_4)=\)</span></p>
+<pre class="r"><code>SSR_X2X3_X1X4 = SSR_X2_X1X4+SSR_X3_X1X2X4
+SSR_X2X3_X1X4</code></pre>
+<pre><code>## [1] 28.27724</code></pre>
+<p><span class="math inline">\(SSE(X_1,X_2,X_3,X_4)\)</span> =</p>
+<pre class="r"><code>anova_x3_x1x4x2 = Anova(lm(Y~X4+X1+X2+X3, data=data618))
+SSE = anova_x3_x1x4x2[1][5,1,drop=FALSE]
+SSE</code></pre>
+<pre><code>##           Sum Sq
+## Residuals 98.231</code></pre>
+<p>Since <span class="math inline">\(SSR(X_2,X_3|X_1,X_4) = 28.2772397\)</span> and <span class="math inline">\(SSE(X_1,X_2,X_3,X_4)= 98.2305939\)</span>,</p>
+<p><span class="math display">\[F^*= \frac{28.2772397}{5-3}\div \frac{98.2305939}{76}=10.9389047\]</span> while</p>
+<pre class="r"><code>Fvalue = qf(0.99, 2,76)
+Fvalue</code></pre>
+<pre><code>## [1] 4.89584</code></pre>
+<p>Since <span class="math inline">\(F^*&gt; 4.8958399\)</span>, hence we conclude <span class="math inline">\(H_\alpha\)</span>.</p>
+<ul>
+<li>Conclusion:
+<ul>
+<li><span class="math inline">\(F^*\)</span> = 10.9389 &gt; F(.99, 2, 76), conclude <span class="math inline">\(H_\alpha\)</span>. Not both <span class="math inline">\(\beta_2\)</span> and <span class="math inline">\(\beta_3\)</span> = 0</li>
+<li>Not both <span class="math inline">\(X_2\)</span> and <span class="math inline">\(X_3\)</span> can be dropped from the regression model given that <span class="math inline">\(X_2\)</span> and <span class="math inline">\(X_4\)</span> are retained</li>
+</ul></li>
+</ul>
+</div>
+<div id="chapter-7-problems-10" class="section level2">
+<h2><strong>3. Chapter 7 Problems 10</strong></h2>
+<div id="hypothesis" class="section level4">
+<h4>Hypothesis</h4>
+<ul>
+<li>Alternatives:
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1\)</span> = -0.1 and <span class="math inline">\(\beta_2\)</span> = 0.4</li>
+<li><span class="math inline">\(H_\alpha\)</span>: not both equatities are true</li>
+</ul></li>
+<li>Decision rules (<span class="math inline">\(df_R=81-3=78,df_F=81-5=76\)</span>):
+<ul>
+<li>if <span class="math inline">\(F^* \leq F(1-\alpha,df_R-df_F, df_F)=F(.99, 2, 76)\)</span>, conclude <span class="math inline">\(H_0\)</span></li>
+<li>if <span class="math inline">\(F^* &gt; F(1-\alpha,df_R-df_F, df_F)= F(.99, 2, 76)\)</span>, conclude <span class="math inline">\(H_\alpha\)</span></li>
+</ul></li>
+</ul>
+</div>
+<div id="full-model" class="section level4">
+<h4>Full model</h4>
+<p><span class="math display">\[ Y = \beta_0 + \beta_1\cdot X_1 + \beta_2\cdot X_2 +\beta_\cdot X_3+\beta_4\cdot X_4\]</span></p>
+</div>
+<div id="reduced-model" class="section level4">
+<h4>Reduced model</h4>
+<ul>
+<li>The reduced model <span class="math inline">\(Y&#39; = Y + 0.1\cdot X_1 - 0.4\cdot X_2\)</span></li>
+<li>The data set for reduced model is</li>
+</ul>
+<pre class="r"><code>Y = data618$Y + data618$X1*.1 - data618$X2*.4
+data618_reduced = cbind(Y, data618[,c(4,5)])
+data618_reduced</code></pre>
+<pre><code>##         Y   X3     X4
+## 1  11.592 0.14 123000
+## 2  10.124 0.27 104079
+## 3  10.900 0.00  39998
+## 4  11.120 0.05  57112
+## 5  11.512 0.07  60000
+## 6   8.220 0.24 101385
+## 7  11.000 0.19  31300
+## 8  13.952 0.60 248172
+## 9  15.120 0.00 215000
+## 10 12.588 0.03 251015
+## 11 12.352 0.08 291264
+## 12 12.080 0.03 207549
+## 13 12.348 0.00  82000
+## 14 12.604 0.04 359665
+## 15 12.621 0.03 265500
+## 16 12.296 0.00 299000
+## 17 12.904 0.14 189258
+## 18 11.693 0.12 366013
+## 19 11.832 0.00 349930
+## 20 11.020 0.03  85335
+## 21 12.040 0.13 235932
+## 22 11.968 0.00 130000
+## 23 11.092 0.05  40500
+## 24 11.512 0.00  40500
+## 25  9.752 0.00  45959
+## 26 10.600 0.33 120000
+## 27 11.544 0.05  81243
+## 28 10.898 0.06 153947
+## 29 11.016 0.22  97321
+## 30 12.308 0.09 276099
+## 31 10.770 0.00  90000
+## 32 12.285 0.00 184000
+## 33 11.105 0.03 184718
+## 34 11.228 0.04  96000
+## 35 11.360 0.04 106350
+## 36 12.330 0.10 135512
+## 37 14.150 0.21 180000
+## 38 10.988 0.03 315000
+## 39 11.184 0.04  42500
+## 40  9.720 0.00  30005
+## 41 11.898 0.00  60000
+## 42 13.672 0.00  73521
+## 43 10.500 0.00  50000
+## 44 11.710 0.00  50724
+## 45 12.200 0.16  31750
+## 46 12.152 0.00 168000
+## 47 12.776 0.00  70000
+## 48 13.300 0.00  27000
+## 49 12.166 0.03 129614
+## 50 12.050 0.00 129614
+## 51 11.850 0.00 130000
+## 52 12.398 0.00 209000
+## 53 14.704 0.57 220000
+## 54 11.652 0.27  60000
+## 55 10.648 0.00 110000
+## 56 12.192 0.05 101206
+## 57 12.180 0.00 288847
+## 58 13.276 0.14 105000
+## 59 12.060 0.05 276425
+## 60 11.434 0.06  33000
+## 61 14.604 0.73 210000
+## 62 16.318 0.22 240000
+## 63 14.706 0.00 281552
+## 64 15.206 0.00 421000
+## 65 15.470 0.04 484290
+## 66 11.368 0.00 234493
+## 67 11.168 0.03 230675
+## 68 14.412 0.08 296966
+## 69 11.922 0.00  32000
+## 70 11.300 0.03  38533
+## 71 12.956 0.02 109912
+## 72 12.748 0.23 236000
+## 73 11.458 0.05 243338
+## 74 11.672 0.04 122183
+## 75 12.262 0.00 128268
+## 76 11.164 0.00  72000
+## 77 10.532 0.00  43404
+## 78 11.860 0.08  59443
+## 79 11.712 0.14 254700
+## 80 11.842 0.03 434746
+## 81 10.828 0.03 201930</code></pre>
+</div>
+<div id="calculate-ssereduced-model-ssex_1x_4-given-known-beta2-and-beta3" class="section level4">
+<h4>Calculate SSE(reduced model): SSE(<span class="math inline">\(X_1,X_4\)</span>) given known beta2 and beta3</h4>
+<pre class="r"><code>anova_reduced_model = Anova(lm(Y~X3+X4, data=data618_reduced))
+anova_reduced_model</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: Y
+##            Sum Sq Df F value    Pr(&gt;F)    
+## X3          6.600  1  4.6738   0.03369 *  
+## X4         31.872  1 22.5713 9.058e-06 ***
+## Residuals 110.141 78                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>SSE_reduced_model = anova_reduced_model[1][3,1,drop=FALSE]
+SSE_reduced_model</code></pre>
+<pre><code>##           Sum Sq
+## Residuals 110.14</code></pre>
+</div>
+<div id="ssefull-model-ssex_1x_2x_3x_4" class="section level4">
+<h4>SSE(full model): <span class="math inline">\(SSE(X_1,X_2,X_3,X_4)\)</span> =</h4>
+<pre class="r"><code>SSE</code></pre>
+<pre><code>##           Sum Sq
+## Residuals 98.231</code></pre>
+</div>
+<div id="calculate-f" class="section level4">
+<h4>calculate <span class="math inline">\(F^*\)</span></h4>
+<pre class="r"><code>F_star = ((SSE_reduced_model-SSE)/2)/(SSE/76)
+F_star[,,drop=TRUE]</code></pre>
+<pre><code>## [1] 4.60764</code></pre>
+</div>
+<div id="calculate-f.99-2-76" class="section level4">
+<h4>calculate F(.99, 2, 76)</h4>
+<pre class="r"><code>F_2_76 = qf(.99, 2, 76)
+F_2_76</code></pre>
+<pre><code>## [1] 4.89584</code></pre>
+</div>
+<div id="conclusion" class="section level4">
+<h4>Conclusion</h4>
+<ul>
+<li>F_star = 4.6076402 &lt; F(.99, 2, 76) = 4.8958399, conclude <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_1\)</span> = -0.1 and <span class="math inline">\(\beta_2\)</span> = 0.4.</li>
+</ul>
+</div>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
