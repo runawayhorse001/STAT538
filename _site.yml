@@ -1,7 +1,7 @@
 name: "Statistics for Research II"
 output_dir: "docs"
 navbar:
-  title: "STAT 537: Statistics for Research II"
+  title: "STAT 538: Statistics for Research II"
   type: inverse
   left:
     - text: "Home"
@@ -35,6 +35,12 @@ navbar:
           href:  hw3.html
         - text: "HW #4"
           href:  hw4.html  
+        - text: "---------"
+        - text: "Week 3"
+        - text: "HW #5"
+          href:  hw5.html
+        - text: "HW #6"
+          href:  hw6.html           
     - text: "Project"
       icon: fa-gear
       menu:

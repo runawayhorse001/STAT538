@@ -1,0 +1,51 @@
+---
+title: "Homework #6"
+author: "Wenqiang Feng"
+date: "2/7/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## *Homework on Identification of Influential Observations*
+
+* required library in this homework
+```{r warning = FALSE, message = FALSE}
+library(dplyr)
+```
+#### load data 
+```{r}
+dataC07 <- read.table("./data/APPENC07.txt", col.names = c('ID',  
+                  'SalesPrice','FinishedSquareFeet','NofBedrooms','NofBathrooms',
+                  'AirConditioning','GarageSize','Pool','YearBuilt','Quality',
+                   'Style','LotSize','AdjacenttoHighway'))
+```
+
+#### fit model 
+```{r}
+fit0 = lm(SalesPrice~.-Quality-Style, data=dataC07)
+par(mfrow=c(2,2))
+plot(fit0)
+```
+
+#### Find the index of influential observations which meet the following criteria: RSTUDENT > 4 or Cook’s D > 0.12 or CovRatio < 0.8
+
+```{r}
+cd<-which(cooks.distance(fit0)>0.12)
+covr<-which(covratio(fit0)< 0.8)
+rst<-which(rstudent(fit0)>4)
+index<-sort(unique(c(cd,covr,rst)))
+index
+```
+
+#### bulid table 
+
+```{r}
+DataTable <- cbind(index,rstudent(fit0)[index],
+                   cooks.distance(fit0)[index],
+                   covratio(fit0)[index])
+colnames(DataTable) = c("ID value", "RSTUDENT", "Cook’s D","CovRatio")
+DataTable
+```
+

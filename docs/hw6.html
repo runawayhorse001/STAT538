@@ -9,10 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ming Chen &amp; Wenqiang Feng" />
+<meta name="author" content="Wenqiang Feng" />
 
 
-<title>Project #2</title>
+<title>Homework #6</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -294,31 +294,56 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Project #2</h1>
-<h4 class="author"><em>Ming Chen &amp; Wenqiang Feng</em></h4>
-<h4 class="date"><em>2/2/2017</em></h4>
+<h1 class="title toc-ignore">Homework #6</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>2/7/2017</em></h4>
 
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)</code></pre>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<div id="homework-on-identification-of-influential-observations" class="section level2">
+<h2><em>Homework on Identification of Influential Observations</em></h2>
+<ul>
+<li>required library in this homework</li>
+</ul>
+<pre class="r"><code>library(dplyr)</code></pre>
+<div id="load-data" class="section level4">
+<h4>load data</h4>
+<pre class="r"><code>dataC07 &lt;- read.table(&quot;./data/APPENC07.txt&quot;, col.names = c(&#39;ID&#39;,  
+                  &#39;SalesPrice&#39;,&#39;FinishedSquareFeet&#39;,&#39;NofBedrooms&#39;,&#39;NofBathrooms&#39;,
+                  &#39;AirConditioning&#39;,&#39;GarageSize&#39;,&#39;Pool&#39;,&#39;YearBuilt&#39;,&#39;Quality&#39;,
+                   &#39;Style&#39;,&#39;LotSize&#39;,&#39;AdjacenttoHighway&#39;))</code></pre>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="project2_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<div id="fit-model" class="section level4">
+<h4>fit model</h4>
+<pre class="r"><code>fit0 = lm(SalesPrice~.-Quality-Style, data=dataC07)
+par(mfrow=c(2,2))
+plot(fit0)</code></pre>
+<p><img src="hw6_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="find-the-index-of-influential-observations-which-meet-the-following-criteria-rstudent-4-or-cooks-d-0.12-or-covratio-0.8" class="section level4">
+<h4>Find the index of influential observations which meet the following criteria: RSTUDENT &gt; 4 or Cook’s D &gt; 0.12 or CovRatio &lt; 0.8</h4>
+<pre class="r"><code>cd&lt;-which(cooks.distance(fit0)&gt;0.12)
+covr&lt;-which(covratio(fit0)&lt; 0.8)
+rst&lt;-which(rstudent(fit0)&gt;4)
+index&lt;-sort(unique(c(cd,covr,rst)))
+index</code></pre>
+<pre><code>## [1] 72 73 79 80 96</code></pre>
+</div>
+<div id="bulid-table" class="section level4">
+<h4>bulid table</h4>
+<pre class="r"><code>DataTable &lt;- cbind(index,rstudent(fit0)[index],
+                   cooks.distance(fit0)[index],
+                   covratio(fit0)[index])
+colnames(DataTable) = c(&quot;ID value&quot;, &quot;RSTUDENT&quot;, &quot;Cook’s D&quot;,&quot;CovRatio&quot;)
+DataTable</code></pre>
+<pre><code>##    ID value RSTUDENT   Cook’s D  CovRatio
+## 72       72 4.110688 0.02317113 0.7250078
+## 73       73 5.243015 0.04284879 0.5838824
+## 79       79 3.663288 0.01732241 0.7790232
+## 80       80 3.700403 0.01550332 0.7732033
+## 96       96 4.370469 0.13361571 0.7362033</code></pre>
+</div>
 </div>
 
 <center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>

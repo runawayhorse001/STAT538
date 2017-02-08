@@ -1,0 +1,90 @@
+---
+title: "Homework #5"
+author: "Wenqiang Feng"
+date: "2/7/2017"
+output: html_document
+---
+
+
+## **Homework on Variable Selection**
+
+* required library in this homework
+```{r warning = FALSE, message = FALSE}
+library("R330")
+library(MASS)
+library(leaps)
+```
+#### load data 
+```{r}
+dataC07 <- read.table("./data/APPENC07.txt", col.names = c('ID',  'SalesPrice','FinishedSquareFeet','NofBedrooms','NofBathrooms',
+'AirConditioning','GarageSize','Pool','YearBuilt',
+'Quality','Style','LotSize','AdjacenttoHighway'))
+```
+
+### 1. Use All Possible Regressions to select a best model
+
+*  run allpossregs()
+
+```{r}
+allPossRegsSelect = allpossregs(SalesPrice~.-Quality-Style, data=dataC07)
+allPossRegsSelect
+```
+
+* Select the best model: The best model has the smallest Cp. Here it is model 9.
+The variables that should be included in the model:
+```{r}
+minCp = which.min(allPossRegsSelect[,"Cp"])
+minCp
+vars = which(allPossRegsSelect[,-c(1:8)][minCp,] != 0)
+vars 
+```
+
+* Obtain the model parameters
+```{r}
+allPossRegsFit = lm(SalesPrice ~ .-NofBathrooms-Pool , data = dataC07)
+allPossRegsFit
+```
+
+### 2. Backward elimination
+
+```{r}
+fit0 = lm(SalesPrice~.-Quality-Style, data=dataC07)
+BEfit = stepAIC(fit0, direction="backward")
+coef(BEfit)
+```
+
+### 3. Forward selection
+
+```{r}
+fit0 = lm(SalesPrice~1, data=dataC07)
+FSfit = stepAIC(fit0, scope=SalesPrice~FinishedSquareFeet+NofBedrooms+NofBathrooms+
+                AirConditioning+GarageSize+Pool+YearBuilt+
+                LotSize+AdjacenttoHighway, direction="forward")
+coef(FSfit)
+```
+
+### 4. Stepwise
+
+```{r}
+fit0 = lm(SalesPrice~.-Quality-Style, data=dataC07)
+SWfit = stepAIC(fit0, direction="both")
+coef(SWfit)
+```
+
+
+### 5. Maximum R squared improvement
+
+```{r}
+fit0 = lm(SalesPrice~1, data=dataC07)
+maxRfit = add1(fit0, scope=SalesPrice~FinishedSquareFeet+NofBedrooms+NofBathrooms+AirConditioning+GarageSize+Pool+YearBuilt+LotSize+AdjacenttoHighway, test="F")
+maxRfit
+```
+
+### 6. Using the information from the different variable selection methods, fit the best model.
+
+```{r}
+bestFit = lm(SalesPrice~FinishedSquareFeet+ NofBedrooms+
+               AirConditioning+GarageSize+YearBuilt+LotSize,
+               data=dataC07)
+coef(bestFit)
+```

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework #5</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 537: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #5</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>2/7/2017</em></h4>
+
+</div>
+
+
+<div id="homework-on-variable-selection" class="section level2">
+<h2><strong>Homework on Variable Selection</strong></h2>
+<ul>
+<li>required library in this homework</li>
+</ul>
+<pre class="r"><code>library(&quot;R330&quot;)
+library(MASS)
+library(leaps)</code></pre>
+<div id="load-data" class="section level4">
+<h4>load data</h4>
+<pre class="r"><code>dataC07 &lt;- read.table(&quot;./data/APPENC07.txt&quot;, col.names = c(&#39;ID&#39;,  &#39;SalesPrice&#39;,&#39;FinishedSquareFeet&#39;,&#39;NofBedrooms&#39;,&#39;NofBathrooms&#39;,
+&#39;AirConditioning&#39;,&#39;GarageSize&#39;,&#39;Pool&#39;,&#39;YearBuilt&#39;,
+&#39;Quality&#39;,&#39;Style&#39;,&#39;LotSize&#39;,&#39;AdjacenttoHighway&#39;))</code></pre>
+</div>
+<div id="use-all-possible-regressions-to-select-a-best-model" class="section level3">
+<h3>1. Use All Possible Regressions to select a best model</h3>
+<ul>
+<li>run allpossregs()</li>
+</ul>
+<pre class="r"><code>allPossRegsSelect = allpossregs(SalesPrice~.-Quality-Style, data=dataC07)</code></pre>
+<p><img src="hw5_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>allPossRegsSelect</code></pre>
+<pre><code>##            rssp     sigma2 adjRsq      Cp     AIC     BIC           CV ID
+## 1  3.255426e+12 6260433856  0.671 173.759 695.759 704.275 328519428181  0
+## 2  2.792410e+12 5380365830  0.717  77.371 599.371 612.144 283208201322  0
+## 3  2.597213e+12 5013925571  0.736  37.893 559.893 576.924 265962372746  0
+## 4  2.522941e+12 4879963900  0.743  24.111 546.111 567.399 259140973524  0
+## 5  2.477092e+12 4800565511  0.748  16.368 538.368 563.914 255199939149  1
+## 6  2.436421e+12 4730913835  0.751   9.725 531.725 561.529 252642378336  1
+## 7  2.414708e+12 4697875609  0.753   7.112 529.112 563.173 251157332264  1
+## 8  2.409249e+12 4696392549  0.753   7.952 529.952 568.271 252018109271  1
+## 9  2.404789e+12 4696853101  0.753   9.004 531.004 573.581 252997223658  1
+## 10 2.404771e+12 4706008830  0.753  11.000 533.000 579.834 253897351916  1
+##    FinishedSquareFeet NofBedrooms NofBathrooms AirConditioning GarageSize
+## 1                   1           0            0               0          0
+## 2                   1           0            0               0          0
+## 3                   1           0            0               0          0
+## 4                   1           0            0               0          1
+## 5                   1           0            0               0          1
+## 6                   1           1            0               0          1
+## 7                   1           1            0               0          1
+## 8                   1           1            0               0          1
+## 9                   1           1            1               0          1
+## 10                  1           1            1               1          1
+##    Pool YearBuilt LotSize AdjacenttoHighway
+## 1     0         0       0                 0
+## 2     0         1       0                 0
+## 3     0         1       1                 0
+## 4     0         1       1                 0
+## 5     0         1       1                 0
+## 6     0         1       1                 0
+## 7     0         1       1                 1
+## 8     1         1       1                 1
+## 9     1         1       1                 1
+## 10    1         1       1                 1</code></pre>
+<ul>
+<li>Select the best model: The best model has the smallest Cp. Here it is model 9. The variables that should be included in the model:</li>
+</ul>
+<pre class="r"><code>minCp = which.min(allPossRegsSelect[,&quot;Cp&quot;])
+minCp</code></pre>
+<pre><code>## 7 
+## 7</code></pre>
+<pre class="r"><code>vars = which(allPossRegsSelect[,-c(1:8)][minCp,] != 0)
+vars </code></pre>
+<pre><code>## FinishedSquareFeet        NofBedrooms         GarageSize 
+##                  1                  2                  5 
+##          YearBuilt            LotSize  AdjacenttoHighway 
+##                  7                  8                  9</code></pre>
+<ul>
+<li>Obtain the model parameters</li>
+</ul>
+<pre class="r"><code>allPossRegsFit = lm(SalesPrice ~ .-NofBathrooms-Pool , data = dataC07)
+allPossRegsFit</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = SalesPrice ~ . - NofBathrooms - Pool, data = dataC07)
+## 
+## Coefficients:
+##        (Intercept)                  ID  FinishedSquareFeet  
+##         -2.414e+06          -2.781e+01           1.314e+02  
+##        NofBedrooms     AirConditioning          GarageSize  
+##         -7.925e+03          -1.227e+04           1.402e+04  
+##          YearBuilt             Quality               Style  
+##          1.279e+03          -4.618e+04          -9.457e+03  
+##            LotSize   AdjacenttoHighway  
+##          1.170e+00          -4.526e+04</code></pre>
+</div>
+<div id="backward-elimination" class="section level3">
+<h3>2. Backward elimination</h3>
+<pre class="r"><code>fit0 = lm(SalesPrice~.-Quality-Style, data=dataC07)
+BEfit = stepAIC(fit0, direction=&quot;backward&quot;)</code></pre>
+<pre><code>## Start:  AIC=11636.92
+## SalesPrice ~ (ID + FinishedSquareFeet + NofBedrooms + NofBathrooms + 
+##     AirConditioning + GarageSize + Pool + YearBuilt + Quality + 
+##     Style + LotSize + AdjacenttoHighway) - Quality - Style
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## - AirConditioning     1 1.8275e+07 2.4048e+12 11635
+## - NofBathrooms        1 4.4789e+09 2.4092e+12 11636
+## - Pool                1 4.5538e+09 2.4093e+12 11636
+## &lt;none&gt;                             2.4048e+12 11637
+## - AdjacenttoHighway   1 1.9403e+10 2.4242e+12 11639
+## - NofBedrooms         1 4.5459e+10 2.4502e+12 11645
+## - ID                  1 4.6623e+10 2.4514e+12 11645
+## - GarageSize          1 6.2207e+10 2.4670e+12 11648
+## - LotSize             1 1.4513e+11 2.5499e+12 11666
+## - YearBuilt           1 2.7980e+11 2.6846e+12 11692
+## - FinishedSquareFeet  1 1.2973e+12 3.7020e+12 11860
+## 
+## Step:  AIC=11634.93
+## SalesPrice ~ ID + FinishedSquareFeet + NofBedrooms + NofBathrooms + 
+##     GarageSize + Pool + YearBuilt + LotSize + AdjacenttoHighway
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## - NofBathrooms        1 4.4606e+09 2.4092e+12 11634
+## - Pool                1 4.5367e+09 2.4093e+12 11634
+## &lt;none&gt;                             2.4048e+12 11635
+## - AdjacenttoHighway   1 1.9385e+10 2.4242e+12 11637
+## - NofBedrooms         1 4.5899e+10 2.4507e+12 11643
+## - ID                  1 4.6636e+10 2.4514e+12 11643
+## - GarageSize          1 6.3062e+10 2.4679e+12 11646
+## - LotSize             1 1.4755e+11 2.5523e+12 11664
+## - YearBuilt           1 2.9812e+11 2.7029e+12 11694
+## - FinishedSquareFeet  1 1.2994e+12 3.7042e+12 11858
+## 
+## Step:  AIC=11633.89
+## SalesPrice ~ ID + FinishedSquareFeet + NofBedrooms + GarageSize + 
+##     Pool + YearBuilt + LotSize + AdjacenttoHighway
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## - Pool                1 5.4587e+09 2.4147e+12 11633
+## &lt;none&gt;                             2.4092e+12 11634
+## - AdjacenttoHighway   1 2.1033e+10 2.4303e+12 11636
+## - NofBedrooms         1 4.1439e+10 2.4507e+12 11641
+## - ID                  1 5.2921e+10 2.4622e+12 11643
+## - GarageSize          1 6.4549e+10 2.4738e+12 11646
+## - LotSize             1 1.5279e+11 2.5620e+12 11664
+## - YearBuilt           1 3.4322e+11 2.7525e+12 11701
+## - FinishedSquareFeet  1 1.7064e+12 4.1157e+12 11911
+## 
+## Step:  AIC=11633.07
+## SalesPrice ~ ID + FinishedSquareFeet + NofBedrooms + GarageSize + 
+##     YearBuilt + LotSize + AdjacenttoHighway
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## &lt;none&gt;                             2.4147e+12 11633
+## - AdjacenttoHighway   1 2.1713e+10 2.4364e+12 11636
+## - NofBedrooms         1 3.9811e+10 2.4545e+12 11640
+## - ID                  1 5.4061e+10 2.4688e+12 11643
+## - GarageSize          1 6.6157e+10 2.4809e+12 11645
+## - LotSize             1 1.4926e+11 2.5640e+12 11662
+## - YearBuilt           1 3.4008e+11 2.7548e+12 11700
+## - FinishedSquareFeet  1 1.7299e+12 4.1446e+12 11913</code></pre>
+<pre class="r"><code>coef(BEfit)</code></pre>
+<pre><code>##        (Intercept)                 ID FinishedSquareFeet 
+##      -3.509350e+06      -8.615438e+01       1.227634e+02 
+##        NofBedrooms         GarageSize          YearBuilt 
+##      -1.042371e+04       2.164728e+04       1.772672e+03 
+##            LotSize  AdjacenttoHighway 
+##       1.530331e+00      -4.684006e+04</code></pre>
+</div>
+<div id="forward-selection" class="section level3">
+<h3>3. Forward selection</h3>
+<pre class="r"><code>fit0 = lm(SalesPrice~1, data=dataC07)
+FSfit = stepAIC(fit0, scope=SalesPrice~FinishedSquareFeet+NofBedrooms+NofBathrooms+
+                AirConditioning+GarageSize+Pool+YearBuilt+
+                LotSize+AdjacenttoHighway, direction=&quot;forward&quot;)</code></pre>
+<pre><code>## Start:  AIC=12356.17
+## SalesPrice ~ 1
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## + FinishedSquareFeet  1 6.6555e+12 3.2554e+12 11777
+## + NofBathrooms        1 4.6326e+12 5.2783e+12 12029
+## + GarageSize          1 3.3086e+12 6.6023e+12 12146
+## + YearBuilt           1 3.0585e+12 6.8524e+12 12166
+## + NofBedrooms         1 1.6931e+12 8.2178e+12 12260
+## + AirConditioning     1 8.2546e+11 9.0855e+12 12313
+## + LotSize             1 4.9804e+11 9.4129e+12 12331
+## + Pool                1 2.1303e+11 9.6979e+12 12347
+## &lt;none&gt;                             9.9109e+12 12356
+## + AdjacenttoHighway   1 2.5746e+10 9.8852e+12 12357
+## 
+## Step:  AIC=11777.02
+## SalesPrice ~ FinishedSquareFeet
+## 
+##                     Df  Sum of Sq        RSS   AIC
+## + YearBuilt          1 4.6302e+11 2.7924e+12 11699
+## + GarageSize         1 2.7313e+11 2.9823e+12 11733
+## + NofBathrooms       1 9.6767e+10 3.1587e+12 11763
+## + LotSize            1 9.1880e+10 3.1635e+12 11764
+## + AirConditioning    1 5.0865e+10 3.2046e+12 11771
+## + NofBedrooms        1 2.7613e+10 3.2278e+12 11775
+## &lt;none&gt;                            3.2554e+12 11777
+## + Pool               1 1.8642e+09 3.2536e+12 11779
+## + AdjacenttoHighway  1 1.6494e+07 3.2554e+12 11779
+## 
+## Step:  AIC=11698.93
+## SalesPrice ~ FinishedSquareFeet + YearBuilt
+## 
+##                     Df  Sum of Sq        RSS   AIC
+## + LotSize            1 1.9520e+11 2.5972e+12 11663
+## + GarageSize         1 1.1221e+11 2.6802e+12 11680
+## + NofBedrooms        1 3.4925e+10 2.7575e+12 11694
+## + NofBathrooms       1 1.1763e+10 2.7806e+12 11699
+## &lt;none&gt;                            2.7924e+12 11699
+## + Pool               1 2.7315e+09 2.7897e+12 11700
+## + AdjacenttoHighway  1 1.9392e+09 2.7905e+12 11701
+## + AirConditioning    1 3.0690e+08 2.7921e+12 11701
+## 
+## Step:  AIC=11663.11
+## SalesPrice ~ FinishedSquareFeet + YearBuilt + LotSize
+## 
+##                     Df  Sum of Sq        RSS   AIC
+## + GarageSize         1 7.4272e+10 2.5229e+12 11650
+## + NofBedrooms        1 4.4544e+10 2.5527e+12 11656
+## &lt;none&gt;                            2.5972e+12 11663
+## + AdjacenttoHighway  1 8.0710e+09 2.5891e+12 11664
+## + Pool               1 6.7983e+09 2.5904e+12 11664
+## + NofBathrooms       1 3.6792e+09 2.5935e+12 11664
+## + AirConditioning    1 5.9687e+08 2.5966e+12 11665
+## 
+## Step:  AIC=11649.96
+## SalesPrice ~ FinishedSquareFeet + YearBuilt + LotSize + GarageSize
+## 
+##                     Df  Sum of Sq        RSS   AIC
+## + NofBedrooms        1 4.5839e+10 2.4771e+12 11642
+## &lt;none&gt;                            2.5229e+12 11650
+## + AdjacenttoHighway  1 8.2844e+09 2.5147e+12 11650
+## + Pool               1 5.0226e+09 2.5179e+12 11651
+## + NofBathrooms       1 2.0460e+09 2.5209e+12 11652
+## + AirConditioning    1 1.9117e+08 2.5228e+12 11652
+## 
+## Step:  AIC=11642.39
+## SalesPrice ~ FinishedSquareFeet + YearBuilt + LotSize + GarageSize + 
+##     NofBedrooms
+## 
+##                     Df  Sum of Sq        RSS   AIC
+## + NofBathrooms       1 1.3145e+10 2.4640e+12 11642
+## &lt;none&gt;                            2.4771e+12 11642
+## + AdjacenttoHighway  1 8.3328e+09 2.4688e+12 11643
+## + Pool               1 6.9446e+09 2.4702e+12 11643
+## + AirConditioning    1 8.6472e+07 2.4770e+12 11644
+## 
+## Step:  AIC=11641.61
+## SalesPrice ~ FinishedSquareFeet + YearBuilt + LotSize + GarageSize + 
+##     NofBedrooms + NofBathrooms
+## 
+##                     Df  Sum of Sq        RSS   AIC
+## &lt;none&gt;                            2.4640e+12 11642
+## + AdjacenttoHighway  1 7518607679 2.4564e+12 11642
+## + Pool               1 5252807794 2.4587e+12 11642
+## + AirConditioning    1    1136218 2.4640e+12 11644</code></pre>
+<pre class="r"><code>coef(FSfit)</code></pre>
+<pre><code>##        (Intercept) FinishedSquareFeet          YearBuilt 
+##      -3.567709e+06       1.257386e+02       1.779611e+03 
+##            LotSize         GarageSize        NofBedrooms 
+##       1.554990e+00       2.253038e+04      -1.304139e+04 
+##       NofBathrooms 
+##       7.987552e+03</code></pre>
+</div>
+<div id="stepwise" class="section level3">
+<h3>4. Stepwise</h3>
+<pre class="r"><code>fit0 = lm(SalesPrice~.-Quality-Style, data=dataC07)
+SWfit = stepAIC(fit0, direction=&quot;both&quot;)</code></pre>
+<pre><code>## Start:  AIC=11636.92
+## SalesPrice ~ (ID + FinishedSquareFeet + NofBedrooms + NofBathrooms + 
+##     AirConditioning + GarageSize + Pool + YearBuilt + Quality + 
+##     Style + LotSize + AdjacenttoHighway) - Quality - Style
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## - AirConditioning     1 1.8275e+07 2.4048e+12 11635
+## - NofBathrooms        1 4.4789e+09 2.4092e+12 11636
+## - Pool                1 4.5538e+09 2.4093e+12 11636
+## &lt;none&gt;                             2.4048e+12 11637
+## - AdjacenttoHighway   1 1.9403e+10 2.4242e+12 11639
+## - NofBedrooms         1 4.5459e+10 2.4502e+12 11645
+## - ID                  1 4.6623e+10 2.4514e+12 11645
+## - GarageSize          1 6.2207e+10 2.4670e+12 11648
+## - LotSize             1 1.4513e+11 2.5499e+12 11666
+## - YearBuilt           1 2.7980e+11 2.6846e+12 11692
+## - FinishedSquareFeet  1 1.2973e+12 3.7020e+12 11860
+## 
+## Step:  AIC=11634.93
+## SalesPrice ~ ID + FinishedSquareFeet + NofBedrooms + NofBathrooms + 
+##     GarageSize + Pool + YearBuilt + LotSize + AdjacenttoHighway
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## - NofBathrooms        1 4.4606e+09 2.4092e+12 11634
+## - Pool                1 4.5367e+09 2.4093e+12 11634
+## &lt;none&gt;                             2.4048e+12 11635
+## + AirConditioning     1 1.8275e+07 2.4048e+12 11637
+## - AdjacenttoHighway   1 1.9385e+10 2.4242e+12 11637
+## - NofBedrooms         1 4.5899e+10 2.4507e+12 11643
+## - ID                  1 4.6636e+10 2.4514e+12 11643
+## - GarageSize          1 6.3062e+10 2.4679e+12 11646
+## - LotSize             1 1.4755e+11 2.5523e+12 11664
+## - YearBuilt           1 2.9812e+11 2.7029e+12 11694
+## - FinishedSquareFeet  1 1.2994e+12 3.7042e+12 11858
+## 
+## Step:  AIC=11633.89
+## SalesPrice ~ ID + FinishedSquareFeet + NofBedrooms + GarageSize + 
+##     Pool + YearBuilt + LotSize + AdjacenttoHighway
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## - Pool                1 5.4587e+09 2.4147e+12 11633
+## &lt;none&gt;                             2.4092e+12 11634
+## + NofBathrooms        1 4.4606e+09 2.4048e+12 11635
+## + AirConditioning     1 1.3929e+04 2.4092e+12 11636
+## - AdjacenttoHighway   1 2.1033e+10 2.4303e+12 11636
+## - NofBedrooms         1 4.1439e+10 2.4507e+12 11641
+## - ID                  1 5.2921e+10 2.4622e+12 11643
+## - GarageSize          1 6.4549e+10 2.4738e+12 11646
+## - LotSize             1 1.5279e+11 2.5620e+12 11664
+## - YearBuilt           1 3.4322e+11 2.7525e+12 11701
+## - FinishedSquareFeet  1 1.7064e+12 4.1157e+12 11911
+## 
+## Step:  AIC=11633.07
+## SalesPrice ~ ID + FinishedSquareFeet + NofBedrooms + GarageSize + 
+##     YearBuilt + LotSize + AdjacenttoHighway
+## 
+##                      Df  Sum of Sq        RSS   AIC
+## &lt;none&gt;                             2.4147e+12 11633
+## + Pool                1 5.4587e+09 2.4092e+12 11634
+## + NofBathrooms        1 5.3825e+09 2.4093e+12 11634
+## + AirConditioning     1 1.6340e+07 2.4147e+12 11635
+## - AdjacenttoHighway   1 2.1713e+10 2.4364e+12 11636
+## - NofBedrooms         1 3.9811e+10 2.4545e+12 11640
+## - ID                  1 5.4061e+10 2.4688e+12 11643
+## - GarageSize          1 6.6157e+10 2.4809e+12 11645
+## - LotSize             1 1.4926e+11 2.5640e+12 11662
+## - YearBuilt           1 3.4008e+11 2.7548e+12 11700
+## - FinishedSquareFeet  1 1.7299e+12 4.1446e+12 11913</code></pre>
+<pre class="r"><code>coef(SWfit)</code></pre>
+<pre><code>##        (Intercept)                 ID FinishedSquareFeet 
+##      -3.509350e+06      -8.615438e+01       1.227634e+02 
+##        NofBedrooms         GarageSize          YearBuilt 
+##      -1.042371e+04       2.164728e+04       1.772672e+03 
+##            LotSize  AdjacenttoHighway 
+##       1.530331e+00      -4.684006e+04</code></pre>
+</div>
+<div id="maximum-r-squared-improvement" class="section level3">
+<h3>5. Maximum R squared improvement</h3>
+<pre class="r"><code>fit0 = lm(SalesPrice~1, data=dataC07)
+maxRfit = add1(fit0, scope=SalesPrice~FinishedSquareFeet+NofBedrooms+NofBathrooms+AirConditioning+GarageSize+Pool+YearBuilt+LotSize+AdjacenttoHighway, test=&quot;F&quot;)
+maxRfit</code></pre>
+<pre><code>## Single term additions
+## 
+## Model:
+## SalesPrice ~ 1
+##                    Df  Sum of Sq        RSS   AIC   F value    Pr(&gt;F)    
+## &lt;none&gt;                           9.9109e+12 12356                        
+## FinishedSquareFeet  1 6.6555e+12 3.2554e+12 11777 1063.1030 &lt; 2.2e-16 ***
+## NofBedrooms         1 1.6931e+12 8.2178e+12 12260  107.1382 &lt; 2.2e-16 ***
+## NofBathrooms        1 4.6326e+12 5.2783e+12 12029  456.3896 &lt; 2.2e-16 ***
+## AirConditioning     1 8.2546e+11 9.0855e+12 12313   47.2445 1.800e-11 ***
+## GarageSize          1 3.3086e+12 6.6023e+12 12146  260.5897 &lt; 2.2e-16 ***
+## Pool                1 2.1303e+11 9.6979e+12 12347   11.4229 0.0007799 ***
+## YearBuilt           1 3.0585e+12 6.8524e+12 12166  232.0956 &lt; 2.2e-16 ***
+## LotSize             1 4.9804e+11 9.4129e+12 12331   27.5134 2.274e-07 ***
+## AdjacenttoHighway   1 2.5746e+10 9.8852e+12 12357    1.3544 0.2450523    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="using-the-information-from-the-different-variable-selection-methods-fit-the-best-model." class="section level3">
+<h3>6. Using the information from the different variable selection methods, fit the best model.</h3>
+<pre class="r"><code>bestFit = lm(SalesPrice~FinishedSquareFeet+ NofBedrooms+
+               AirConditioning+GarageSize+YearBuilt+LotSize,
+               data=dataC07)
+coef(bestFit)</code></pre>
+<pre><code>##        (Intercept) FinishedSquareFeet        NofBedrooms 
+##      -3.758878e+06       1.317616e+02      -1.121647e+04 
+##    AirConditioning         GarageSize          YearBuilt 
+##       1.231936e+03       2.296119e+04       1.875860e+03 
+##            LotSize 
+##       1.599234e+00</code></pre>
+</div>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
