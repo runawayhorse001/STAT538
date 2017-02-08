@@ -4,7 +4,7 @@ author: "Ming Chen & Wenqiang Feng"
 date: "1/27/2017"
 output: html_document
 ---
-This is the shared repository for STAT 537 class at The University of Tennessee, Knoxville. This shared repository contains thier  notes, homework solutions, project solutions. And it also contains some contents from the textbook [Applied Linear Statistical Models](http://www.stat.ufl.edu/~rrandles/sta4210/Rclassnotes/data/textdatasets/index.html).
+This is the shared repository for STAT 538 class at The University of Tennessee, Knoxville. This shared repository contains thier  notes, homework solutions, project solutions. And it also contains some contents from the textbook [Applied Linear Statistical Models](http://www.stat.ufl.edu/~rrandles/sta4210/Rclassnotes/data/textdatasets/index.html).
 
 Ming and Wenqiang want to use this shared repository to share how to use R, Rmarkdown and Github to do the statistics homework problems. Please be aware, however, that the note contains typos as well as incorrect or inaccurate solutions. 
 
