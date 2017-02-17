@@ -9,10 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ming Chen &amp; Wenqiang Feng" />
+<meta name="author" content="Wenqiang Feng" />
 
 
-<title>About</title>
+<title>Homework #7</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -302,16 +302,39 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">About</h1>
-<h4 class="author"><em>Ming Chen &amp; Wenqiang Feng</em></h4>
-<h4 class="date"><em>2/2/2017</em></h4>
+<h1 class="title toc-ignore">Homework #7</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>2/16/2017</em></h4>
 
 </div>
 
 
-<p>This is the shared repository for STAT 538 class at The University of Tennessee, Knoxville. Wenqiang texted to Cheng and decided to creat this shared repository on Dec.2, 2017 at Minneapolis, Minnesota.</p>
-<p>The main goal of this shared repository is to share how to use R, Rmarkdown and Github to do the statistics homework problems.</p>
-<p>Please be aware, however, this should go without saying, but I’ll include it within this point, absolutely do not plagiarize.</p>
+<div id="chapter-10-problems-5ab" class="section level2">
+<h2><strong>1. Chapter 10 Problems 5ab</strong></h2>
+<div id="required-library" class="section level4">
+<h4>required library</h4>
+<pre class="r"><code>library(car)</code></pre>
+</div>
+<div id="load-data" class="section level4">
+<h4>Load data</h4>
+<pre class="r"><code>data65 &lt;- read.table(&quot;./data/CH06PR05.txt&quot;, col.names = c(&quot;Y&quot;, &quot;X1&quot;,&quot;X2&quot;))</code></pre>
+</div>
+<div id="problem-10.5a" class="section level3">
+<h3>Problem 10.5(a)</h3>
+<ul>
+<li>Added variable plots</li>
+</ul>
+<pre class="r"><code>lm.fit = lm(Y~., data=data65)
+avPlots(lm.fit)</code></pre>
+<p><img src="hw7_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="problem-10.5b" class="section level3">
+<h3>Problem 10.5(b)</h3>
+<ul>
+<li>Explanation: <strong>The plots show a linear band with nonzero slope. Those plots indicate that a linear term in <span class="math inline">\(X_1\)</span> may be helpful addition to the regression model already containing <span class="math inline">\(X_2\)</span>. It can be shown that the slope of the least squares line though the origin fitted to the plotted residual is the slope of the the plot in the figure. the regression coefficient of <span class="math inline">\(X_1\)</span> if this variable were added to the regression model already containing <span class="math inline">\(X_2\)</span>. (book page.385)</strong></li>
+</ul>
+</div>
+</div>
 
 <center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
 
