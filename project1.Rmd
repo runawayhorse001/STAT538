@@ -5,26 +5,129 @@ date: "2/2/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+library(plyr)
+library(gplots)
+library(asbio)
+library(corrplot)
+library(car)
+```
+#### Load data
+```{r}
+C5 <- read.table("./data/APPENC05.txt")
+data = C5[,2:9]
+y=C5[,2]
+X=C5[,3:9]
+#colnames(data1612) = c("time_lapse", "agent")
 ```
 
-## R Markdown
+### Stem-and-Leaf Plot
+```{r}
+stem(X$V3)
+```
+```{r}
+stem(X$V4)
+```
+```{r}
+stem(X$V5)
+```
+```{r}
+stem(X$V6)
+```
+```{r}
+stem(X$V7)
+``` 
+```{r}
+stem(X$V8)
+``` 
+```{r}
+stem(X$V9)
+``` 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+###  Correlation matrix
+```{r}
+M = cor(X)
+M
+```
+```{r}
+corrplot(M, type="upper")
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+
+```{r}
+fit <- lm(V2~., data=data)
+```
+```{r}
+summary(fit)
+```
+```{r}
+par(mfrow=c(2,2)) # init 4 charts in 1 panel
+plot(fit)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+cd<-which(cooks.distance(fit)>3.0)
+covr<-which(covratio(fit)>2.0)
+rst<-which(abs(rstudent(fit))>4)
+index<-sort(unique(c(cd,covr,rst)))
+index
+```
+```{r}
+NewData = data[-c(index),]
+```
+```{r}
+plot(fit, which=4)
+abline(h=3.0, col="blue", lty=3)
+```
+
+```{r}
+lmtest::bptest(fit)
+```
+```{r}
+# Evaluate Collinearity
+vif(fit) # variance inflation factors 
+vif(fit) > 2 # problem?
+```
+
+```{r}
+# Choose a VIF cutoff under which a variable is retained (Zuur et al. 2010 
+# MEE recommends 2)
+cutoff=2
+# Create function to sequentially drop the variable with the largest VIF until 
+# all variables have VIF > cutoff
+flag=TRUE
+viftable=data.frame()
+while(flag==TRUE) {
+  vfit=vif(fit)
+  viftable=rbind.fill(viftable,as.data.frame(t(vfit)))
+  if(max(vfit)>cutoff) { fit=
+	update(fit,as.formula(paste(".","~",".","-",names(which.max(vfit))))) }
+  else { flag=FALSE } }
+```
+
+```{r}
+summary(fit)
+```
+
+
+
+```{r}
+SWfit = stepAIC(fit, direction="both")
+```
+```{r}
+summary(SWfit)
+```
+
+```{r}
+par(mfrow=c(2,2)) # init 4 charts in 1 panel
+plot(SWfit)
+```
+
+```{r}
+hccm(fit)
+```
+
+

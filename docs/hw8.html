@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework #8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #8</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>2/25/2017</em></h4>
+
+</div>
+
+
+<div id="chapter-16-problems-12" class="section level2">
+<h2><strong>1. Chapter 16 Problems 12</strong></h2>
+<div id="required-library" class="section level4">
+<h4>required library</h4>
+<pre class="r"><code>library(plyr)
+library(gplots)
+library(asbio)</code></pre>
+</div>
+<div id="load-data" class="section level4">
+<h4>Load data</h4>
+<pre class="r"><code>data1612 &lt;- read.table(&quot;./data/CH16PR12.txt&quot;)[,1:2]
+colnames(data1612) = c(&quot;time_lapse&quot;, &quot;agent&quot;)</code></pre>
+</div>
+</div>
+<div id="problem-16" class="section level2">
+<h2>Problem 16</h2>
+<div id="problem-16.12-a" class="section level3">
+<h3>problem 16.12 a</h3>
+<ul>
+<li>the factor level means appear to differ</li>
+<li>the variability of the observations is approximately the same for all factor levels</li>
+</ul>
+<pre class="r"><code>boxplot(time_lapse~agent, data=data1612, xlab=&quot;agent&quot;, ylab=&quot;tiem lapse&quot;)</code></pre>
+<p><img src="hw8_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="problem-16.12-b" class="section level3">
+<h3>problem 16.12 b</h3>
+<pre class="r"><code>data1612$agent = as.factor(data1612$agent)
+aov.fit = aov(time_lapse~agent, data = data1612)
+fitted_value = ddply(data1612, .(agent), summarize, mean=mean(time_lapse))
+colnames(fitted_value) = c(&quot;agent&quot;, &quot;fitted value&quot;) 
+fitted_value</code></pre>
+<pre><code>##   agent fitted value
+## 1     1        24.55
+## 2     2        22.55
+## 3     3        11.75
+## 4     4        14.80
+## 5     5        30.10</code></pre>
+</div>
+<div id="problem-16.12-c" class="section level3">
+<h3>problem 16.12 c</h3>
+<ul>
+<li>residuals</li>
+</ul>
+<pre class="r"><code>residuals = aov.fit$residuals
+names(residuals) = rep(1:5, each=20)
+matrix(residuals, nrow=20)</code></pre>
+<pre><code>##        [,1]  [,2]  [,3] [,4] [,5]
+##  [1,] -0.55 -4.55 -1.75  0.2  2.9
+##  [2,] -0.55 -2.55 -0.75 -1.8 -8.1
+##  [3,]  4.45 -2.55 -3.75  3.2 -2.1
+##  [4,] -4.55  1.45  0.25  1.2  4.9
+##  [5,] -3.55 -0.55  0.25 -2.8 -1.1
+##  [6,]  0.45  6.45 -1.75  4.2 -2.1
+##  [7,]  3.45  0.45  2.25 -4.8 -0.1
+##  [8,]  2.45  1.45 -2.75  3.2  0.9
+##  [9,] -1.55  5.45 -3.75 -3.8 -1.1
+## [10,] -3.55 -3.55 -0.75  2.2 -2.1
+## [11,] -0.55  1.45  4.25  0.2  2.9
+## [12,]  1.45  2.45  0.25 -2.8 -0.1
+## [13,] -1.55 -1.55  6.25 -1.8  1.9
+## [14,] -0.55 -2.55  2.25 -1.8  2.9
+## [15,]  3.45  1.45  1.25 -0.8 -1.1
+## [16,] -1.55 -0.55 -0.75  2.2  4.9
+## [17,] -1.55 -3.55  2.25  1.2  1.9
+## [18,]  2.45  3.45 -2.75  2.2 -4.1
+## [19,]  1.45 -0.55 -0.75 -0.8 -0.1
+## [20,]  0.45 -1.55  0.25  1.2 -1.1</code></pre>
+<pre class="r"><code>sum(residuals)</code></pre>
+<pre><code>## [1] 3.802514e-15</code></pre>
+<ul>
+<li>Yes, the sum of residuals is <span class="math inline">\(3.8025139\times 10^{-15}\)</span> which is 0 at the machine error level.</li>
+</ul>
+</div>
+<div id="problem-16.12-d" class="section level3">
+<h3>problem 16.12 d</h3>
+<pre class="r"><code>summary(aov.fit)</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+## agent        4   4430  1107.5   147.2 &lt;2e-16 ***
+## Residuals   95    715     7.5                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="problem-16.12-e" class="section level3">
+<h3>problem 16.12 e</h3>
+<ul>
+<li><p>Hypothesis:</p></li>
+<li><span class="math inline">\(H_0\)</span>: all the <span class="math inline">\(\mu_i, i= 1,\cdots,5\)</span> are equal.</li>
+<li><p><span class="math inline">\(H_\alpha\)</span>: not all <span class="math inline">\(\mu_i, i= 1,\cdots,5\)</span> are equal.</p></li>
+<li><p>Decision rules: From the above ANOVA table , we get <span class="math inline">\(F^*\)</span> = 1107.5/7.5 = 147.6667; Now calculate F(0.90; 4, 95):</p></li>
+</ul>
+<pre class="r"><code>qf(0.90, 4, 95)</code></pre>
+<pre><code>## [1] 2.004992</code></pre>
+<p>If <span class="math inline">\(F^*\)</span> is less or equal F(0.90; 4, 95)= 2.0049918, conclude <span class="math inline">\(H_0\)</span>, otherwise <span class="math inline">\(H_\alpha\)</span>. Based on this criteria, since <span class="math inline">\(F^*\)</span> = 147.6667 &gt; 2.0049918, conclude <span class="math inline">\(H_\alpha\)</span>.</p>
+</div>
+<div id="problem-16.12-f" class="section level3">
+<h3>problem 16.12 f</h3>
+<ul>
+<li>P value = 0</li>
+</ul>
+</div>
+<div id="problem-16.12-g" class="section level3">
+<h3>problem 16.12 g</h3>
+<ul>
+<li>Yes. There appears to be much variation in the mean time lapse among the five agents.</li>
+<li>However, this variation does not necessarily indicate differences in the efficiency of operations of all five agents. It only means that at least one agent is significantly different from others.</li>
+</ul>
+</div>
+</div>
+<div id="chapter-17-problems-13" class="section level2">
+<h2><strong>1. Chapter 17 Problems 13</strong></h2>
+<div id="problem-17.13-a" class="section level3">
+<h3>problem 17.13 a</h3>
+<ul>
+<li>The intervals of some agents are not overlapped with agents of any other agents, which indicates that there is a significant difference in time lapse among the five agents.</li>
+</ul>
+<pre class="r"><code>plotmeans(time_lapse~agent, data=data1612, xlab=&quot;agent&quot;, ylab=&quot;time lapse&quot;, p=0.9)</code></pre>
+<p><img src="hw8_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="problem-17.13-b" class="section level3">
+<h3>problem 17.13 b</h3>
+<ul>
+<li>given alpha = 0.1, so the confidence level = 0.90</li>
+</ul>
+<pre class="r"><code>tk.comparison = TukeyHSD(aov.fit, conf.level=0.90, ordered=T)
+tk.comparison</code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     90% family-wise confidence level
+##     factor levels have been ordered
+## 
+## Fit: aov(formula = time_lapse ~ agent, data = data1612)
+## 
+## $agent
+##      diff        lwr      upr     p adj
+## 4-3  3.05  0.8845705  5.21543 0.0059245
+## 2-3 10.80  8.6345705 12.96543 0.0000000
+## 1-3 12.80 10.6345705 14.96543 0.0000000
+## 5-3 18.35 16.1845705 20.51543 0.0000000
+## 2-4  7.75  5.5845705  9.91543 0.0000000
+## 1-4  9.75  7.5845705 11.91543 0.0000000
+## 5-4 15.30 13.1345705 17.46543 0.0000000
+## 1-2  2.00 -0.1654295  4.16543 0.1520498
+## 5-2  7.55  5.3845705  9.71543 0.0000000
+## 5-1  5.55  3.3845705  7.71543 0.0000001</code></pre>
+<ul>
+<li>based on the Tukey pairwised comparison, only the mean between group 1 and 2 do not differ</li>
+</ul>
+<pre class="r"><code>tk.comparison$agent[tk.comparison$agent[,4]&gt;=0.05, , drop=FALSE]</code></pre>
+<pre><code>##     diff        lwr     upr     p adj
+## 1-2    2 -0.1654295 4.16543 0.1520498</code></pre>
+<ul>
+<li>groups</li>
+<li>group 1: agent 1 and agent 2</li>
+<li>group 2: agent 3</li>
+<li>group 3: agent 4</li>
+<li>group 4: agent 5</li>
+</ul>
+</div>
+<div id="problem-17.13-f" class="section level3">
+<h3>problem 17.13 f</h3>
+<ul>
+<li><p>No. Based on the table above, Bonferroni has narrower intervals than the tukey procedure.</p></li>
+<li><p>Below is the plot of the entire result. Group pairs that intersect the dashed vertical line do not differ in time lapse mean. Here it is group pair <strong>(1, 2)</strong></p></li>
+</ul>
+<pre class="r"><code>plot(tk.comparison)</code></pre>
+<p><img src="hw8_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="problem-17.13-c" class="section level3">
+<h3>problem 17.13 c</h3>
+<ul>
+<li>MSE = 7.522632</li>
+</ul>
+<pre class="r"><code>MSE = summary(aov.fit)[[1]][3][2,1]
+MSE</code></pre>
+<pre><code>## [1] 7.522632</code></pre>
+<ul>
+<li>s{Y_bar1.} = <span class="math inline">\((MSE/20)^{0.5} = (7.522632/20)^{0.5}\)</span> = 0.6132957</li>
+<li>t(0.95, 95) = 1.661052</li>
+</ul>
+<pre class="r"><code>qt(0.95, 95)</code></pre>
+<pre><code>## [1] 1.661052</code></pre>
+<pre class="r"><code>c(24.550-(MSE/20)^(0.5)*qt(0.95, 95), 24.550+(MSE/20)^(0.5)*qt(0.95, 95))</code></pre>
+<pre><code>## [1] 23.53128 25.56872</code></pre>
+<ul>
+<li>90% confidence interval = [23.53128 25.56872]</li>
+<li>lower limit = Y1.mean - t(0.90, 95) * s{Y_bar1.} = 24.55 - 1.661052 * 0.6132957 = 23.53128</li>
+<li>upper limit = Y1.mean + t(0.90, 95) * s{Y_bar1.} = 24.55 + 1.661052 * 0.6132957 = 25.56872</li>
+</ul>
+</div>
+<div id="problem-17.13-d" class="section level3">
+<h3>problem 17.13 d</h3>
+<ul>
+<li>D = mu2 - mu1 = 22.55 - 24.55 = -2</li>
+<li>s{Y1.} = $(MSE/(1/20 + 1/20))^{0.5} $= 0.8673</li>
+<li>t(0.95, 95) = 1.6610518</li>
+<li><p>confidence interval: [D - t(0.90; 95) * s{Y1.}, [D - t(0.95; 95) * s{Y1.}] = [-3.441, -0.559]</p></li>
+<li><p>explanation: the difference is significant. Time lapse for agent 2 is significantly less than that for agent 1.</p></li>
+</ul>
+</div>
+<div id="problem-17.13-e" class="section level3">
+<h3>problem 17.13 e</h3>
+<ul>
+<li>D1 = Y1 - Y3 = 12.8, 10.91794 &lt; D1 &lt; 14.607419</li>
+<li>D2 = Y1 - Y5 = -5.55, -7.43206 &lt; D2 &lt; -3.66794</li>
+<li>D3 = Y3 - Y5 = -18.35, -20.23206 &lt; D3 &lt; -16.46794</li>
+<li>s{Di} = <span class="math inline">\((MSE*2/20)^{0.5}\)</span> = 0.8673</li>
+<li>B = t(1-0.1/2*3; 95) = t(0.9833; 95) = 2.158</li>
+</ul>
+<p><span class="math display">\[ 12.8-2.158(0.8673) \leq D1 \leq 12.8+2.158(0.8673), 10.928 \leq D1 \leq 14.672 \]</span> <span class="math display">\[-5.55-2.158(0.8673) \leq D2 \leq -5.55+2.158(0.8673), -7.422 \leq D2 \leq -3.678\]</span> <span class="math display">\[-18.35-2.158(0.8673) \leq D3 \leq -18.35+2.158(0.8673), -20.222 \leq D3 \leq -16.478\]</span></p>
+<ul>
+<li>Plot shows that all differences are significant. Same conclusions are obtained as in part(a).</li>
+</ul>
+<pre class="r"><code>D = c(12.8, -5.55, -18.35)
+plot(cbind(D, 2), yaxt = &quot;n&quot;, bty=&quot;l&quot;, ylab=&quot;&quot;, xlab=&quot;time lapse&quot;)
+text(x=D, y=2.1, labels=1:3)
+abline(h=2)</code></pre>
+<p><img src="hw8_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="problem-17.13-f-1" class="section level3">
+<h3>problem 17.13 f</h3>
+<p>No, since q(0.90, 5, 95) = 3.54, while T = 2.503.</p>
+</div>
+</div>
+<div id="chapter-17-problems-18" class="section level2">
+<h2><strong>1. Chapter 17 Problems 18</strong></h2>
+<div id="problem-17.18-a" class="section level3">
+<h3>problem 17.18 a</h3>
+<ul>
+<li>mu1 = 24.55</li>
+<li>mu2 = 22.55</li>
+<li>mu3 = 11.75</li>
+<li>mu4 = 14.80</li>
+<li>L = (mu1+mu2)/2 - (mu3+mu4)/2 = 10.275</li>
+<li>s{L} = <span class="math inline">\((MSE/n)^{0.5} = (7.522632/20)^{0.5}\)</span> = 0.6132957</li>
+<li>t(0.90, 95) = 1.290527</li>
+<li>so, L confidence interval = [L - t(0.90, 95) * s{L}, L + t(0.90, 95) * s{L}] = [9.483526 11.066474]</li>
+</ul>
+<pre class="r"><code>mu1 = 24.55; mu2 = 22.55;mu3 = 11.75;mu4 = 14.80;n=20
+L = (mu1+mu2)/2 - (mu3+mu4)/2
+L</code></pre>
+<pre><code>## [1] 10.275</code></pre>
+<pre class="r"><code>sL = (MSE/n)^0.5
+sL</code></pre>
+<pre><code>## [1] 0.6132957</code></pre>
+<pre class="r"><code>c(L - qt(0.90,95)*sL,L + qt(0.90, 95)*sL  )</code></pre>
+<pre><code>## [1]  9.483526 11.066474</code></pre>
+<p>explanation: the time lapse is significantly different between agents who distribute merchandise only and agents who distribute cash-value coupons only.</p>
+<pre class="r"><code>mu = fitted_value[,2]
+mu</code></pre>
+<pre><code>## [1] 24.55 22.55 11.75 14.80 30.10</code></pre>
+<pre class="r"><code>MSE</code></pre>
+<pre><code>## [1] 7.522632</code></pre>
+<pre class="r"><code>qt(0.90, 95)</code></pre>
+<pre><code>## [1] 1.290527</code></pre>
+</div>
+<div id="problem-17.18-b" class="section level3">
+<h3>problem 17.18 b</h3>
+<ul>
+<li>D1 = mu1 - mu2 = 24.55 - 22.55 = 2.00</li>
+<li>D2 = mu3 - mu4 = 11.75 - 14.80 = -3.05</li>
+<li>L1 = (mu1+mu2)/2 - mu5 = (24.55+22.55)/2 - 30.10 = -6.55</li>
+<li>L2 = (mu3+mu4)/2 - mu5 = (11.75+14.80)/2 - 30.10 = -16.825</li>
+<li>L3 = (mu1+mu2)/2 - (mu3+mu4)/2 = (24.55+22.55)/2 - (11.75+14.80)/2 = 10.275</li>
+<li></li>
+<li>s{D} = 0.8673</li>
+<li>s{L1} = 0.7511</li>
+<li>s{L3} = s{D} = 0.6133</li>
+<li></li>
+<li>F(0.90; 4, 95) = 2.004992</li>
+<li>S = (4 * F(0.90; 4, 95))^0.5 = 2.831955</li>
+<li>Using this formula: confidence interval = [L - S * s{L}, L + t(0.90, 95) * s{L}], we obtain the * following</li>
+<li><p>confidence interval for each,</p></li>
+<li>D1: [-0.4561543, 4.4561543]</li>
+<li>D1: [-5.5061543, -0.5938457]</li>
+<li>L1: [-8.6770812, -4.4229188]</li>
+<li>L2: [-18.9520812, -14.6979188]</li>
+<li><p>L3: [8.5381622, 12.0118378]</p></li>
+</ul>
+<p>explanation: difference D1 is not significant. The others are significant.</p>
+<pre class="r"><code>mu = fitted_value[,2]
+mu</code></pre>
+<pre><code>## [1] 24.55 22.55 11.75 14.80 30.10</code></pre>
+</div>
+<div id="problem-17.18-c" class="section level3">
+<h3>problem 17.18 c</h3>
+<ul>
+<li>L = 0.25mu1 + 0.20mu2 + 0.20mu3 + 0.20mu4 + 0.15mu5 = 20.4725</li>
+<li>s{L} = 0.2777</li>
+<li><p>t(0.90; 95) = 1.290527</p></li>
+<li><p>L confidence interval: [L - t(0.90; 95) * s{L}, L + t(0.90; 95) * s{L}] = [20.114, 20.831]</p></li>
+</ul>
+<pre class="r"><code>L=sum(c(0.25, 0.2, .2, .2, .15)*fitted_value[,2])
+L</code></pre>
+<pre><code>## [1] 20.4725</code></pre>
+<pre class="r"><code>qt(0.90, 95)</code></pre>
+<pre><code>## [1] 1.290527</code></pre>
+</div>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
