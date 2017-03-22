@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework #9</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw7.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #10</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #9</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>3/6/2017</em></h4>
+
+</div>
+
+
+<div id="required-library" class="section level3">
+<h3>required library</h3>
+<pre class="r"><code>library(plyr)
+library(lmtest)</code></pre>
+</div>
+<div id="load-data" class="section level3">
+<h3>Load data</h3>
+<pre class="r"><code>dt &lt;- read.table(&quot;./data/CH19PR16.txt&quot;, 
+                      col.names =  c(&quot;time&quot;, &quot;technician&quot;, &quot;make&quot;, &quot;disk_drive&quot;))
+dt[,2] = as.factor(dt[,2])
+dt[,3] = as.factor(dt[,3])
+dt[,4] = as.factor(dt[,4])</code></pre>
+</div>
+<div id="problem-19.16-a" class="section level3">
+<h3>problem 19.16 a</h3>
+<pre class="r"><code>fitted_values = ddply(dt, .(technician, make), summarize, 
+      mean=mean(time))
+fitted_values</code></pre>
+<pre><code>##   technician make mean
+## 1          1    1 59.8
+## 2          1    2 47.8
+## 3          1    3 58.4
+## 4          2    1 48.4
+## 5          2    2 61.2
+## 6          2    3 56.2
+## 7          3    1 60.2
+## 8          3    2 60.8
+## 9          3    3 49.6</code></pre>
+</div>
+<div id="problem-19.16-b" class="section level3">
+<h3>problem 19.16 b</h3>
+<pre class="r"><code>anova2way = aov(time~technician+make+technician:make, data=dt)
+technician = rep(c(&quot;technician 1&quot;, &quot;technician 2&quot;, &quot;technician 3&quot;), each=15)
+make = rep(rep(c(&quot;make 1&quot;, &quot;make 2&quot;, &quot;make 3&quot;), each=5), 3)
+res=data.frame(technician, make, residuals=anova2way$residuals)
+res</code></pre>
+<pre><code>##      technician   make residuals
+## 1  technician 1 make 1       2.2
+## 2  technician 1 make 1     -11.8
+## 3  technician 1 make 1       3.2
+## 4  technician 1 make 1      -2.8
+## 5  technician 1 make 1       9.2
+## 6  technician 1 make 2       9.2
+## 7  technician 1 make 2      -2.8
+## 8  technician 1 make 2      -8.8
+## 9  technician 1 make 2       6.2
+## 10 technician 1 make 2      -3.8
+## 11 technician 1 make 3       0.6
+## 12 technician 1 make 3      -5.4
+## 13 technician 1 make 3       8.6
+## 14 technician 1 make 3       7.6
+## 15 technician 1 make 3     -11.4
+## 16 technician 2 make 1       2.6
+## 17 technician 2 make 1       8.6
+## 18 technician 2 make 1      -3.4
+## 19 technician 2 make 1       1.6
+## 20 technician 2 make 1      -9.4
+## 21 technician 2 make 2      -0.2
+## 22 technician 2 make 2      -3.2
+## 23 technician 2 make 2       8.8
+## 24 technician 2 make 2       4.8
+## 25 technician 2 make 2     -10.2
+## 26 technician 2 make 3      -1.2
+## 27 technician 2 make 3       1.8
+## 28 technician 2 make 3      -6.2
+## 29 technician 2 make 3      12.8
+## 30 technician 2 make 3      -7.2
+## 31 technician 3 make 1      -1.2
+## 32 technician 3 make 1       4.8
+## 33 technician 3 make 1      -5.2
+## 34 technician 3 make 1      -8.2
+## 35 technician 3 make 1       9.8
+## 36 technician 3 make 2      -2.8
+## 37 technician 3 make 2       2.2
+## 38 technician 3 make 2       9.2
+## 39 technician 3 make 2      -7.8
+## 40 technician 3 make 2      -0.8
+## 41 technician 3 make 3      -2.6
+## 42 technician 3 make 3       6.4
+## 43 technician 3 make 3       1.4
+## 44 technician 3 make 3      -5.6
+## 45 technician 3 make 3       0.4</code></pre>
+</div>
+<div id="problem-19.16-c" class="section level3">
+<h3>problem 19.16 c</h3>
+<p><strong>Departures that can be studies</strong> * Nonconstancy of error variance * Nonindependency of error items * Outliers * Omission of important explanatory variables * Nonnormality of error terms</p>
+<pre class="r"><code>## plot residuals vs fitted value 
+plot(anova2way, which=1)</code></pre>
+<p><img src="hw9_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="problem-19.16-d" class="section level3">
+<h3>problem 19.16 d</h3>
+<ul>
+<li>Yes. the normality assumption appear to be reasonable here.</li>
+<li><strong>Normal probability plot</strong></li>
+</ul>
+<pre class="r"><code>plot(anova2way, which=2)</code></pre>
+<p><img src="hw9_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ul>
+<li><strong>Correlation coefficient</strong> = 0.9889246</li>
+</ul>
+<pre class="r"><code>lm.fit = lm(time~technician+make+technician:make, data=dt)
+StdErr = summary(lm.fit)$sigma
+n = length(res$residuals)
+ExpVals = sapply(1:n, function(k) StdErr*qnorm((k-.375)/(n+.25)) )
+r = cor(ExpVals, sort(res$residuals))
+r</code></pre>
+<pre><code>## [1] 0.9889246</code></pre>
+</div>
+<div id="problem-19.16-e" class="section level3">
+<h3>problem 19.16 e</h3>
+<ul>
+<li><strong>Residual sequence plots</strong> the residual sequence plot</li>
+</ul>
+<pre class="r"><code>plot(res$residuals, type=&quot;o&quot;, xlab=&quot;time&quot;, ylab=&quot;residuals&quot;)</code></pre>
+<p><img src="hw9_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>par(mfrow=c(2,2))
+plot(res$residuals[1:15], type=&quot;o&quot;, xlab=&quot;time order&quot;, ylab=&quot;residuals&quot;, main=&quot;Technician 1&quot;)
+abline(h=0, col=&quot;gray&quot;)
+plot(res$residuals[16:30], type=&quot;o&quot;, xlab=&quot;time order&quot;, ylab=&quot;residuals&quot;, main=&quot;Technician 2&quot;)
+abline(h=0, col=&quot;gray&quot;)
+plot(res$residuals[31:45], type=&quot;o&quot;, xlab=&quot;time order&quot;, ylab=&quot;residuals&quot;, main=&quot;Technician 3&quot;)
+abline(h=0, col=&quot;gray&quot;)</code></pre>
+<p><img src="hw9_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<ul>
+<li>All three plots show a random pattern. The residuals are not serially correlated.</li>
+</ul>
+</div>
+<div id="problem-19.17-a" class="section level3">
+<h3>problem 19.17 a</h3>
+<p>Yes. Significant factor effect exists. The lines are not parallel to each other. There is a strong interaction effect between technician and make.</p>
+<pre class="r"><code>technician = dt$technician
+make = dt$make
+time = dt$time
+interaction.plot(technician, make, time)</code></pre>
+<p><img src="hw9_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="problem-19.17-b" class="section level3">
+<h3>problem 19.17 b</h3>
+<p>Yes. the interaction term accounts for most of the total variability.</p>
+<pre class="r"><code>summary(anova2way)</code></pre>
+<pre><code>##                 Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## technician       2   24.6   12.29   0.236 0.790779    
+## make             2   28.3   14.16   0.272 0.763283    
+## technician:make  4 1215.3  303.82   5.841 0.000994 ***
+## Residuals       36 1872.4   52.01                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="problem-19.17-c" class="section level3">
+<h3>problem 19.17 c</h3>
+<ul>
+<li>alternatives</li>
+<li>H0: coefficients of all interaction terms equal zero</li>
+<li><p>Ha: not all coefficients of all interaction terms equal zero</p></li>
+<li>F_star = 303.82/52.01 = 5.841569</li>
+<li><p>for alpha=0.01, F(0.99; 4, 36) = 3.890308</p></li>
+</ul>
+<pre class="r"><code>qf(0.99, 4, 36)</code></pre>
+<pre><code>## [1] 3.890308</code></pre>
+<ul>
+<li>decision</li>
+<li>Conclude H0 if F_star &gt; F(0.99; 4, 36)</li>
+<li>Conclude Ha if F_star &lt; F(0.99; 4, 36)</li>
+<li>since F_star = 5.841569 &gt; F(0.99; 4, 36) = 3.890308, conclude Ha.</li>
+<li>P value = 0.000994</li>
+</ul>
+<pre class="r"><code>summary(anova2way)[[1]]$Pr[3]</code></pre>
+<pre><code>## [1] 0.0009941068</code></pre>
+</div>
+<div id="problem-19.17-d" class="section level3">
+<h3>problem 19.17 d</h3>
+<div id="main-effect-from-technician" class="section level4">
+<h4>main effect from technician</h4>
+<ul>
+<li>alternatives</li>
+<li>H0: all alpha equal zero</li>
+<li>Ha: not all alpha equal zero</li>
+<li>F_star = 12.29/52.01 = 0.2363007</li>
+<li>for alpha=0.01, F(0.99; 2, 36) = 5.247894</li>
+</ul>
+<pre class="r"><code>qf(.99, 2, 36)</code></pre>
+<pre><code>## [1] 5.247894</code></pre>
+<p>decision + Conclude H0 if F_star &gt; F(0.99; 2, 36) + Conclude Ha if F_star &lt; F(0.99; 2, 36) * since F_star = 0.2363007 &lt; F(0.99; 2, 36) = 5.247894, conclude H0. * P value = 0.7907788</p>
+<pre class="r"><code>summary(anova2way)[[1]]$Pr[1]</code></pre>
+<pre><code>## [1] 0.7907788</code></pre>
+</div>
+<div id="main-effect-from-make" class="section level4">
+<h4>main effect from make</h4>
+<ul>
+<li>alternatives</li>
+<li>H0: all alpha equal zero</li>
+<li>Ha: not all alpha equal zero</li>
+<li>F_star = 14.16/52.01 = 0.2722553</li>
+<li>for alpha=0.01, F(0.99; 2, 36) = 5.247894</li>
+</ul>
+<pre class="r"><code>qf(.99, 2, 36)</code></pre>
+<pre><code>## [1] 5.247894</code></pre>
+<ul>
+<li>decision
+<ul>
+<li>Conclude H0 if F_star &gt; F(0.99; 2, 36)</li>
+<li>Conclude Ha if F_star &lt; F(0.99; 2, 36)</li>
+</ul></li>
+<li>since F_star = 0.2722553 &lt; F(0.99; 2, 36) = 5.247894, conclude H0.</li>
+<li>P value = 0.7632826</li>
+</ul>
+<pre class="r"><code>summary(anova2way)[[1]]$Pr[2]</code></pre>
+<pre><code>## [1] 0.7632826</code></pre>
+<p>It is meaningful to test for main effect when the interaction effect is included in the model.</p>
+</div>
+</div>
+<div id="problem-19.17-e" class="section level3">
+<h3>problem 19.17 e</h3>
+<ul>
+<li>upper bound = 1-(1-0.01)(1-0.01)(1-0.01) = 0.029701</li>
+</ul>
+</div>
+<div id="problem-19.17-f" class="section level3">
+<h3>problem 19.17 f</h3>
+<ul>
+<li>yes. the p value for interaction item is less than 0.05, which indicates that there is a significant interaction effect. While the main effects are not significant.</li>
+</ul>
+</div>
+<div id="problem-19.33-a" class="section level3">
+<h3>problem 19.33 a</h3>
+<p><strong>µ11 = [51.02908, 68.57092]</strong></p>
+<ul>
+<li><p>explanation: there is a 99% chance that the average number of minutes required by technician 1 to repair make 1 of disk drive will be located within [51.02908, 68.57092].</p></li>
+<li><p>MSE = 52.01111</p></li>
+</ul>
+<pre class="r"><code>summary(anova2way)[[1]][3][4,]</code></pre>
+<pre><code>## [1] 52.01111</code></pre>
+<ul>
+<li>n = 5</li>
+<li>s{Y11.} = MSE/n = 3.225213</li>
+<li>t(0.995; 36) = 2.719485</li>
+</ul>
+<pre class="r"><code>qt(.995, 36)</code></pre>
+<pre><code>## [1] 2.719485</code></pre>
+<ul>
+<li>Y11 = 59.8</li>
+</ul>
+<pre class="r"><code>fitted_values$mean[1]</code></pre>
+<pre><code>## [1] 59.8</code></pre>
+<ul>
+<li>µ11 = [Y11-t(0.995; 36)*s{Y11.}, Y11+t(0.995; 36)*s{Y11.}]
+<ul>
+<li>Y11-t(0.995; 36)*s{Y11.} = 59.8 - 2.719485*3.225213 = 51.02908</li>
+<li>Y11+t(0.995; 36)*s{Y11.} = 59.8 + 2.719485*3.225213 = 68.57092</li>
+</ul></li>
+</ul>
+</div>
+<div id="problem-19.33-b" class="section level3">
+<h3>problem 19.33 b</h3>
+<ul>
+<li>s{D_hat} = (2*MSE/n)^0.5 = (2*52.01/5)^.5 = 4.56114</li>
+<li>D_hat = µ22 - µ21 = 61.2 - 48.4 = 12.8</li>
+</ul>
+<pre class="r"><code>## µ22
+fitted_values$mean[5]</code></pre>
+<pre><code>## [1] 61.2</code></pre>
+<pre class="r"><code>## µ21
+fitted_values$mean[4]</code></pre>
+<pre><code>## [1] 48.4</code></pre>
+<ul>
+<li>t(0.995; 36) = 2.719485</li>
+</ul>
+<pre class="r"><code>qt(0.995, 36)</code></pre>
+<pre><code>## [1] 2.719485</code></pre>
+<ul>
+<li>99% confidence interval = [D_hat - t(0.995; 36) * s{D_hat}, D_hat + t(0.995; 36) * s{D_hat}]
+<ul>
+<li>99% confidence interval = <strong>[0.3960482, 25.20395]</strong></li>
+</ul></li>
+<li>explanation: there is a 99% chance that the difference between the average number of minitues needed by technician 2 and technician 1 to repaire make 1 of disc drive will be located within <strong>[0.3960482, 25.20395]</strong>. And technician 2 will need more time to repair the same make of disc drive.</li>
+</ul>
+</div>
+<div id="problem-19.33-c" class="section level3">
+<h3>problem 19.33 c</h3>
+<ul>
+<li>D1 = µ11 - µ12 = 12</li>
+<li>D2 = µ11 - µ13 = 1.4</li>
+<li>D3 = µ12 - µ13 = -10.6</li>
+<li>D4 = µ21 - µ22 = -12.8</li>
+<li>D5 = µ21 - µ23 = -7.8</li>
+<li>D6 = µ22 - µ23 = 5.0</li>
+<li>D7 = µ31 - µ32 = -0.6</li>
+<li>D8 = µ31 - µ33 = 10.6</li>
+<li><p>D9 = µ32 - µ33 = 11.2</p></li>
+<li>s{D} = 4.56114</li>
+<li><p>t(1-0.1/(2*6); 36) = 2.51104</p></li>
+</ul>
+<div id="confidence-intervals-d---t0.99-0.126-36sd-d-t0.99-0.126-36sd" class="section level4">
+<h4>Confidence intervals = [D - t(0.99-0.1/2<em>6; 36)</em>s{D}, D + t(0.99-0.1/2<em>6; 36)</em>s{D}]</h4>
+<pre class="r"><code>d = c(12, 1.4, -10.6, -12.6, -7.8, 5, -0.6, 10.6, 11.2)
+s = 4.56114
+t = 2.51104
+ci = data.frame(lower = d-s*t, upper = d+s*t)
+rownames(ci) = paste(&quot;D&quot;, 1:9, sep=&#39;&#39;)
+ci</code></pre>
+<pre><code>##         lower     upper
+## D1   0.546795 23.453205
+## D2 -10.053205 12.853205
+## D3 -22.053205  0.853205
+## D4 -24.053205 -1.146795
+## D5 -19.253205  3.653205
+## D6  -6.453205 16.453205
+## D7 -12.053205 10.853205
+## D8  -0.853205 22.053205
+## D9  -0.253205 22.653205</code></pre>
+<ul>
+<li>summary:</li>
+<li>for technician 1, the make 2 is the lowest</li>
+<li>for technician 2, the make 1 is the lowest</li>
+<li>for technician 3, the make 3 is the lowest</li>
+</ul>
+</div>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

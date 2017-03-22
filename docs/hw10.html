@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework #10</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw7.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #10</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #10</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>3/6/2017</em></h4>
+
+</div>
+
+
+<div id="required-library" class="section level3">
+<h3>required library</h3>
+<pre class="r"><code>library(plyr)</code></pre>
+</div>
+<div id="problem-24.12-a" class="section level3">
+<h3>problem 24.12 a</h3>
+<ul>
+<li>Load data</li>
+</ul>
+<pre class="r"><code>dt &lt;- read.table(&quot;./data/CH24PR12.txt&quot;, 
+                col.names =  c(&quot;time&quot;, &quot;gender&quot;, &quot;sequence&quot;, &quot;experience&quot;, &quot;observation&quot;))
+dt[, 2] = as.factor(dt[,2])
+dt[, 3] = as.factor(dt[,3])
+dt[, 4] = as.factor(dt[,4])</code></pre>
+<ul>
+<li>residual for ANOVA model</li>
+</ul>
+<pre class="r"><code>fit = aov(time~gender+sequence+experience+gender*sequence+gender*experience+sequence*experience+gender*sequence*experience, data=dt)
+residuals = cbind(dt, fit$residuals)
+residuals</code></pre>
+<pre><code>##    time gender sequence experience observation fit$residuals
+## 1  1250      1        1          1           1          31.4
+## 2  1175      1        1          1           2         -43.6
+## 3  1236      1        1          1           3          17.4
+## 4  1239      1        1          1           4          20.4
+## 5  1193      1        1          1           5         -25.6
+## 6  1021      1        1          2           1         -30.0
+## 7  1099      1        1          2           2          48.0
+## 8  1069      1        1          2           3          18.0
+## 9   996      1        1          2           4         -55.0
+## 10 1070      1        1          2           5          19.0
+## 11 1319      1        2          1           1          44.8
+## 12 1251      1        2          1           2         -23.2
+## 13 1241      1        2          1           3         -33.2
+## 14 1295      1        2          1           4          20.8
+## 15 1265      1        2          1           5          -9.2
+## 16 1119      1        2          2           1          -3.4
+## 17 1110      1        2          2           2         -12.4
+## 18 1123      1        2          2           3           0.6
+## 19 1097      1        2          2           4         -25.4
+## 20 1163      1        2          2           5          40.6
+## 21 1217      1        3          1           1          -1.2
+## 22 1190      1        3          1           2         -28.2
+## 23 1201      1        3          1           3         -17.2
+## 24 1232      1        3          1           4          13.8
+## 25 1251      1        3          1           5          32.8
+## 26 1033      1        3          2           1         -18.2
+## 27 1067      1        3          2           2          15.8
+## 28 1057      1        3          2           3           5.8
+## 29 1077      1        3          2           4          25.8
+## 30 1022      1        3          2           5         -29.2
+## 31 1066      2        1          1           1          29.6
+## 32 1076      2        1          1           2          39.6
+## 33 1004      2        1          1           3         -32.4
+## 34 1002      2        1          1           4         -34.4
+## 35 1034      2        1          1           5          -2.4
+## 36  864      2        1          2           1          -6.6
+## 37  848      2        1          2           2         -22.6
+## 38  881      2        1          2           3          10.4
+## 39  892      2        1          2           4          21.4
+## 40  868      2        1          2           5          -2.6
+## 41 1105      2        2          1           1          27.6
+## 42 1043      2        2          1           2         -34.4
+## 43 1051      2        2          1           3         -26.4
+## 44 1128      2        2          1           4          50.6
+## 45 1060      2        2          1           5         -17.4
+## 46  927      2        2          2           1          -4.6
+## 47  944      2        2          2           2          12.4
+## 48  957      2        2          2           3          25.4
+## 49  897      2        2          2           4         -34.6
+## 50  933      2        2          2           5           1.4
+## 51 1021      2        3          1           1           0.6
+## 52 1020      2        3          1           2          -0.4
+## 53 1035      2        3          1           3          14.6
+## 54 1000      2        3          1           4         -20.4
+## 55 1026      2        3          1           5           5.6
+## 56  841      2        3          2           1         -19.4
+## 57  865      2        3          2           2           4.6
+## 58  817      2        3          2           3         -43.4
+## 59  911      2        3          2           4          50.6
+## 60  868      2        3          2           5           7.6</code></pre>
+</div>
+<div id="problem-24.12-b" class="section level3">
+<h3>Problem 24.12 b</h3>
+<ul>
+<li>Calculate correlation coefficient</li>
+</ul>
+<pre class="r"><code>res = lm(time~gender+sequence+experience+gender*sequence+gender*experience+sequence*experience+gender*sequence*experience, data=dt)
+StdErr = summary(res)$sigma
+n = length(res$residuals)
+ExpVals = sapply(1:n, function(k) StdErr*qnorm((k-.375)/(n+.25)) )
+r = cor(ExpVals, sort(res$residuals))
+r</code></pre>
+<pre><code>## [1] 0.9916214</code></pre>
+</div>
+<div id="problem-24.13-abcde" class="section level3">
+<h3>problem 24.13 abcde</h3>
+</div>
+<div id="problem-24.13-a" class="section level2">
+<h2>Problem 24.13 a</h2>
+<div id="calculate-estimated-treatment-means" class="section level3">
+<h3>Calculate <em>estimated treatment means</em></h3>
+<pre class="r"><code>estimated_treatment_mean = ddply(dt, .(gender, sequence, experience), 
+                                 summarize, mean = mean(time))
+estimated_treatment_mean</code></pre>
+<pre><code>##    gender sequence experience   mean
+## 1       1        1          1 1218.6
+## 2       1        1          2 1051.0
+## 3       1        2          1 1274.2
+## 4       1        2          2 1122.4
+## 5       1        3          1 1218.2
+## 6       1        3          2 1051.2
+## 7       2        1          1 1036.4
+## 8       2        1          2  870.6
+## 9       2        2          1 1077.4
+## 10      2        2          2  931.6
+## 11      2        3          1 1020.4
+## 12      2        3          2  860.4</code></pre>
+</div>
+<div id="ab-plots" class="section level3">
+<h3>AB plots</h3>
+<ul>
+<li>No interaction effects</li>
+<li>Both gender and sequence have a main effect.</li>
+</ul>
+<pre class="r"><code>dat = dt[dt$experience == &quot;1&quot;, ]
+sequence = dat$sequence
+gender = dat$gender
+time = dat$time
+interaction.plot(gender, sequence, time, main=&quot;Experience &lt; 18 months&quot;)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>## experience level = 1
+dat = dt[dt$experience == &quot;2&quot;, ]
+sequence = dat$sequence
+gender = dat$gender
+time = dat$time
+interaction.plot(gender, sequence, time, main=&quot;Experience &gt; 18 months&quot;)</code></pre>
+<p><img src="hw10_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+</div>
+</div>
+<div id="problem-24.13-b" class="section level2">
+<h2>Problem 24.13 b</h2>
+<pre class="r"><code>fit = aov(time~gender+sequence+experience+gender*sequence+gender*experience+
+            sequence*experience+gender*sequence*experience, data=dt)
+variance_table = summary(fit)
+variance_table = round(as.matrix(variance_table[[1]]), 3)
+variance_table[,1:3]</code></pre>
+<pre><code>##                            Df     Sum Sq    Mean Sq
+## gender                      1 540360.600 540360.600
+## sequence                    2  49319.633  24659.817
+## experience                  1 382401.667 382401.667
+## gender:sequence             2    542.500    271.250
+## gender:experience           1     91.267     91.267
+## sequence:experience         2    911.233    455.617
+## gender:sequence:experience  2     19.033      9.517
+## Residuals                  48  41186.000    858.042</code></pre>
+</div>
+<div id="problem-24.13-c" class="section level2">
+<h2>Problem 24.13 c</h2>
+<div id="test-for-three-factor-interactions" class="section level3">
+<h3>Test for three-factor interactions</h3>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\((\alpha\beta\gamma){ijk}\)</span> equal zero</li>
+<li>Ha: not all <span class="math inline">\((\alpha\beta\gamma){ijk}\)</span> equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 2, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> =0.011 &lt; F(1-0.05; 2, 48) = 0.531, conclude H0.</li>
+<li>pvalue = 0.989</li>
+</ul>
+<pre class="r"><code>variance_table[7,, drop=F]</code></pre>
+<pre><code>##                            Df Sum Sq Mean Sq F value Pr(&gt;F)
+## gender:sequence:experience  2 19.033   9.517   0.011  0.989</code></pre>
+</div>
+</div>
+<div id="problem-24.13-d" class="section level2">
+<h2>Problem 24.13 d</h2>
+<div id="test-for-ab-ac-bc-interactions" class="section level3">
+<h3>Test for <em>AB</em>, <em>AC</em>, <em>BC</em> interactions</h3>
+<div id="ab-interaction" class="section level4">
+<h4>AB interaction</h4>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\((\alpha\beta)_{ij}\)</span> equal zero</li>
+<li>Ha: not all <span class="math inline">\((\alpha\beta)_{ij}\)</span> equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 2, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> = 0.316 &lt; F(1-0.05; 2, 48) = 3.190727, conclude H0.</li>
+<li>pvalue = 0.730</li>
+</ul>
+<pre class="r"><code>qf(0.95,2,48)</code></pre>
+<pre><code>## [1] 3.190727</code></pre>
+<pre class="r"><code>variance_table[4,, drop=F]</code></pre>
+<pre><code>##                            Df Sum Sq Mean Sq F value Pr(&gt;F)
+## gender:sequence             2  542.5  271.25   0.316   0.73</code></pre>
+</div>
+<div id="ac-interaction" class="section level4">
+<h4>AC interaction</h4>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\((\alpha\gamma)_{ik}\)</span> equal zero</li>
+<li>Ha: not all (αγ)ik equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 1, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> = 0.106 &lt; F(1-0.05; 1, 48) = 4.042652, conclude H0.</li>
+<li>pvalue = 0.746</li>
+</ul>
+<pre class="r"><code>qf(0.95,1,48)</code></pre>
+<pre><code>## [1] 4.042652</code></pre>
+<pre class="r"><code>variance_table[5,, drop=F]</code></pre>
+<pre><code>##                            Df Sum Sq Mean Sq F value Pr(&gt;F)
+## gender:experience           1 91.267  91.267   0.106  0.746</code></pre>
+</div>
+<div id="bc-interaction" class="section level4">
+<h4>BC interaction</h4>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\((\beta\gamma)_{jk}\)</span> equal zero</li>
+<li>Ha: not all <span class="math inline">\((\beta\gamma)_{jk}\)</span> equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 2, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> = 0.106 &lt; F(1-0.05; 2, 48) = 0.531, conclude H0.</li>
+<li>pvalue = 0.591</li>
+</ul>
+<pre class="r"><code>qf(0.95,2,48)</code></pre>
+<pre><code>## [1] 3.190727</code></pre>
+<pre class="r"><code>variance_table[6,, drop=F]</code></pre>
+<pre><code>##                            Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## sequence:experience         2 911.233 455.617   0.531  0.591</code></pre>
+</div>
+</div>
+</div>
+<div id="problem-24.13-e" class="section level2">
+<h2>Problem 24.13 e</h2>
+<div id="test-for-main-effects" class="section level3">
+<h3>Test for main effects</h3>
+<div id="main-effect-from-a" class="section level4">
+<h4>main effect from A</h4>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\(\alpha_i\)</span> (i=1,2) equal zero</li>
+<li>Ha: not all <span class="math inline">\($\alpha_i\)</span> $ equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 1, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> = 629.76 &gt; F(1-0.05; 1, 48) =4.042652, conclude Ha.</li>
+<li>pvalue = 0</li>
+</ul>
+<pre class="r"><code>qf(0.95,1,48)</code></pre>
+<pre><code>## [1] 4.042652</code></pre>
+<pre class="r"><code>variance_table[1,, drop=F]</code></pre>
+<pre><code>##                            Df   Sum Sq  Mean Sq F value Pr(&gt;F)
+## gender                      1 540360.6 540360.6  629.76      0</code></pre>
+</div>
+<div id="main-effect-from-b" class="section level4">
+<h4>main effect from B</h4>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\(\beta_j\)</span> (j=1,2,3) equal zero</li>
+<li>Ha: not all <span class="math inline">\(\beta_j\)</span> equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 2, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> = 28.74 &gt; F(1-0.05; 2, 48) = 3.190727, conclude Ha.</li>
+<li>pvalue = 0</li>
+</ul>
+<pre class="r"><code>qf(0.95,2,48)</code></pre>
+<pre><code>## [1] 3.190727</code></pre>
+<pre class="r"><code>variance_table[2,, drop=F]</code></pre>
+<pre><code>##                            Df   Sum Sq  Mean Sq F value Pr(&gt;F)
+## sequence                    2 49319.63 24659.82   28.74      0</code></pre>
+</div>
+<div id="main-effect-from-c" class="section level4">
+<h4>main effect from C</h4>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all <span class="math inline">\(\gamma_k\)</span> (k=1,2) equal zero</li>
+<li>Ha: not all <span class="math inline">\(\gamma_k\)</span> equal zero</li>
+</ul></li>
+<li>decision rules: if <span class="math inline">\(F^*\)</span> ≤ F(1-0.05; 1, 48), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: <span class="math inline">\(F^*\)</span> = 445.668 &gt; F(1-0.05; 1, 48) = 4.042652, conclude Ha.</li>
+<li>pvalue = 0</li>
+</ul>
+<pre class="r"><code>qf(0.95,1,48)</code></pre>
+<pre><code>## [1] 4.042652</code></pre>
+<pre class="r"><code>variance_table[3,, drop=F]</code></pre>
+<pre><code>##                            Df   Sum Sq  Mean Sq F value Pr(&gt;F)
+## experience                  1 382401.7 382401.7 445.668      0</code></pre>
+</div>
+</div>
+</div>
+<div id="problem-24.14-a" class="section level2">
+<h2>Problem 24.14 a</h2>
+<p>D1 = 189.8</p>
+<pre class="r"><code>D = ddply(dt, .(gender), summarize, mean = mean(time))
+D1 = D[1,2] - D[2,2]
+D1</code></pre>
+<pre><code>## [1] 189.8</code></pre>
+<p>D2 = -57.25</p>
+<pre class="r"><code>D = ddply(dt, .(sequence), summarize, mean = mean(time))
+D2 = D[1,2] - D[2,2]
+D2</code></pre>
+<pre><code>## [1] -57.25</code></pre>
+<p>D3 = 6.6</p>
+<pre class="r"><code>D = ddply(dt, .(sequence), summarize, mean = mean(time))
+D3 = D[1,2] - D[3,2]
+D3</code></pre>
+<pre><code>## [1] 6.6</code></pre>
+<p>D4 = 63.85</p>
+<pre class="r"><code>D = ddply(dt, .(sequence), summarize, mean = mean(time))
+D4 = D[2,2] - D[3,2]
+D4</code></pre>
+<pre><code>## [1] 63.85</code></pre>
+<p>D5 = 159.6667</p>
+<pre class="r"><code>D = ddply(dt, .(experience), summarize, mean = mean(time))
+D5 = D[1,2] - D[2,2]
+D5</code></pre>
+<pre><code>## [1] 159.6667</code></pre>
+<p>MSE = 858.042</p>
+<pre class="r"><code>MSE = variance_table[8,3,drop=F]
+MSE</code></pre>
+<pre><code>##                            Mean Sq
+## Residuals                  858.042</code></pre>
+<ul>
+<li>a = 2</li>
+<li>b = 3</li>
+<li>c = 2</li>
+<li><p>n = 5</p></li>
+<li>s{D1} = ((MSE/(nbc))[1^2 + (-1)^2])^0.5 = 7.563253</li>
+<li>s{D2} = s{D3} = s{D4} = ((MSE/(nac))[1^2 + (-1)^2])^0.5 = 9.263056</li>
+<li>s{D5} = ((MSE/(nab))[1^2 + (-1)^2])^0.5 = 7.563253</li>
+<li><p>B = t[1-a/2g; (n-1)*abc] = t(1-0.1/(2*5); 48) = t(0.99; 48) = 2.406581</p></li>
+<li>confidence coefficients
+<ul>
+<li>D1 = [171.5984, 208.0016]</li>
+<li>D2 = [-79.54229, -34.95771]</li>
+<li>D3 = [-15.69229, 28.89229]</li>
+<li>D4 = [41.55771, 86.14229]</li>
+<li>D5 = [141.4651, 177.8683]</li>
+</ul></li>
+<li><p>findings: D1, D2, D4, D5 are significant, but D3 is not significant.</p></li>
+</ul>
+</div>
+<div id="problem-24.14-b" class="section level2">
+<h2>Problem 24.14 b</h2>
+<ul>
+<li>Y231 = 1020.4</li>
+</ul>
+<pre class="r"><code>Y = ddply(dt, .(gender, sequence, experience), summarize, mean = mean(time))
+Y213 = Y[11,]
+Y213</code></pre>
+<pre><code>##    gender sequence experience   mean
+## 11      2        3          1 1020.4</code></pre>
+<ul>
+<li>s{Y231} = (MSE/n)^0.5 = 13.09994</li>
+<li>t(1-0.05/2; 48) = 2.010635</li>
+<li>confidence interval = [Y - t(1-0.05/2; 48)*s{Y231}, Y + t(1-0.05/2; 48)*s{Y231}]</li>
+<li>confidence interval = [994.0608, 1046.739]</li>
+</ul>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

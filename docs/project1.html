@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Ming Chen &amp; Wenqiang Feng" />
+<meta name="author" content="Wenqiang Feng" />
 
 
 <title>Project #1</title>
@@ -250,6 +250,14 @@ $(document).ready(function () {
     <li>
       <a href="hw8.html">HW #8</a>
     </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw7.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #10</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -303,7 +311,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Project #1</h1>
-<h4 class="author"><em>Ming Chen &amp; Wenqiang Feng</em></h4>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
 <h4 class="date"><em>2/2/2017</em></h4>
 
 </div>
@@ -314,17 +322,23 @@ library(plyr)
 library(gplots)
 library(asbio)
 library(corrplot)
-library(car)</code></pre>
+library(car)
+library(MASS)
+library(caret)
+library(lmtest)
+library(gvlma)</code></pre>
 <div id="load-data" class="section level4">
 <h4>Load data</h4>
 <pre class="r"><code>C5 &lt;- read.table(&quot;./data/APPENC05.txt&quot;)
 data = C5[,2:9]
 y=C5[,2]
-X=C5[,3:9]
-#colnames(data1612) = c(&quot;time_lapse&quot;, &quot;agent&quot;)</code></pre>
+X=C5[,3:9]</code></pre>
 </div>
-<div id="stem-and-leaf-plot" class="section level3">
-<h3>Stem-and-Leaf Plot</h3>
+<div id="problem-1" class="section level3">
+<h3>Problem 1</h3>
+<ul>
+<li>Stem-and-Leaf Plot</li>
+</ul>
 <pre class="r"><code>stem(X$V3)</code></pre>
 <pre><code>## 
 ##   The decimal point is 1 digit(s) to the right of the |
@@ -414,9 +428,9 @@ X=C5[,3:9]
 ##   76 | 
 ##   78 | 
 ##   80 | 000000000000000000000</code></pre>
-</div>
-<div id="correlation-matrix" class="section level3">
-<h3>Correlation matrix</h3>
+<ul>
+<li>Correlation matrix</li>
+</ul>
 <pre class="r"><code>M = cor(X)
 M</code></pre>
 <pre><code>##              V3           V4         V5          V6           V7
@@ -437,195 +451,307 @@ M</code></pre>
 ## V9  0.461565896  1.00000000</code></pre>
 <pre class="r"><code>corrplot(M, type=&quot;upper&quot;)</code></pre>
 <p><img src="project1_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<pre class="r"><code>fit &lt;- lm(V2~., data=data)</code></pre>
+<ul>
+<li>From the above Correlation matrix plot, we can conclude that the V3 is highly correlative with V7, V8 and V9, V7 is highly correlative with V8. Hence i will revome V3 and V8.</li>
+</ul>
+</div>
+<div id="problem-2" class="section level3">
+<h3>Problem 2</h3>
+<ul>
+<li>linear fitting</li>
+</ul>
+<pre class="r"><code>data2 = data[,c(1,3:6,8)]</code></pre>
+<pre class="r"><code>fit &lt;- lm(V2~., data=data2)</code></pre>
 <pre class="r"><code>summary(fit)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = V2 ~ ., data = data)
+## lm(formula = V2 ~ ., data = data2)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -61.330  -8.130  -0.014   6.324 167.436 
+## -54.396 -11.101  -2.597   4.607 194.427 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -15.24264   40.53932  -0.376 0.707814    
-## V3            2.03225    0.59359   3.424 0.000936 ***
-## V4            0.01132    0.07395   0.153 0.878708    
-## V5           -0.53721    0.47588  -1.129 0.261977    
-## V6            1.29831    1.20168   1.080 0.282878    
-## V7           19.60957   10.89184   1.800 0.075187 .  
-## V8            1.09877    1.33377   0.824 0.412253    
-## V9            7.05922    5.19452   1.359 0.177589    
+## (Intercept) -48.31074   43.22326  -1.118  0.26664    
+## V4            0.03030    0.08036   0.377  0.70700    
+## V5           -0.67654    0.51670  -1.309  0.19371    
+## V6            0.84190    1.30234   0.646  0.51961    
+## V7           42.84222    9.40561   4.555 1.62e-05 ***
+## V9           14.90066    5.29694   2.813  0.00601 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 31.17 on 89 degrees of freedom
-## Multiple R-squared:  0.4585, Adjusted R-squared:  0.4159 
-## F-statistic: 10.77 on 7 and 89 DF,  p-value: 9.266e-10</code></pre>
+## Residual standard error: 33.93 on 91 degrees of freedom
+## Multiple R-squared:  0.3437, Adjusted R-squared:  0.3077 
+## F-statistic: 9.532 on 5 and 91 DF,  p-value: 2.452e-07</code></pre>
 <pre class="r"><code>par(mfrow=c(2,2)) # init 4 charts in 1 panel
 plot(fit)</code></pre>
-<p><img src="project1_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="project1_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<ul>
+<li>Check the data for potential influential observations</li>
+</ul>
 <pre class="r"><code>cd&lt;-which(cooks.distance(fit)&gt;3.0)
 covr&lt;-which(covratio(fit)&gt;2.0)
 rst&lt;-which(abs(rstudent(fit))&gt;4)
 index&lt;-sort(unique(c(cd,covr,rst)))
 index</code></pre>
 <pre><code>## [1] 32 96 97</code></pre>
-<pre class="r"><code>NewData = data[-c(index),]</code></pre>
 <pre class="r"><code>plot(fit, which=4)
 abline(h=3.0, col=&quot;blue&quot;, lty=3)</code></pre>
 <p><img src="project1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<ul>
+<li>From the above analysis with the given criteria, we can conclude that obervation 32, 96, 97 are probability be the potential influential observations.</li>
+</ul>
+</div>
+<div id="problem-3" class="section level3">
+<h3>Problem 3</h3>
+<ul>
+<li>Check for Multicollinearity problems, and identify any variables that are involved in creating multicollinearity.</li>
+</ul>
+<pre class="r"><code>vif_func&lt;-function(in_frame,thresh=10,trace=T,...){
+
+  require(fmsb)
+  
+  if(class(in_frame) != &#39;data.frame&#39;) in_frame&lt;-data.frame(in_frame)
+  
+  #get initial vif value for all comparisons of variables
+  vif_init&lt;-NULL
+  var_names &lt;- names(in_frame)
+  for(val in var_names){
+      regressors &lt;- var_names[-which(var_names == val)]
+      form &lt;- paste(regressors, collapse = &#39;+&#39;)
+      form_in &lt;- formula(paste(val, &#39;~&#39;, form))
+      vif_init&lt;-rbind(vif_init, c(val, VIF(lm(form_in, data = in_frame, ...))))
+      }
+  vif_max&lt;-max(as.numeric(vif_init[,2]), na.rm = TRUE)
+
+  if(vif_max &lt; thresh){
+    if(trace==T){ #print output of each iteration
+        prmatrix(vif_init,collab=c(&#39;var&#39;,&#39;vif&#39;),rowlab=rep(&#39;&#39;,nrow(vif_init)),quote=F)
+        cat(&#39;\n&#39;)
+        cat(paste(&#39;All variables have VIF &lt; &#39;, thresh,&#39;, max VIF &#39;,round(vif_max,2), sep=&#39;&#39;),&#39;\n\n&#39;)
+        }
+    return(var_names)
+    }
+  else{
+
+    in_dat&lt;-in_frame
+
+    #backwards selection of explanatory variables, stops when all VIF values are below &#39;thresh&#39;
+    while(vif_max &gt;= thresh){
+      
+      vif_vals&lt;-NULL
+      var_names &lt;- names(in_dat)
+        
+      for(val in var_names){
+        regressors &lt;- var_names[-which(var_names == val)]
+        form &lt;- paste(regressors, collapse = &#39;+&#39;)
+        form_in &lt;- formula(paste(val, &#39;~&#39;, form))
+        vif_add&lt;-VIF(lm(form_in, data = in_dat, ...))
+        vif_vals&lt;-rbind(vif_vals,c(val,vif_add))
+        }
+      max_row&lt;-which(vif_vals[,2] == max(as.numeric(vif_vals[,2]), na.rm = TRUE))[1]
+
+      vif_max&lt;-as.numeric(vif_vals[max_row,2])
+
+      if(vif_max&lt;thresh) break
+      
+      if(trace==T){ #print output of each iteration
+        prmatrix(vif_vals,collab=c(&#39;var&#39;,&#39;vif&#39;),rowlab=rep(&#39;&#39;,nrow(vif_vals)),quote=F)
+        cat(&#39;\n&#39;)
+        cat(&#39;removed: &#39;,vif_vals[max_row,1],vif_max,&#39;\n\n&#39;)
+        flush.console()
+        }
+
+      in_dat&lt;-in_dat[,!names(in_dat) %in% vif_vals[max_row,1]]
+
+      }
+
+    return(names(in_dat))
+    
+    }
+  
+  }</code></pre>
+<pre class="r"><code>vif_func(in_frame=X,thresh=4,trace=T)</code></pre>
+<pre><code>## Loading required package: fmsb</code></pre>
+<pre><code>##  var vif             
+##  V3  2.16260575041746
+##  V4  1.12894126727313
+##  V5  1.24048938465825
+##  V6  1.31117777017478
+##  V7  2.00933072949621
+##  V8  2.51634553896314
+##  V9  1.45870140337424
+## 
+## All variables have VIF &lt; 4, max VIF 2.52</code></pre>
+<pre><code>## [1] &quot;V3&quot; &quot;V4&quot; &quot;V5&quot; &quot;V6&quot; &quot;V7&quot; &quot;V8&quot; &quot;V9&quot;</code></pre>
+<pre class="r"><code>NewData = data2[-c(index),]
+fit &lt;- lm(V2~., data=NewData)</code></pre>
+<pre class="r"><code># Evaluate Collinearity
+vif(fit) # variance inflation factors </code></pre>
+<pre><code>##       V4       V5       V6       V7       V9 
+## 1.599769 1.249200 1.634566 1.235077 1.245702</code></pre>
+<pre class="r"><code>vif(fit) &gt; 4 # problem?</code></pre>
+<pre><code>##    V4    V5    V6    V7    V9 
+## FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div id="problem-4" class="section level3">
+<h3>Problem 4</h3>
+<ul>
+<li>Check for problems with heteroscedasticity.</li>
+<li>Breusch-Pagan test</li>
+</ul>
 <pre class="r"><code>lmtest::bptest(fit)</code></pre>
 <pre><code>## 
 ##  studentized Breusch-Pagan test
 ## 
 ## data:  fit
-## BP = 25.085, df = 7, p-value = 0.000733</code></pre>
-<pre class="r"><code># Evaluate Collinearity
-vif(fit) # variance inflation factors </code></pre>
-<pre><code>##       V3       V4       V5       V6       V7       V8       V9 
-## 2.162606 1.128941 1.240489 1.311178 2.009331 2.516346 1.458701</code></pre>
-<pre class="r"><code>vif(fit) &gt; 2 # problem?</code></pre>
-<pre><code>##    V3    V4    V5    V6    V7    V8    V9 
-##  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE</code></pre>
-<pre class="r"><code># Choose a VIF cutoff under which a variable is retained (Zuur et al. 2010 
-# MEE recommends 2)
-cutoff=2
-# Create function to sequentially drop the variable with the largest VIF until 
-# all variables have VIF &gt; cutoff
-flag=TRUE
-viftable=data.frame()
-while(flag==TRUE) {
-  vfit=vif(fit)
-  viftable=rbind.fill(viftable,as.data.frame(t(vfit)))
-  if(max(vfit)&gt;cutoff) { fit=
-    update(fit,as.formula(paste(&quot;.&quot;,&quot;~&quot;,&quot;.&quot;,&quot;-&quot;,names(which.max(vfit))))) }
-  else { flag=FALSE } }</code></pre>
-<pre class="r"><code>summary(fit)</code></pre>
+## BP = 14.2, df = 5, p-value = 0.01439</code></pre>
+<ul>
+<li>Breusch-Pagan test</li>
+</ul>
+<pre class="r"><code>car::ncvTest(fit)  </code></pre>
+<pre><code>## Non-constant Variance Score Test 
+## Variance formula: ~ fitted.values 
+## Chisquare = 102.4705    Df = 1     p = 4.378427e-24</code></pre>
+<p>With a p-value of are less than 0.05, we reject the null hypothesis (that variance of residuals is constant) and therefore infer that ther residuals are not homoscedastic.</p>
+<ul>
+<li>Alterative method: The gvlma( ) function in the gvlma package, performs a global validation of linear model assumptions as well separate evaluations of skewness, kurtosis, and heteroscedasticity.</li>
+</ul>
+<pre class="r"><code>gvmodel &lt;- gvlma(fit) 
+summary(gvmodel)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = V2 ~ V3 + V4 + V5 + V6 + V7 + V9, data = data)
+## lm(formula = V2 ~ ., data = NewData)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -54.794  -8.778   0.223   5.391 164.042 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -18.91802   40.22107  -0.470   0.6392    
-## V3            2.25470    0.52767   4.273 4.78e-05 ***
-## V4            0.01090    0.07382   0.148   0.8830    
-## V5           -0.53047    0.47496  -1.117   0.2670    
-## V6            1.31986    1.19925   1.101   0.2740    
-## V7           23.61941    9.72629   2.428   0.0172 *  
-## V9            7.53201    5.15350   1.462   0.1474    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 31.11 on 90 degrees of freedom
-## Multiple R-squared:  0.4544, Adjusted R-squared:  0.418 
-## F-statistic: 12.49 on 6 and 90 DF,  p-value: 3.393e-10</code></pre>
-<pre class="r"><code>SWfit = stepAIC(fit, direction=&quot;both&quot;)</code></pre>
-<pre><code>## Start:  AIC=673.63
-## V2 ~ V3 + V4 + V5 + V6 + V7 + V9
-## 
-##        Df Sum of Sq    RSS    AIC
-## - V4    1      21.1  87138 671.65
-## - V6    1    1172.5  88289 672.93
-## - V5    1    1207.4  88324 672.96
-## &lt;none&gt;               87117 673.63
-## - V9    1    2067.6  89184 673.90
-## - V7    1    5708.2  92825 677.78
-## - V3    1   17673.4 104790 689.55
-## 
-## Step:  AIC=671.65
-## V2 ~ V3 + V5 + V6 + V7 + V9
-## 
-##        Df Sum of Sq    RSS    AIC
-## - V5    1    1192.3  88330 670.97
-## - V6    1    1382.8  88521 671.18
-## &lt;none&gt;               87138 671.65
-## - V9    1    2047.2  89185 671.90
-## + V4    1      21.1  87117 673.63
-## - V7    1    5724.2  92862 675.82
-## - V3    1   17816.0 104954 687.70
-## 
-## Step:  AIC=670.97
-## V2 ~ V3 + V6 + V7 + V9
-## 
-##        Df Sum of Sq    RSS    AIC
-## - V6    1     690.3  89020 669.73
-## - V9    1    1555.8  89886 670.66
-## &lt;none&gt;               88330 670.97
-## + V5    1    1192.3  87138 671.65
-## + V4    1       6.0  88324 672.96
-## - V7    1    5242.0  93572 674.56
-## - V3    1   18539.1 106869 687.45
-## 
-## Step:  AIC=669.73
-## V2 ~ V3 + V7 + V9
-## 
-##        Df Sum of Sq    RSS    AIC
-## - V9    1    1836.4  90857 669.71
-## &lt;none&gt;               89020 669.73
-## + V6    1     690.3  88330 670.97
-## + V5    1     499.8  88521 671.18
-## + V4    1     121.4  88899 671.59
-## - V7    1    4985.4  94006 673.01
-## - V3    1   17970.4 106991 685.56
-## 
-## Step:  AIC=669.71
-## V2 ~ V3 + V7
-## 
-##        Df Sum of Sq    RSS    AIC
-## &lt;none&gt;               90857 669.71
-## + V9    1    1836.4  89020 669.73
-## + V6    1     970.9  89886 670.66
-## + V5    1     155.3  90701 671.54
-## + V4    1      94.9  90762 671.60
-## - V7    1    6612.6  97469 674.52
-## - V3    1   24196.6 115053 690.61</code></pre>
-<pre class="r"><code>summary(SWfit)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = V2 ~ V3 + V7, data = data)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -55.145  -7.535  -1.129   4.256 170.018 
+## -32.472  -8.442  -1.590   4.551 113.250 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    1.060      4.231   0.251   0.8027    
-## V3             2.477      0.495   5.003 2.62e-06 ***
-## V7            24.647      9.423   2.616   0.0104 *  
+## (Intercept)  -9.6969    23.7474  -0.408  0.68402    
+## V4            0.2343     0.1253   1.869  0.06489 .  
+## V5           -0.7839     0.2842  -2.759  0.00706 ** 
+## V6           -0.2332     0.8024  -0.291  0.77201    
+## V7           25.7531     5.2755   4.882 4.66e-06 ***
+## V9            9.3938     2.9409   3.194  0.00195 ** 
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 31.09 on 94 degrees of freedom
-## Multiple R-squared:  0.431,  Adjusted R-squared:  0.4189 
-## F-statistic:  35.6 on 2 and 94 DF,  p-value: 3.098e-12</code></pre>
+## Residual standard error: 18.48 on 88 degrees of freedom
+## Multiple R-squared:  0.4261, Adjusted R-squared:  0.3935 
+## F-statistic: 13.07 on 5 and 88 DF,  p-value: 1.625e-09
+## 
+## 
+## ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+## USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+## Level of Significance =  0.05 
+## 
+## Call:
+##  gvlma(x = fit) 
+## 
+##                      Value   p-value                   Decision
+## Global Stat        1168.18 0.000e+00 Assumptions NOT satisfied!
+## Skewness            132.62 0.000e+00 Assumptions NOT satisfied!
+## Kurtosis            961.49 0.000e+00 Assumptions NOT satisfied!
+## Link Function        14.91 1.125e-04 Assumptions NOT satisfied!
+## Heteroscedasticity   59.15 1.465e-14 Assumptions NOT satisfied!</code></pre>
+</div>
+<div id="problem-5" class="section level1">
+<h1>Problem 5</h1>
+<ul>
+<li>I applied the stepwise AIC to do the variable selection.</li>
+</ul>
+<pre class="r"><code>SWfit = stepAIC(fit, direction=&quot;both&quot;)</code></pre>
+<pre><code>## Start:  AIC=554.16
+## V2 ~ V4 + V5 + V6 + V7 + V9
+## 
+##        Df Sum of Sq   RSS    AIC
+## - V6    1      28.9 30090 552.25
+## &lt;none&gt;              30061 554.16
+## - V4    1    1193.8 31255 555.82
+## - V5    1    2599.6 32661 559.96
+## - V9    1    3485.4 33546 562.47
+## - V7    1    8140.5 38201 574.69
+## 
+## Step:  AIC=552.25
+## V2 ~ V4 + V5 + V7 + V9
+## 
+##        Df Sum of Sq   RSS    AIC
+## &lt;none&gt;              30090 552.25
+## + V6    1      28.9 30061 554.16
+## - V4    1    1381.1 31471 554.47
+## - V5    1    2903.1 32993 558.91
+## - V9    1    3526.9 33617 560.67
+## - V7    1    8742.8 38833 574.23</code></pre>
+<ul>
+<li>The best model is as follows:</li>
+</ul>
+<pre class="r"><code>summary(SWfit)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = V2 ~ V4 + V5 + V7 + V9, data = NewData)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -32.639  -8.025  -1.663   4.672 113.076 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -8.5916    23.3200  -0.368  0.71343    
+## V4            0.2154     0.1066   2.021  0.04627 *  
+## V5           -0.8038     0.2743  -2.930  0.00430 ** 
+## V7           26.0790     5.1284   5.085 2.02e-06 ***
+## V9            9.4373     2.9219   3.230  0.00174 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.39 on 89 degrees of freedom
+## Multiple R-squared:  0.4256, Adjusted R-squared:  0.3998 
+## F-statistic: 16.49 on 4 and 89 DF,  p-value: 3.846e-10</code></pre>
 <pre class="r"><code>par(mfrow=c(2,2)) # init 4 charts in 1 panel
 plot(SWfit)</code></pre>
-<p><img src="project1_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<pre class="r"><code>hccm(fit)</code></pre>
-<pre><code>##              (Intercept)           V3            V4            V5
-## (Intercept) 898.50827280 -1.516688496  0.0914511555 -7.7925239586
-## V3           -1.51668850  0.941812897  0.0028810524 -0.0011647811
-## V4            0.09145116  0.002881052  0.0007672276 -0.0004454377
-## V5           -7.79252396 -0.001164781 -0.0004454377  0.2189205166
-## V6           -0.88748476  0.003083616 -0.0159918476 -0.1095185263
-## V7          -30.39989696 -1.366584141 -0.1452136615 -0.7557669480
-## V9          -60.22027892 -0.400266392 -0.0099063679 -0.8561217604
-##                       V6          V7            V9
-## (Intercept) -0.887484757 -30.3998970 -60.220278920
-## V3           0.003083616  -1.3665841  -0.400266392
-## V4          -0.015991848  -0.1452137  -0.009906368
-## V5          -0.109518526  -0.7557669  -0.856121760
-## V6           0.875629978   6.7973017   0.898364740
-## V7           6.797301740 136.7877215  10.170102620
-## V9           0.898364740  10.1701026  17.144303775</code></pre>
+<p><img src="project1_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<pre class="r"><code>gvmodel &lt;- gvlma(SWfit) 
+summary(gvmodel)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = V2 ~ V4 + V5 + V7 + V9, data = NewData)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -32.639  -8.025  -1.663   4.672 113.076 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -8.5916    23.3200  -0.368  0.71343    
+## V4            0.2154     0.1066   2.021  0.04627 *  
+## V5           -0.8038     0.2743  -2.930  0.00430 ** 
+## V7           26.0790     5.1284   5.085 2.02e-06 ***
+## V9            9.4373     2.9219   3.230  0.00174 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 18.39 on 89 degrees of freedom
+## Multiple R-squared:  0.4256, Adjusted R-squared:  0.3998 
+## F-statistic: 16.49 on 4 and 89 DF,  p-value: 3.846e-10
+## 
+## 
+## ASSESSMENT OF THE LINEAR MODEL ASSUMPTIONS
+## USING THE GLOBAL TEST ON 4 DEGREES-OF-FREEDOM:
+## Level of Significance =  0.05 
+## 
+## Call:
+##  gvlma(x = SWfit) 
+## 
+##                      Value   p-value                   Decision
+## Global Stat        1158.81 0.000e+00 Assumptions NOT satisfied!
+## Skewness            131.50 0.000e+00 Assumptions NOT satisfied!
+## Kurtosis            952.63 0.000e+00 Assumptions NOT satisfied!
+## Link Function        15.63 7.715e-05 Assumptions NOT satisfied!
+## Heteroscedasticity   59.05 1.532e-14 Assumptions NOT satisfied!</code></pre>
 </div>
 
 <center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
