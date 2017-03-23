@@ -50,9 +50,9 @@ navbar:
         - text: "---------"
         - text: "Week 5"
         - text: "HW #9"
-          href:  hw7.html
+          href:  hw9.html
         - text: "HW #10"
-          href:  hw8.html           
+          href:  hw10.html           
     - text: "Project"
       icon: fa-gear
       menu:
