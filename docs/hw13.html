@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework#13</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw9.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw10.html">HW #10</a>
+    </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="hw11.html">HW #11</a>
+    </li>
+    <li>
+      <a href="hw12.html">HW #12</a>
+    </li>
+    <li class="dropdown-header">Week 7</li>
+    <li>
+      <a href="hw13.html">HW #13</a>
+    </li>
+    <li>
+      <a href="hw14.html">HW #14</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework#13</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>4/2/2017</em></h4>
+
+</div>
+
+
+<div id="require-package" class="section level2">
+<h2>require package</h2>
+<pre class="r"><code>library(plyr)</code></pre>
+</div>
+<div id="load-data" class="section level2">
+<h2>Load data</h2>
+<pre class="r"><code>dt &lt;- read.table(&quot;./data/CH27PR13.txt&quot;, 
+                col.names =  c(&quot;response&quot;, &quot;store&quot;, &quot;display&quot;, &quot;time_period&quot;))
+dt$store = as.factor(dt$store)
+dt$display = as.factor(dt$display)
+dt$time_period = as.factor(dt$time_period)</code></pre>
+</div>
+<div id="problem-27.13-a" class="section level2">
+<h2>Problem 27.13 a</h2>
+<ul>
+<li>obtain residuals</li>
+</ul>
+<pre class="r"><code>fit = aov(response~display * time_period + Error(store/(display)), dt)
+residuals = proj(fit)[[4]][, &quot;Residuals&quot;]
+residuals = data.frame(id=dt$display, res=residuals)
+residuals = arrange(residuals, id)
+residuals = matrix(residuals$res, 8, 4, byrow=T)
+colnames(residuals) =  c(&quot;k=1&quot;, &quot;k=2&quot;, &quot;k=3&quot;, &quot;k=4&quot;)
+rownames(residuals) = paste(&quot;i&quot;, c(1:4, 1:4), sep=&quot;=&quot;)
+residuals</code></pre>
+<pre><code>##         k=1    k=2     k=3     k=4
+## i=1   9.250 -8.750   1.250  -1.750
+## i=2 -11.750 -2.750  15.250  -0.750
+## i=3   7.750 -5.250   5.750  -8.250
+## i=4  -5.250 16.750 -22.250  10.750
+## i=1   3.625 -3.125 -13.875  13.375
+## i=2  15.375  6.625   7.875 -29.875
+## i=3  -8.375 -3.125  -3.875  15.375
+## i=4 -10.625 -0.375   9.875   1.125</code></pre>
+<ul>
+<li>residuals against the fitted values</li>
+</ul>
+<pre class="r"><code>plot(proj(fit)[[4]][, &quot;Residuals&quot;]~dt$response-proj(fit)[[4]][, &quot;Residuals&quot;], 
+     xlab=&quot;fitted values&quot;, ylab=&quot;residuals&quot;, ylim=c(-30, 30))
+abline(h=0)</code></pre>
+<p><img src="hw13_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<ul>
+<li>qqplot</li>
+</ul>
+<pre class="r"><code>qqnorm(qqplotData$y, ylim=c(-30, 30))
+qqline(qqplotData$y)</code></pre>
+<p><img src="hw13_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<ul>
+<li>Based on plots above, the model is appropriate to explain this data.</li>
+</ul>
+</div>
+<div id="problem-27.13-b" class="section level2">
+<h2>Problem 27.13 b</h2>
+<ul>
+<li>Based on the plot, the model is appropriate here.</li>
+</ul>
+<pre class="r"><code>par(mfrow=c(1,2))
+dat = subset(dt, display==1)
+store = dat$store
+time_period = dat$time_period
+response = dat$response
+interaction.plot(time_period, store, response, main=&quot;display 1&quot;)
+
+dat = subset(dt, display==2)
+store = dat$store
+time_period = dat$time_period
+response = dat$response
+interaction.plot(time_period, store, response, main=&quot;display 2&quot;)</code></pre>
+<p><img src="hw13_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+<div id="problem-27.15-a" class="section level2">
+<h2>Problem 27.15 a</h2>
+<pre class="r"><code>S_display = summary(fit)[[1]][[1]][1,] + summary(fit)[[2]][[1]][2,]
+S_display[1,3] = S_display[1,2]/S_display[1,1]
+S_display[1,4] = S_display[1,3]/summary(fit)[[3]][[1]][3,3]
+S_display[1,5] = 0
+variance_table = rbind(summary(fit)[[2]][[1]][1,], S_display,  summary(fit)[[3]][[1]])
+rownames(variance_table) = c(&quot;display&quot;, &quot;S(display)&quot;, &quot;time period&quot;, 
+                             &quot;display:time period&quot;, &quot;Error&quot;)
+variance_table</code></pre>
+<pre><code>##                     Df  Sum Sq Mean Sq   F value    Pr(&gt;F)    
+## display              1  266085  266085  325.8684 0.0003708 ***
+## S(display)           6 3004019  500670 2355.9395 &lt; 2.2e-16 ***
+## time period          3   53322   17774   83.6363 9.216e-11 ***
+## display:time period  3     691     230    1.0833 0.3813307    
+## Error               18    3825     213                        
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="problem-27.15-b" class="section level2">
+<h2>Problem 27.15 b</h2>
+<ul>
+<li>No interaction effects</li>
+<li>Main effects exist</li>
+</ul>
+<pre class="r"><code>meanTime = ddply(dt, .(time_period, display), summarise, mean=mean(response))
+dt &lt;- read.table(&quot;./data/CH27PR13.txt&quot;, 
+                col.names =  c(&quot;response&quot;, &quot;store&quot;, &quot;display&quot;, &quot;time_period&quot;))
+plot(subset(dt, time_period==1&amp;display==1)$time_period, subset(dt, time_period==1&amp;display==1)$response, 
+     xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=2)
+points(subset(dt, time_period==2&amp;display==1)$time_period, subset(dt, time_period==2&amp;display==1)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=2)
+points(subset(dt, time_period==3&amp;display==1)$time_period, subset(dt, time_period==3&amp;display==1)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=2)
+points(subset(dt, time_period==4&amp;display==1)$time_period, subset(dt, time_period==4&amp;display==1)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=2)
+
+mean1 = subset(meanTime, display==1)
+points(mean1$mean~mean1$time_period, type=&#39;l&#39;, col=2, lwd=3)
+points(subset(dt, time_period==1&amp;display==2)$time_period, subset(dt, time_period==1&amp;display==2)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=3)
+points(subset(dt, time_period==2&amp;display==2)$time_period, subset(dt, time_period==2&amp;display==2)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=3)
+points(subset(dt, time_period==3&amp;display==2)$time_period, subset(dt, time_period==3&amp;display==2)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=3)
+points(subset(dt, time_period==4&amp;display==2)$time_period, subset(dt, time_period==4&amp;display==2)$response, 
+       xlim=c(0,5), ylim=c(0, 1200), xlab=&quot;time period&quot;, ylab = &quot;sales&quot;, pch=16, col=3)
+
+mean2 = subset(meanTime, display==2)
+points(mean2$mean~mean2$time_period, type=&#39;l&#39;, col=3, lwd=3)
+text(4.5, 800, &#39;display 1&#39;)
+text(4.5, 600, &#39;display 2&#39;)</code></pre>
+<p><img src="hw13_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="problem-27.13-c" class="section level2">
+<h2>Problem 27.13 c</h2>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all (alpha*beta)jk equal zero</li>
+<li>Ha: not all (alpha*beta)jk equal zero</li>
+</ul></li>
+<li>decision rules: if F_star &lt;= F(.975; 3, 18), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: F_star = 1.083 &lt; F(.975; 3, 18) = 3.953863, conclude H0.</li>
+<li>pvalue = 0.381</li>
+</ul>
+<pre class="r"><code>summary(fit)[[3]][1]</code></pre>
+<pre><code>##                     Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## time_period          3  53322   17774  83.636 9.22e-11 ***
+## display:time_period  3    691     230   1.083    0.381    
+## Residuals           18   3825     213                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="problem-27.13-d" class="section level2">
+<h2>Problem 27.13 d</h2>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all (alpha)j equal zero</li>
+<li>Ha: not all (alpha)j equal zero</li>
+</ul></li>
+<li>decision rules: if F_star &lt;= F(.975; 1, 6), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: F_star = 1.083 &lt; F(.95; 1, 6) = 8.813101, conclude H0.</li>
+<li>pvalue = 0.3813</li>
+</ul>
+<pre class="r"><code>summary(fit)[[3]][[1]][2,]</code></pre>
+<pre><code>##                     Df Sum Sq Mean Sq F value Pr(&gt;F)
+## display:time_period  3 690.62  230.21  1.0833 0.3813</code></pre>
+<ul>
+<li>alternatives
+<ul>
+<li>H0: all (beta)j equal zero</li>
+<li>Ha: not all (beta)j equal zero</li>
+</ul></li>
+<li>decision rules: if F_star &lt;= F(.975; 1, 6), conclude H0; otherwise, conclude Ha.</li>
+<li>conclusion: F_star = 83.636 &gt; F(.95; 1, 6) = 8.813101, conclude Ha.</li>
+<li>pvalue = 9.22e-11</li>
+</ul>
+<pre class="r"><code>summary(fit)[[3]][[1]][1,4, drop=FALSE]</code></pre>
+<pre><code>##                     F value
+## time_period          83.636</code></pre>
+</div>
+<div id="problem-27.15-e" class="section level2">
+<h2>Problem 27.15 e</h2>
+<ul>
+<li>L1 = 182.375</li>
+<li>L2 = -9.375</li>
+<li>L3 = 20.625</li>
+<li>L4 = -103.375</li>
+<li>s = 4</li>
+<li>a = 2</li>
+<li>b = 4</li>
+<li>s{Li} = 2MSB.S(A)/as = ((2*213)/(2*4))^.5 = 7.29726</li>
+<li>s{L1} = 2MSS(A)/bs = ((2*213)/(2*4))^.5 = 250.1674</li>
+<li>Bi = t(.9875; 18) = 2.445006</li>
+<li>B1 = t(.9875, 6) = 2.968687</li>
+<li>Confidence intervals
+<ul>
+<li>L1 = [L1-s{L1}B1, L1+s{L1}B1] = [-560.2937, 925.0437], no significant difference</li>
+<li>L2 = [L2-s{Li}Bi, L2+s{Li}Bi] = [-27.21684, 8.466844], no significant difference</li>
+<li>L3 = [L3-s{Li}Bi, L3+s{Li}Bi] = [2.783156, 38.46684], significant difference</li>
+<li>L4 = [L4-s{Li}Bi, L4+s{Li}Bi] = [-121.2168, -85.53316], significant difference</li>
+</ul></li>
+</ul>
+<pre class="r"><code>L = ddply(dt, .(display), summarise, mu = mean(response))
+L1 = L$mu[1] - L$mu[2]
+L1</code></pre>
+<pre><code>## [1] 182.375</code></pre>
+<pre class="r"><code>L = ddply(dt, .(time_period), summarise, mu = mean(response))
+L2 = L$mu[1] - L$mu[2]
+L2</code></pre>
+<pre><code>## [1] -9.375</code></pre>
+<pre class="r"><code>L3 = L$mu[2] - L$mu[3]
+L3</code></pre>
+<pre><code>## [1] 20.625</code></pre>
+<pre class="r"><code>L4 = L$mu[3] - L$mu[4]
+L4</code></pre>
+<pre><code>## [1] -103.375</code></pre>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

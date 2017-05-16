@@ -1,0 +1,93 @@
+---
+title: 'Homework #11'
+author: "Wenqiang Feng"
+date: "3/25/2017"
+output: html_document
+---
+
+
+## require package 
+```{r message=FALSE, warning=FALSE}
+library(plyr)
+library(asbio)
+```
+
+## Load data
+```{r}
+dt <- read.table("./data/CH22PR11.txt", 
+                col.names =  c("physical_therapy_days", "fitness_status", "obs", "age"))
+
+dt$fitness_status = as.factor(dt$fitness_status)
+dt$obs = as.factor(dt$obs)
+```
+
+## Problem a
+### Test residuals normality
+
+* W = 0.98277, p-value = 0.9409
+* Normality test indicates that the residuals are normally distributed
+
+```{r}
+fit = aov(physical_therapy_days~age+fitness_status, dt)
+shapiro.test(fit$residuals)
+```
+
+## Problem b
+### interaction between treatment factor and covariate
+
+* F_star = 0.3359, P value = 0.719 
+* So no interaction between factor and covariate
+
+```{r}
+fit.interaction = aov(physical_therapy_days~age+fitness_status+age:fitness_status, dt)
+summary(fit.interaction)
+
+variance_table = summary(fit.interaction)[[1]]
+variance_table[3,,drop=F]
+```
+
+* Plot below also indicates no interaction effect
+
+```{r}
+plot(dt$physical_therapy_days~dt$age, col=dt$fitness_status, pch=18)
+```
+
+## Problem c
+### test for relationship between covariate and response variable
+* The covariate is significantly correlated with the response variable. 
+
+```{r}
+cortest = cor.test(dt$physical_therapy_days,dt$age)
+cortest
+```
+
+* correlation coefficient = 0.8764434, p-value = 1.972299e-08
+```{r}
+cortest$estimate
+cortest$p.value
+```
+
+## Problem d
+### test for treatment effect
+
+* There is a significant treatment effect on the physical therapy days
+* F_star = 372.61, p-value = 2.257e-15
+```{r}
+fit.treatment = aov(physical_therapy_days~age+fitness_status, dt)
+variance_table = summary(fit.treatment)[[1]]
+variance_table
+variance_table[2,,drop=F]
+```
+
+
+## Problem e
+### pairwise comparisons between treatment levels
+
+* All pairwise comparisons show significant difference.
+
+```{r}
+fit.tukey = aov(physical_therapy_days~fitness_status, dt)
+TukeyHSD(fit.tukey, conf.level = 0.95)
+boxplot(physical_therapy_days ~ fitness_status, dt, xlab="Treatment levels", 
+        ylab = "physical therapy days")
+```

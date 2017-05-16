@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework#14</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw9.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw10.html">HW #10</a>
+    </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="hw11.html">HW #11</a>
+    </li>
+    <li>
+      <a href="hw12.html">HW #12</a>
+    </li>
+    <li class="dropdown-header">Week 7</li>
+    <li>
+      <a href="hw13.html">HW #13</a>
+    </li>
+    <li>
+      <a href="hw14.html">HW #14</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework#14</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>4/7/2017</em></h4>
+
+</div>
+
+
+<div id="required-packages" class="section level2">
+<h2>Required packages</h2>
+<pre class="r"><code>library(aod)
+library(MASS)
+library(car)</code></pre>
+</div>
+<div id="load-data" class="section level2">
+<h2>Load data</h2>
+<pre class="r"><code>dt &lt;- read.table(&quot;./data/CH14PR13.txt&quot;, 
+                col.names =  c(&quot;label&quot;, &quot;income&quot;, &quot;autoyear&quot;))
+dt$label = as.factor(dt$label)</code></pre>
+</div>
+<div id="problem-14.13-a" class="section level2">
+<h2>Problem 14.13 a</h2>
+<ul>
+<li>Fit logistic regression models</li>
+</ul>
+<pre class="r"><code>fit.logr &lt;- glm(label ~ income+autoyear, family=binomial(&quot;logit&quot;),data = dt)</code></pre>
+<pre class="r"><code>summary(fit.logr)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = label ~ income + autoyear, family = binomial(&quot;logit&quot;), 
+##     data = dt)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6189  -0.8949  -0.5880   0.9653   2.0846  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept) -4.73931    2.10195  -2.255   0.0242 *
+## income       0.06773    0.02806   2.414   0.0158 *
+## autoyear     0.59863    0.39007   1.535   0.1249  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 44.987  on 32  degrees of freedom
+## Residual deviance: 36.690  on 30  degrees of freedom
+## AIC: 42.69
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<ul>
+<li>From the above fitted results, we get the maximum likelihood estimates for <span class="math inline">\(\beta_0, \beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are <span class="math inline">\(-4.73931, 0.06773\)</span> and <span class="math inline">\(0.59863\)</span>, respectively. And the corresponding fitted resonse function is <span class="math display">\[\hat{\pi}= \frac{\exp(X&#39;b)}{1+\exp(X&#39;b)}=[1+\exp(-X&#39;b)]^{-1}= [1+\exp(4.73931-0.06773 X_1-0.59863X_2)]^{-1}.\]</span></li>
+</ul>
+</div>
+<div id="problem-14.13-b" class="section level2">
+<h2>Problem 14.13 b</h2>
+<ul>
+<li><span class="math inline">\(\exp(b_1)\)</span> = 1.0700763</li>
+<li><span class="math inline">\(\exp(b_2)\)</span> = 1.8196242</li>
+<li>Interpretation: <span class="math inline">\(\exp(b_1)\)</span> means the odd will increat 1.0700763 units when the <span class="math inline">\(X_1\)</span> insrease 1 unit and the other parameters are fixed; <span class="math inline">\(\exp(b_2)\)</span> means the odd will increat 1.8196242 units when the <span class="math inline">\(X_2\)</span> insrease 1 unit and the other parameters are fixed.</li>
+</ul>
+</div>
+<div id="problem-14.13-c" class="section level2">
+<h2>Problem 14.13 c</h2>
+<p><span class="math display">\[\hat{\pi}= \frac{\exp(X&#39;b)}{1+\exp(X&#39;b)}=[1+\exp(-X&#39;b)]^{-1}= [1+\exp(4.73931-0.06773 X_1-0.59863X_2)]^{-1} = 0.6089927.\]</span></p>
+</div>
+<div id="problem-14.19-b" class="section level2">
+<h2>Problem 14.19 b</h2>
+<ul>
+<li>Hypothesis:
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_2 =0\)</span></li>
+<li><span class="math inline">\(H_\alpha\)</span>: <span class="math inline">\(\beta_2 \neq 0\)</span></li>
+</ul></li>
+<li>Wald test</li>
+</ul>
+<pre class="r"><code>coef(fit.logr)</code></pre>
+<pre><code>## (Intercept)      income    autoyear 
+## -4.73930950  0.06773256  0.59863166</code></pre>
+<pre class="r"><code>wald.test(b = coef(fit.logr), Sigma = vcov(fit.logr), Terms = 3)</code></pre>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 2.4, df = 1, P(&gt; X2) = 0.12</code></pre>
+<ul>
+<li>Summary:
+<ul>
+<li>According to the p-value, we conlude <span class="math inline">\(H_0\)</span>;</li>
+<li>P-Value : 0.12</li>
+</ul></li>
+</ul>
+</div>
+<div id="problem-14.21-a" class="section level2">
+<h2>Problem 14.21 a</h2>
+<ul>
+<li>model fitting</li>
+</ul>
+<pre class="r"><code>fit.logr2 &lt;- glm(label ~ polym(income, degree=2)+polym(autoyear, degree=2), family=binomial(&quot;logit&quot;),data = dt)</code></pre>
+<pre class="r"><code>summary(fit.logr2)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = label ~ polym(income, degree = 2) + polym(autoyear, 
+##     degree = 2), family = binomial(&quot;logit&quot;), data = dt)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.7571  -0.8346  -0.5888   0.9257   2.2011  
+## 
+## Coefficients:
+##                              Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)                   -0.3171     0.4456  -0.712   0.4767  
+## polym(income, degree = 2)1    10.0558     4.5620   2.204   0.0275 *
+## polym(income, degree = 2)2     1.0828     3.4545   0.313   0.7539  
+## polym(autoyear, degree = 2)1   5.5885     3.5022   1.596   0.1106  
+## polym(autoyear, degree = 2)2  -2.8765     2.7050  -1.063   0.2876  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 44.987  on 32  degrees of freedom
+## Residual deviance: 35.290  on 28  degrees of freedom
+## AIC: 45.29
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<ul>
+<li>forward selection</li>
+</ul>
+<pre class="r"><code>forwards = step(fit.logr2,
+scope=label ~ polym(income, degree=2)+polym(autoyear, degree=2), direction=&quot;forward&quot;)</code></pre>
+<pre><code>## Start:  AIC=45.29
+## label ~ polym(income, degree = 2) + polym(autoyear, degree = 2)</code></pre>
+<pre class="r"><code>summary(forwards)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = label ~ polym(income, degree = 2) + polym(autoyear, 
+##     degree = 2), family = binomial(&quot;logit&quot;), data = dt)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.7571  -0.8346  -0.5888   0.9257   2.2011  
+## 
+## Coefficients:
+##                              Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)                   -0.3171     0.4456  -0.712   0.4767  
+## polym(income, degree = 2)1    10.0558     4.5620   2.204   0.0275 *
+## polym(income, degree = 2)2     1.0828     3.4545   0.313   0.7539  
+## polym(autoyear, degree = 2)1   5.5885     3.5022   1.596   0.1106  
+## polym(autoyear, degree = 2)2  -2.8765     2.7050  -1.063   0.2876  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 44.987  on 32  degrees of freedom
+## Residual deviance: 35.290  on 28  degrees of freedom
+## AIC: 45.29
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<ul>
+<li>Summary: <span class="math inline">\(X_{1}\)</span> and <span class="math inline">\(X_2\)</span> enter in step 1; no variables satisfy criterion for entry in step 2.</li>
+</ul>
+</div>
+<div id="problem-14.21-b" class="section level2">
+<h2>Problem 14.21 b</h2>
+<ul>
+<li>backward selection</li>
+</ul>
+<pre class="r"><code>step &lt;- stepAIC(fit.logr2, direction=&quot;backward&quot;)</code></pre>
+<pre><code>## Start:  AIC=45.29
+## label ~ polym(income, degree = 2) + polym(autoyear, degree = 2)
+## 
+##                               Df Deviance    AIC
+## - polym(autoyear, degree = 2)  2   39.091 45.091
+## &lt;none&gt;                             35.290 45.290
+## - polym(income, degree = 2)    2   44.700 50.700
+## 
+## Step:  AIC=45.09
+## label ~ polym(income, degree = 2)
+## 
+##                             Df Deviance    AIC
+## &lt;none&gt;                           39.091 45.091
+## - polym(income, degree = 2)  2   44.987 46.987</code></pre>
+<ul>
+<li>Summary: <span class="math inline">\(X_{11}\)</span> and <span class="math inline">\(X_{21}\)</span> are deleted in step 1; <span class="math inline">\(X_{21}\)</span> is deleted in step 2; <span class="math inline">\(X_{12}\)</span> is retained ed in the model.</li>
+</ul>
+</div>
+<div id="problem-14.31-b" class="section level2">
+<h2>Problem 14.31 b</h2>
+<pre class="r"><code>delta_X2 = residuals(fit.logr, type = &quot;pearson&quot;)^2
+delta_dev2 = residuals(fit.logr, type = &quot;deviance&quot;)^2
+cooked = cooks.distance(fit.logr)</code></pre>
+<pre class="r"><code>table= cbind(delta_X2,delta_dev2,cooked)
+table</code></pre>
+<pre><code>##      delta_X2 delta_dev2      cooked
+## 1  0.46025598 0.75722350 0.007287618
+## 2  0.61013149 0.95263170 0.015487481
+## 3  0.59338747 0.93172447 0.022007635
+## 4  0.57645850 0.91036176 0.034632273
+## 5  0.52127958 0.83910362 0.011141676
+## 6  0.62804934 0.97476515 0.047271817
+## 7  0.13371774 0.25100454 0.007232107
+## 8  0.43705937 0.72519784 0.029744556
+## 9  2.70752691 2.62073011 0.127322468
+## 10 0.06792509 0.13143520 0.003071869
+## 11 0.14466564 0.27022516 0.006890961
+## 12 0.72341852 1.08861966 0.036467012
+## 13 0.30655201 0.53478323 0.006056811
+## 14 0.69453015 1.05481101 0.020081317
+## 15 0.49251030 0.80091894 0.007562268
+## 16 0.33530576 0.57832060 0.018701632
+## 17 0.55452674 0.88234230 0.021356151
+## 18 0.15572035 0.28944766 0.004033318
+## 19 3.08205539 2.81320127 0.075808690
+## 20 1.40860079 1.75809199 0.194451860
+## 21 0.32803490 0.56740066 0.006242799
+## 22 1.77318040 2.03998964 0.025949339
+## 23 1.26378596 1.63407723 0.018434634
+## 24 0.18872634 0.34576487 0.005419367
+## 25 0.26771482 0.47443185 0.005680174
+## 26 3.77648772 3.12741098 0.099379479
+## 27 0.25018227 0.44657872 0.005486655
+## 28 0.63176835 0.97932861 0.031166825
+## 29 7.78290579 4.34561462 0.247931162
+## 30 1.80333955 2.06162281 0.069450919
+## 31 0.21848658 0.39521917 0.005086679
+## 32 0.65619922 1.00905070 0.040135710
+## 33 0.05032646 0.09820207 0.001642341</code></pre>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

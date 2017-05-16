@@ -1,0 +1,63 @@
+---
+title: "Homework#15"
+author: "Wenqiang Feng"
+date: "4/16/2017"
+output: html_document
+---
+
+## Required library
+```{r message=FALSE, warning=FALSE}
+library(sas7bdat)
+library(effects)
+library(pROC)
+library(ROCR)
+library(sjPlot)
+```
+
+
+## Load data set
+```{r cache=TRUE}
+dt <-read.sas7bdat("data/pva_raw_data.sas7bdat", debug=TRUE)
+```
+
+## Fit Logistic Regression Model
+
+```{r}
+fit.log <- glm(TARGET_B ~ PEP_STAR + RECENT_AVG_GIFT_AMT +       
+                 FREQUENCY_STATUS_97NK, 
+               family=binomial(link='logit'),data=dt)
+```
+
+```{r}
+summary(fit.log)
+```
+
+```{r}
+prob=predict(fit.log,type=c("response"))
+dt$prob=prob
+g <- roc(TARGET_B ~ prob, data = dt)
+plot(g)   
+```
+
+## odds ratios and 95% CI
+```{r}
+exp(cbind(OR = coef(fit.log), confint(fit.log)))
+```
+
+## Effect plots with confidence bands 
+```{r}
+plot(allEffects(fit.log))
+```
+
+```{r}
+sjp.glm(fit.log,
+        xisLabels.y=lab,
+        type="bars",
+        gridBreaksAt=0.4)
+```
+## Interpretation
+
+- Interpret the c statistic: The C-statistic is a measure of goodness of fit for binary outcomes in a logistic regression model. A value below 0.5 indicates a very poor model. A value of 0.5 means that the model is no better than predicting an outcome than random chance.
+Values over 0.7 indicate a good model. Values over 0.8 indicate a strong model. A value of 1 means that the model perfectly predicts those group members who will experience a certain outcome and those who will not. From the Roc Curve, we may conclude that the model is no better than predicting on outcome than random chance.
+- Interpret the odds ratio for PEP\_STAR: the coefficient of oadds ratio for PEP\_STAR is 1.3604636 which means, when PEP\_STAR increases 1 unit and the odds will increase 1.3604636 units when the other parameters are fixed.
+- Interpret the effect plot for RECENT\_AVG\_GIFT\_AMT: the coefficient of oadds ratio for PEP\_STAR is 0.9944644 which means, when RECENT\_AVG\_GIFT\_AMT increases 1 unit and the odds will increase 0.9944644 units when the other parameters are fixed.

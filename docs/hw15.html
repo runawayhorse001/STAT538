@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework#15</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw9.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw10.html">HW #10</a>
+    </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="hw11.html">HW #11</a>
+    </li>
+    <li>
+      <a href="hw12.html">HW #12</a>
+    </li>
+    <li class="dropdown-header">Week 7</li>
+    <li>
+      <a href="hw13.html">HW #13</a>
+    </li>
+    <li>
+      <a href="hw14.html">HW #14</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework#15</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>4/16/2017</em></h4>
+
+</div>
+
+
+<div id="required-library" class="section level2">
+<h2>Required library</h2>
+<pre class="r"><code>library(sas7bdat)
+library(effects)
+library(pROC)
+library(ROCR)
+library(sjPlot)</code></pre>
+</div>
+<div id="load-data-set" class="section level2">
+<h2>Load data set</h2>
+<pre class="r"><code>dt &lt;-read.sas7bdat(&quot;data/pva_raw_data.sas7bdat&quot;, debug=TRUE)</code></pre>
+</div>
+<div id="fit-logistic-regression-model" class="section level2">
+<h2>Fit Logistic Regression Model</h2>
+<pre class="r"><code>fit.log &lt;- glm(TARGET_B ~ PEP_STAR + RECENT_AVG_GIFT_AMT +       
+                 FREQUENCY_STATUS_97NK, 
+               family=binomial(link=&#39;logit&#39;),data=dt)</code></pre>
+<pre class="r"><code>summary(fit.log)</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = TARGET_B ~ PEP_STAR + RECENT_AVG_GIFT_AMT + FREQUENCY_STATUS_97NK, 
+##     family = binomial(link = &quot;logit&quot;), data = dt)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -0.98694  -0.78327  -0.66116   0.09466   2.27904  
+## 
+## Coefficients:
+##                        Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)           -1.624110   0.058396 -27.812  &lt; 2e-16 ***
+## PEP_STAR               0.307826   0.036066   8.535  &lt; 2e-16 ***
+## RECENT_AVG_GIFT_AMT   -0.005551   0.002043  -2.717  0.00658 ** 
+## FREQUENCY_STATUS_97NK  0.214706   0.016799  12.781  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 21787  on 19371  degrees of freedom
+## Residual deviance: 21344  on 19368  degrees of freedom
+## AIC: 21352
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<pre class="r"><code>prob=predict(fit.log,type=c(&quot;response&quot;))
+dt$prob=prob
+g &lt;- roc(TARGET_B ~ prob, data = dt)
+plot(g)   </code></pre>
+<p><img src="hw15_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="odds-ratios-and-95-ci" class="section level2">
+<h2>odds ratios and 95% CI</h2>
+<pre class="r"><code>exp(cbind(OR = coef(fit.log), confint(fit.log)))</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<pre><code>##                              OR     2.5 %    97.5 %
+## (Intercept)           0.1970870 0.1758820 0.2211238
+## PEP_STAR              1.3604636 1.2676559 1.4601673
+## RECENT_AVG_GIFT_AMT   0.9944644 0.9904069 0.9983680
+## FREQUENCY_STATUS_97NK 1.2394971 1.1993314 1.2809695</code></pre>
+</div>
+<div id="effect-plots-with-confidence-bands" class="section level2">
+<h2>Effect plots with confidence bands</h2>
+<pre class="r"><code>plot(allEffects(fit.log))</code></pre>
+<p><img src="hw15_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code>sjp.glm(fit.log,
+        xisLabels.y=lab,
+        type=&quot;bars&quot;,
+        gridBreaksAt=0.4)</code></pre>
+<pre><code>## Warning: Invalid `type` argument. Defaulting to `dots`.</code></pre>
+<pre><code>## Waiting for profiling to be done...</code></pre>
+<p><img src="hw15_files/figure-html/unnamed-chunk-8-1.png" width="672" /> ## Interpretation</p>
+<ul>
+<li>Interpret the c statistic: The C-statistic is a measure of goodness of fit for binary outcomes in a logistic regression model. A value below 0.5 indicates a very poor model. A value of 0.5 means that the model is no better than predicting an outcome than random chance. Values over 0.7 indicate a good model. Values over 0.8 indicate a strong model. A value of 1 means that the model perfectly predicts those group members who will experience a certain outcome and those who will not. From the Roc Curve, we may conclude that the model is no better than predicting on outcome than random chance.</li>
+<li>Interpret the odds ratio for PEP_STAR: the coefficient of oadds ratio for PEP_STAR is 1.3604636 which means, when PEP_STAR increases 1 unit and the odds will increase 1.3604636 units when the other parameters are fixed.</li>
+<li>Interpret the effect plot for RECENT_AVG_GIFT_AMT: the coefficient of oadds ratio for PEP_STAR is 0.9944644 which means, when RECENT_AVG_GIFT_AMT increases 1 unit and the odds will increase 0.9944644 units when the other parameters are fixed.</li>
+</ul>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

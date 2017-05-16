@@ -1,0 +1,104 @@
+---
+title: "Homework#14"
+author: "Wenqiang Feng"
+date: "4/7/2017"
+output: html_document
+---
+
+## Required packages
+```{r message=FALSE,warning=FALSE}
+library(aod)
+library(MASS)
+library(car)
+```
+
+## Load data
+```{r}
+dt <- read.table("./data/CH14PR13.txt", 
+                col.names =  c("label", "income", "autoyear"))
+dt$label = as.factor(dt$label)
+```
+
+## Problem 14.13 a
+
+- Fit logistic regression models
+```{r}
+fit.logr <- glm(label ~ income+autoyear, family=binomial("logit"),data = dt)
+```
+
+```{r}
+summary(fit.logr)
+```
+
+- From the above fitted results, we get the maximum likelihood estimates for $\beta_0, \beta_1$ and $\beta_2$ are $-4.73931, 0.06773$ and $0.59863$, respectively. And the corresponding fitted resonse function is 
+\[\hat{\pi}= \frac{\exp(X'b)}{1+\exp(X'b)}=[1+\exp(-X'b)]^{-1}= [1+\exp(4.73931-0.06773 X_1-0.59863X_2)]^{-1}.\]
+
+## Problem 14.13 b
+
+- $\exp(b_1)$ = `r exp(0.06773)`
+- $\exp(b_2)$ = `r exp(0.59863)` 
+- Interpretation: $\exp(b_1)$ means the odd will increat `r exp(0.06773)` units when the $X_1$ insrease 1 unit and the other parameters are fixed; $\exp(b_2)$ means the odd will increat `r exp(0.59863)` units when the $X_2$ insrease 1 unit and the other parameters are fixed.
+
+## Problem 14.13 c
+
+\[\hat{\pi}= \frac{\exp(X'b)}{1+\exp(X'b)}=[1+\exp(-X'b)]^{-1}= [1+\exp(4.73931-0.06773 X_1-0.59863X_2)]^{-1} = `r (1+exp(4.73931-0.06773*50-0.59863*3))^{-1}`.\]
+
+
+## Problem 14.19 b
+
+- Hypothesis:
+    - $H_0$: $\beta_2 =0$
+    - $H_\alpha$: $\beta_2 \neq 0$
+- Wald test
+
+```{r}
+coef(fit.logr)
+```
+```{r}
+wald.test(b = coef(fit.logr), Sigma = vcov(fit.logr), Terms = 3)
+```
+
+- Summary:
+    - According to the p-value, we conlude $H_0$;
+    - P-Value : 0.12
+    
+## Problem 14.21 a
+- model fitting
+```{r}
+fit.logr2 <- glm(label ~ polym(income, degree=2)+polym(autoyear, degree=2), family=binomial("logit"),data = dt)
+```
+```{r}
+summary(fit.logr2)
+```
+- forward selection
+```{r}
+forwards = step(fit.logr2,
+scope=label ~ polym(income, degree=2)+polym(autoyear, degree=2), direction="forward")
+```
+```{r}
+summary(forwards)
+```
+- Summary: $X_{1}$ and $X_2$ enter in step 1; no variables satisfy criterion for entry in step 2.
+
+## Problem 14.21 b
+
+- backward selection
+```{r}
+step <- stepAIC(fit.logr2, direction="backward")
+```
+
+- Summary: $X_{11}$ and $X_{21}$ are deleted in step 1; $X_{21}$ is deleted in step 2; $X_{12}$ is retained ed in the model.
+
+## Problem 14.31 b
+
+
+```{r}
+delta_X2 = residuals(fit.logr, type = "pearson")^2
+delta_dev2 = residuals(fit.logr, type = "deviance")^2
+cooked = cooks.distance(fit.logr)
+```
+
+```{r}
+table= cbind(delta_X2,delta_dev2,cooked)
+table
+```

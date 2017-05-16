@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Wenqiang Feng" />
+
+
+<title>Homework #11</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">STAT 538: Statistics for Research II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Notes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Chapter 1</li>
+    <li>
+      <a href="note1.html">Note #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">Note #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Chapter 2</li>
+    <li>
+      <a href="projtct1.html">Note #3</a>
+    </li>
+    <li>
+      <a href="project2.html">Note #4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Homework
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Week 1</li>
+    <li>
+      <a href="hw1.html">HW #1</a>
+    </li>
+    <li>
+      <a href="hw2.html">HW #2</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 2</li>
+    <li>
+      <a href="hw3.html">HW #3</a>
+    </li>
+    <li>
+      <a href="hw4.html">HW #4</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 3</li>
+    <li>
+      <a href="hw5.html">HW #5</a>
+    </li>
+    <li>
+      <a href="hw6.html">HW #6</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 4</li>
+    <li>
+      <a href="hw7.html">HW #7</a>
+    </li>
+    <li>
+      <a href="hw8.html">HW #8</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Week 5</li>
+    <li>
+      <a href="hw9.html">HW #9</a>
+    </li>
+    <li>
+      <a href="hw10.html">HW #10</a>
+    </li>
+    <li class="dropdown-header">Week 6</li>
+    <li>
+      <a href="hw11.html">HW #11</a>
+    </li>
+    <li>
+      <a href="hw12.html">HW #12</a>
+    </li>
+    <li class="dropdown-header">Week 7</li>
+    <li>
+      <a href="hw13.html">HW #13</a>
+    </li>
+    <li>
+      <a href="hw14.html">HW #14</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project 1</li>
+    <li>
+      <a href="project1.html">Project #1</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Project 2</li>
+    <li>
+      <a href="project2.html">Project #2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="about.html">
+    <span class="fa fa-info"></span>
+     
+    About
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/runawayhorse001/STAT538">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://web.utk.edu/~wfeng1">
+    <span class="fa fa-question fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Homework #11</h1>
+<h4 class="author"><em>Wenqiang Feng</em></h4>
+<h4 class="date"><em>3/25/2017</em></h4>
+
+</div>
+
+
+<div id="require-package" class="section level2">
+<h2>require package</h2>
+<pre class="r"><code>library(plyr)
+library(asbio)</code></pre>
+</div>
+<div id="load-data" class="section level2">
+<h2>Load data</h2>
+<pre class="r"><code>dt &lt;- read.table(&quot;./data/CH22PR11.txt&quot;, 
+                col.names =  c(&quot;physical_therapy_days&quot;, &quot;fitness_status&quot;, &quot;obs&quot;, &quot;age&quot;))
+
+dt$fitness_status = as.factor(dt$fitness_status)
+dt$obs = as.factor(dt$obs)</code></pre>
+</div>
+<div id="problem-a" class="section level2">
+<h2>Problem a</h2>
+<div id="test-residuals-normality" class="section level3">
+<h3>Test residuals normality</h3>
+<ul>
+<li>W = 0.98277, p-value = 0.9409</li>
+<li>Normality test indicates that the residuals are normally distributed</li>
+</ul>
+<pre class="r"><code>fit = aov(physical_therapy_days~age+fitness_status, dt)
+shapiro.test(fit$residuals)</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  fit$residuals
+## W = 0.98277, p-value = 0.9409</code></pre>
+</div>
+</div>
+<div id="problem-b" class="section level2">
+<h2>Problem b</h2>
+<div id="interaction-between-treatment-factor-and-covariate" class="section level3">
+<h3>interaction between treatment factor and covariate</h3>
+<ul>
+<li>F_star = 0.3359, P value = 0.719</li>
+<li>So no interaction between factor and covariate</li>
+</ul>
+<pre class="r"><code>fit.interaction = aov(physical_therapy_days~age+fitness_status+age:fitness_status, dt)
+summary(fit.interaction)</code></pre>
+<pre><code>##                    Df Sum Sq Mean Sq  F value   Pr(&gt;F)    
+## age                 1  835.8   835.8 2530.910  &lt; 2e-16 ***
+## fitness_status      2  246.1   123.0  372.609 2.26e-15 ***
+## age:fitness_status  2    0.2     0.1    0.336    0.719    
+## Residuals          18    5.9     0.3                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>variance_table = summary(fit.interaction)[[1]]
+variance_table[3,,drop=F]</code></pre>
+<pre><code>##                    Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## age:fitness_status  2 0.22184 0.11092  0.3359 0.7191</code></pre>
+<ul>
+<li>Plot below also indicates no interaction effect</li>
+</ul>
+<pre class="r"><code>plot(dt$physical_therapy_days~dt$age, col=dt$fitness_status, pch=18)</code></pre>
+<p><img src="hw11_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
+<div id="problem-c" class="section level2">
+<h2>Problem c</h2>
+<div id="test-for-relationship-between-covariate-and-response-variable" class="section level3">
+<h3>test for relationship between covariate and response variable</h3>
+<ul>
+<li>The covariate is significantly correlated with the response variable.</li>
+</ul>
+<pre class="r"><code>cortest = cor.test(dt$physical_therapy_days,dt$age)
+cortest</code></pre>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  dt$physical_therapy_days and dt$age
+## t = 8.5376, df = 22, p-value = 1.972e-08
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7317657 0.9455402
+## sample estimates:
+##       cor 
+## 0.8764434</code></pre>
+<ul>
+<li>correlation coefficient = 0.8764434, p-value = 1.972299e-08</li>
+</ul>
+<pre class="r"><code>cortest$estimate</code></pre>
+<pre><code>##       cor 
+## 0.8764434</code></pre>
+<pre class="r"><code>cortest$p.value</code></pre>
+<pre><code>## [1] 1.972299e-08</code></pre>
+</div>
+</div>
+<div id="problem-d" class="section level2">
+<h2>Problem d</h2>
+<div id="test-for-treatment-effect" class="section level3">
+<h3>test for treatment effect</h3>
+<ul>
+<li>There is a significant treatment effect on the physical therapy days</li>
+<li>F_star = 372.61, p-value = 2.257e-15</li>
+</ul>
+<pre class="r"><code>fit.treatment = aov(physical_therapy_days~age+fitness_status, dt)
+variance_table = summary(fit.treatment)[[1]]
+variance_table</code></pre>
+<pre><code>##                Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## age             1 835.75  835.75 2710.95 &lt; 2.2e-16 ***
+## fitness_status  2 246.08  123.04  399.11 &lt; 2.2e-16 ***
+## Residuals      20   6.17    0.31                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code>variance_table[2,,drop=F]</code></pre>
+<pre><code>##                Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## fitness_status  2 246.08  123.04  399.11 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<div id="problem-e" class="section level2">
+<h2>Problem e</h2>
+<div id="pairwise-comparisons-between-treatment-levels" class="section level3">
+<h3>pairwise comparisons between treatment levels</h3>
+<ul>
+<li>All pairwise comparisons show significant difference.</li>
+</ul>
+<pre class="r"><code>fit.tukey = aov(physical_therapy_days~fitness_status, dt)
+TukeyHSD(fit.tukey, conf.level = 0.95)</code></pre>
+<pre><code>##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = physical_therapy_days ~ fitness_status, data = dt)
+## 
+## $fitness_status
+##     diff       lwr        upr     p adj
+## 2-1   -6 -11.32141 -0.6785856 0.0253639
+## 3-1  -14 -20.05870 -7.9413032 0.0000254
+## 3-2   -8 -13.79322 -2.2067778 0.0060547</code></pre>
+<pre class="r"><code>boxplot(physical_therapy_days ~ fitness_status, dt, xlab=&quot;Treatment levels&quot;, 
+        ylab = &quot;physical therapy days&quot;)</code></pre>
+<p><img src="hw11_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+
+<center>Copyright &copy; 2017 Ming Chen  & Wenqiang Feng. All rights reserved.</center>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

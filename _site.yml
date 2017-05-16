@@ -52,7 +52,17 @@ navbar:
         - text: "HW #9"
           href:  hw9.html
         - text: "HW #10"
-          href:  hw10.html           
+          href:  hw10.html   
+        - text: "Week 6"
+        - text: "HW #11"
+          href:  hw11.html
+        - text: "HW #12"
+          href:  hw12.html
+        - text: "Week 7"            
+        - text: "HW #13"
+          href:  hw13.html   
+        - text: "HW #14"
+          href:  hw14.html            
     - text: "Project"
       icon: fa-gear
       menu:
